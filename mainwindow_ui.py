@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(606, 428)
+        MainWindow.resize(822, 610)
         MainWindow.setStyleSheet("*{\n"
 "    background-color: rgb(0, 79, 116);\n"
 "   border:none;\n"
@@ -62,6 +62,9 @@ class Ui_MainWindow(object):
 "color: #55557f;\n"
 "border-radius: 10px 10px 10px 10px;\n"
 "padding: 3px 5px;\n"
+"}\n"
+"QComboBox QAbstractItemView {\n"
+"color: #55557f;\n"
 "}\n"
 "#L1,#L2,#L3,#L4,#L5,#L6,#L7,#L8,#L10,#L11,#L12,#L13,#L14,#L15,#L16{\n"
 "color: #ffffff\n"
@@ -428,7 +431,7 @@ class Ui_MainWindow(object):
         self.Acceuil = QtWidgets.QWidget()
         self.Acceuil.setObjectName("Acceuil")
         self.label_86 = QtWidgets.QLabel(parent=self.Acceuil)
-        self.label_86.setGeometry(QtCore.QRect(130, 290, 430, 111))
+        self.label_86.setGeometry(QtCore.QRect(130, 40, 430, 111))
         font = QtGui.QFont()
         font.setFamily("Poor Richard")
         font.setPointSize(36)
@@ -437,7 +440,7 @@ class Ui_MainWindow(object):
         self.label_86.setFont(font)
         self.label_86.setObjectName("label_86")
         self.label_87 = QtWidgets.QLabel(parent=self.Acceuil)
-        self.label_87.setGeometry(QtCore.QRect(10, -90, 521, 421))
+        self.label_87.setGeometry(QtCore.QRect(100, 150, 500, 500))
         self.label_87.setStyleSheet("QPixmax{\n"
 "scaled: (200,100)\n"
 "}")
@@ -989,16 +992,16 @@ class Ui_MainWindow(object):
         self.Titre_2.setFont(font)
         self.Titre_2.setObjectName("Titre_2")
         self.frame_fiche_resultats = QtWidgets.QFrame(parent=self.Ges_Commandes_resultats)
-        self.frame_fiche_resultats.setGeometry(QtCore.QRect(0, 85, 720, 400))
+        self.frame_fiche_resultats.setGeometry(QtCore.QRect(0, 85, 720, 450))
         self.frame_fiche_resultats.setStyleSheet("#frame_fiche_resultats{\n"
 "border: 3px solid #ffffff;\n"
 "border-radius: 10px;\n"
 "background-color: #00557f;\n"
 "}\n"
-"#l1,#l2,#l3,#l4,#l5,#l6,#l7,#l8,#l9,#l10,#l11,#l12,#l13,#l14,#l15,#l16,#l17,#l18,#l19,#l20{\n"
+"#l1,#l2,#l3,#l4,#l5,#l6,#l7,#l8,#l9,#l10,#l11,#l12,#l13,#l14,#l15,#l16,#l17,#l18,#l19,#l20,#l21,#l22,#l23,#l24{\n"
 "color: rgb(255, 255, 255);\n"
 "}\n"
-"#o1,#o2,#o3,#o4,#o5,#o6,#o7,#o8,#o9,#o10,#o11,#o12,#o13,#o14,#o15,#o16,#o17,#o18,#o19,#o20{\n"
+"#o1,#o2,#o3,#o4,#o5,#o6,#o7,#o8,#o9,#o10,#o11,#o12,#o13,#o14,#o15,#o16,#o17,#o18,#o19,#o20,#o21,#o22,#o23,#o24{\n"
 "background-color: #ffffff;\n"
 "color: #55557f; \n"
 "border-radius: 10px 10px 10px 10px;\n"
@@ -1149,6 +1152,34 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.l20.setFont(font)
         self.l20.setObjectName("l20")
+        self.l21 = QtWidgets.QLabel(self.frame_fiche_resultats)
+        self.l21.setGeometry(QtCore.QRect(30, 340, 80, 22))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l21.setFont(font)
+        self.l21.setObjectName("l21")
+        '''self.l22 = QtWidgets.QLabel(self.frame_fiche_resultats)
+        self.l22.setGeometry(QtCore.QRect(190, 340, 80, 22))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l22.setFont(font)
+        self.l22.setObjectName("l22")
+        self.l23 = QtWidgets.QLabel(self.frame_fiche_resultats)
+        self.l23.setGeometry(QtCore.QRect(540, 220, 90, 22))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l23.setFont(font)
+        self.l23.setObjectName("l23")
+        self.l24 = QtWidgets.QLabel(self.frame_fiche_resultats)
+        self.l24.setGeometry(QtCore.QRect(540, 220, 90, 22))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l24.setFont(font)
+        self.l24.setObjectName("l24")'''
         self.o1 = QtWidgets.QLabel(self.frame_fiche_resultats)
         self.o1.setGeometry(QtCore.QRect(110, 50, 70, 22))
         self.o1.setText("")
@@ -1229,7 +1260,24 @@ class Ui_MainWindow(object):
         self.o20.setGeometry(QtCore.QRect(620, 280, 70, 22))
         self.o20.setText("")
         self.o20.setObjectName("o20")
+        self.o21 = QtWidgets.QLabel(self.frame_fiche_resultats)
+        self.o21.setGeometry(QtCore.QRect(110, 340, 70, 22))
+        self.o21.setText("")
+        self.o21.setObjectName("o21")
 
+        '''self.o22 = QtWidgets.QLabel(self.frame_fiche_resultats)
+        self.o22.setGeometry(QtCore.QRect(270, 340, 70, 22))
+        self.o22.setText("")
+        self.o22.setObjectName("o22")        
+        self.o23 = QtWidgets.QLabel(self.frame_fiche_resultats)
+        self.o23.setGeometry(QtCore.QRect(620, 280, 70, 2))
+        self.o23.setText("")
+        self.o23.setObjectName("o23")        
+        self.o24 = QtWidgets.QLabel(self.frame_fiche_resultats)
+        self.o24.setGeometry(QtCore.QRect(620, 280, 70, 2))
+        self.o24.setText("")
+        self.o24.setObjectName("o24")'''
+        
         self.Ges_Commandes_resultats.raise_()
         self.frame_fiche_resultats.raise_()
         self.Titre_2.raise_()
@@ -2075,7 +2123,7 @@ class Ui_MainWindow(object):
         self.label_29 = QtWidgets.QLabel(parent=self.Note_Com)
         self.label_29.setGeometry(QtCore.QRect(60, 30, 170, 20))
         font = QtGui.QFont()
-        font.setFamily("Gabriola")
+        font.setFamily("Helvetica")
         font.setPointSize(17)
         font.setUnderline(False)
         self.label_29.setFont(font)
@@ -2097,7 +2145,7 @@ class Ui_MainWindow(object):
 "border-style: dashed;\n"
 "border-radius: 30px 30px 30px 30px;\n"
 "Padding: 3px 5px;\n"
-"Color: #55557f;\n"
+"Color: #002B40;\n"
 "}")
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.verticalLayout_13.addWidget(self.Note_Com)
@@ -2168,7 +2216,7 @@ class Ui_MainWindow(object):
 "border-style: dashed;\n"
 "border-radius: 30px 30px 30px 30px;\n"
 "Padding: 3px 5px;\n"
-"Color: #55557f;\n"
+"Color: #002B40;\n"
 "}")
         self.plainTextEdit_2.setObjectName("plainTextEdit_2")
         self.verticalLayout_11.addWidget(self.Note_Res)
@@ -2544,7 +2592,7 @@ class Ui_MainWindow(object):
 "border-style: dashed;\n"
 "border-radius: 30px 30px 30px 30px;\n"
 "Padding: 3px 5px;\n"
-"Color: #55557f;\n"
+"Color: #002B40;\n"
 "}")
         self.plainTextEdit_3.setObjectName("plainTextEdit_3")
         self.verticalLayout_12.addWidget(self.frame_8)
@@ -2879,7 +2927,7 @@ class Ui_MainWindow(object):
         self.GesStockBtn.setText(_translate("MainWindow", "Gestion de Stock"))
         self.GesCoutBtN.setText(_translate("MainWindow", "Gestion de Cout"))
         self.GesASBtn.setText(_translate("MainWindow", "Gestion Apres Sautage"))
-        self.GesADBtn.setText(_translate("MainWindow", "Gestion Avencement Decappage"))
+        self.GesADBtn.setText(_translate("MainWindow", "Gestion Avancement Decappage"))
         self.pushButton_8.setText(_translate("MainWindow", "Documentation"))
         self.pushButton_9.setText(_translate("MainWindow", "Archives"))
         self.pushButton_10.setText(_translate("MainWindow", "Exit"))
@@ -2983,7 +3031,7 @@ class Ui_MainWindow(object):
         self.l2.setText(_translate("MainWindow", "largueur"))
         self.l6.setText(_translate("MainWindow", "Tovex"))
         self.l10.setText(_translate("MainWindow", "metrage foré"))
-        self.l14.setText(_translate("MainWindow", "Reccords100"))
+        self.l14.setText(_translate("MainWindow", "Reccords17"))
         self.l18.setText(_translate("MainWindow", "Detos500ms"))
         self.l3.setText(_translate("MainWindow", "surface"))
         self.l7.setText(_translate("MainWindow", "Cordeau"))
@@ -2995,6 +3043,10 @@ class Ui_MainWindow(object):
         self.l12.setText(_translate("MainWindow", "Reccords42"))
         self.l16.setText(_translate("MainWindow", "C.I"))
         self.l20.setText(_translate("MainWindow", "Rendu prévu"))
+        self.l21.setText(_translate("MainWindow", "Reccords100"))
+        #self.l22.setText(_translate("MainWindow", "essai2"))
+        #self.l23.setText(_translate("MainWindow", "essai 3"))
+        #self.l24.setText(_translate("MainWindow", "essai 4"))
         self.Titre_2.setText(_translate("MainWindow", "Fiche des resultats "))
         self.label_20.setText(_translate("MainWindow", "Stock Global"))
         self.label_21.setText(_translate("MainWindow", "Stock Restant"))

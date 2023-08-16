@@ -4,6 +4,7 @@ from PyQt6.QtCore import QIODevice, QFile
 from PyQt6.QtWidgets import QApplication
 import os
 import sys
+import sqlite3
 from mainwindow_ui import Ui_MainWindow
 import threading
 from flask import Flask
@@ -26,6 +27,86 @@ class LoginDialog(QtWidgets.QDialog):
             self.accept()
         else:
             QtWidgets.QMessageBox.warning(self, "Login", " Login Invalid ")
+
+"""
+#Creation of the database
+def create_database():
+    connection = sqlite3.connect('bgblast.db')  # Replace 'bgblast.db' with your desired database name
+    cursor = connection.cursor()
+    
+    # Create the "commande" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS commande 
+                   (id_C INTEGER PRIMARY KEY,
+                    date DATE,
+                    type_tir VARCHAR(50),
+                    mode_tir VARCHAR(50),
+                    schema_tir VARCHAR(50),
+                    mode_chargement VARCHAR(50),
+                    machine_foration VARCHAR(50),
+                    machine_decappage VARCHAR(50),
+                    panneau VARCHAR(50),
+                    tranche VARCHAR(50),
+                    niveau VARCHAR(50),
+                    nombre_trous INTEGER,
+                    nombre_rangs INTEGER,
+                    dosage_prevu REAL,
+                    maille VARCHAR(50))''')
+    
+    # Create the "resultat" table with a foreign key reference
+    cursor.execute('''CREATE TABLE IF NOT EXISTS resultat 
+                   (id_R INTEGER PRIMARY KEY,
+                    id_commande INTEGER,
+                    longueur DOUBLE,
+                    largeur DOUBLE,
+                    surface DOUBLE,
+                    volume DOUBLE,
+                    ammonix DOUBLE,
+                    tovex DOUBLE,
+                    cordeau12g DOUBLE,
+                    ligne_tir DOUBLE,
+                    A_E_I DOUBLE,
+                    metrage_fore DOUBLE,
+                    reccords_17 DOUBLE,
+                    reccords_25 DOUBLE,
+                    reccords_42 DOUBLE,
+                    reccords_65 DOUBLE,
+                    reccords_100 DOUBLE,
+                    repartition DOUBLE,
+                    C_I DOUBLE,
+                    detos_450 DOUBLE,
+                    detos_500 DOUBLE,
+                    bourage_final DOUBLE,
+                    rendu_prevu DOUBLE,
+                    FOREIGN KEY (id_commande) REFERENCES commande(id_C))''')
+   
+    # Create the "cout" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS cout 
+                   (id_ct INTEGER PRIMARY KEY,
+                    cout_initial INTEGER,
+                    cout_actuel INTEGER,
+                    type VARCHAR(50),
+                   numero INTEGER)''')
+    
+    # Create the "user" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS user 
+                   (id_user INTEGER PRIMARY KEY,
+                    name VARCHAR(50),
+                    role VARCHAR(50))''')
+    
+    # Create the "client" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS client 
+                   (id_d INTEGER PRIMARY KEY,
+                    id_commande INTEGER,
+                    machine VARCHAR(50),
+                    pa,
+                    FOREIGN KEY (id_commande) REFERENCES commande(id_C))''')
+
+    connection.commit()
+    connection.close()
+
+# Call the function to create the tables
+create_database()
+"""
 
 class my_app(QtWidgets.QMainWindow):
     def __init__(self, parent= None):
@@ -79,11 +160,13 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives)
         ))
         #self.option= self.ui.stackedWidget_2
+        #boutton calcul fiche de saisie 
         self.calcul = self.ui.frame_10.findChild(QtWidgets.QPushButton, "pushButton_7")
         self.calcul.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Ges_Commandes_resultats),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Commande_Resultats)
-        ))
+        ))    
+        #self.calcul.clicked.connect(create_database)
         self.calcul.clicked.connect(self.show_Options) 
         self.calcul.clicked.connect(self.calculations) 
 
@@ -145,37 +228,78 @@ class my_app(QtWidgets.QMainWindow):
             maille2 = float(self.ui.comboBox_11.currentText())
             dosagePrevu= float(self.ui.line6.text())
 
-            #operations 
-            longueur= maille1*nbrRang
-            largeur= maille2*nbrRang
-            """surface = longueur*largeur
-            volume = surface*profondeur
-            ammonix = profondeur*maille1*nbrTrous # 
-            tovex = nbrTrous/2
-            cordeau = 0
-            ligneTir = "500m"
-            aei ="01"
-            metrageFore = nbrTrous*profondeur
-            repartition =1/nbrTrous #
-            renduPrevu = volume/2 #
-            bourrageFinal = profondeur-(renduPrevu*0,75)
-            ci = repartition*25
+           
 
-            #ewccords17
+        except ValueError:
+            output = "Invalid input"
+
+
+        #operations 
+        longueur= maille1*nbrRang
+        largeur= maille2*nbrRang
+        surface = longueur*largeur
+        volume = surface*profondeur
+        #Quantité Ammonix
+        ammonix = dosagePrevu/(profondeur * maille1 * maille2 * nbrTrous) # 
+        ammonix = ammonix if ammonix % 25 == 0 else (int( ammonix / 25) + 1) * 25
+        #Quantité tovex
+        tovex = nbrTrous/2
+        tovex = tovex if tovex % 25 == 0 else (int(tovex / 25) + 1) * 25
+
+        cordeau = 0
+        ligneTir = "500m"
+        aei ="01"
+        metrageFore = nbrTrous*profondeur
+        repartition = ammonix/nbrTrous 
+        renduPrevu = volume/21 # 21 heures de marche 
+        bourrageFinal = profondeur - (repartition*0.75)
+        ci = repartition*25
+        
+        if modeCharg=="Unique":
+            detos500 = nbrTrous+2
+            detos450 ="0"
+        elif modeCharg== "Deux Etages":
+            detos500 = "0"
+            detos450 = nbrTrous+2
+            
+        if schemaTir=="17ms,25ms,42ms":
+            reccords17 = (nbrTrous - ( nbrRang +2))+2
+            reccords25 = nbrRang + 2
+            reccords42 = nbrRang + 2
+            reccords65 = 'none'
+            reccords100 = nbrTrousRange
+        elif schemaTir=="17ms,25ms,42ms,65ms":
+            reccords17 = (nbrTrous - ( nbrRang +2) )+2
+            reccords25 = nbrRang + 2
+            reccords42 = nbrRang + 2
+            reccords65 = nbrRang + 2
+            reccords100 = 'none'
+        elif schemaTir=="17ms,25ms":
+            reccords17 = (nbrTrous - ( nbrRang +2) )+2
+            reccords25 = nbrRang + 2
+            reccords42 = 'none'
+            reccords65 = 'none'
+            reccords100 = 'none'
+        elif schemaTir=="17ms,100ms":
+            reccords17 = (nbrTrous - ( nbrRang +2) )+2
+            reccords25 = 'none'
+            reccords42 = 'none'
+            reccords65 = 'none'
+            reccords100 = nbrTrousRange
+            
+        """ else:
             reccords25 = nbrRang + 2
             reccords42 = nbrRang + 2
             reccords65 = nbrRang + 2
             reccords100 = nbrTrousRange
-            detos450 = nbrTrous+2
-            detos500 = nbrTrous+2
+            
+        self.ui.o17.setText(str(detos450))
+        self.ui.o18.setText(str(detos500))
+        """
 
-"""
-        except ValueError:
-            output = "Invalid input"
         #output 
         self.ui.o1.setText(str(longueur))
         self.ui.o2.setText(str(largeur))
-        """
         self.ui.o3.setText(str(surface))
         self.ui.o4.setText(str(volume))
         self.ui.o5.setText(str(ammonix))
@@ -184,16 +308,17 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.o8.setText(str(ligneTir))
         self.ui.o9.setText(str(aei))
         self.ui.o10.setText(str(metrageFore))
+        self.ui.o17.setText(str(detos450))
+        self.ui.o18.setText(str(detos500))
         self.ui.o11.setText(str(reccords25))
         self.ui.o12.setText(str(reccords42))
         self.ui.o13.setText(str(reccords65))
-        self.ui.o14.setText(str(reccords100))
+        self.ui.o14.setText(str(reccords17))
         self.ui.o15.setText(str(repartition))
         self.ui.o16.setText(str(renduPrevu))
-        self.ui.o17.setText(str(detos450))
-        self.ui.o18.setText(str(detos500))
         self.ui.o19.setText(str(bourrageFinal))
-        self.ui.o20.setText(str(ci)) """
+        self.ui.o20.setText(str(ci)) 
+        self.ui.o21.setText(str(reccords100))
 
 
         
@@ -212,27 +337,18 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.stackedWidget_2.show() 
 
 
-# Create the Flask application
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return "Welcome to the Flask backend!"
 
 # Start the Flask application in a separate thread
 def start_flask_app():
     app.run(host='localhost')
 
 if __name__ == '__main__':
-    # Start the Flask application in a separate thread
-    flask_thread = threading.Thread(target=start_flask_app)
-    flask_thread.start()
-
+    
     # Create the Qt application
     app = QApplication(sys.argv)
 
     # Create the main window
-    window = my_app()
+    window = LoginDialog()
 
     # Show the main window
     window.show()

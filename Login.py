@@ -12,9 +12,22 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_LoginWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(310, 348)
-        MainWindow.setMaximumSize(QtCore.QSize(400, 400))
-        MainWindow.setSizeIncrement(QtCore.QSize(300, 500))
+
+        # Get the primary screen
+        screen = QtWidgets.QApplication.primaryScreen()
+        if screen is not None:
+            screen_geometry = screen.geometry()
+
+            # Calculate the screen's size
+            screen_width = screen_geometry.width()
+            screen_height = screen_geometry.height()
+
+            # Set the main window's size based on the screen's size
+            window_width = int(screen_width * 0.6)  # Adjust the percentage as needed
+            window_height = int(screen_height * 0.6)  # Adjust the percentage as needed
+            MainWindow.resize(window_width, window_height)
+
+       
         MainWindow.setStyleSheet("*{\n"
 "    background-color: rgb(0, 79, 116);\n"
 "   border:none;\n"
@@ -64,7 +77,7 @@ class Ui_LoginWindow(object):
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.label = QtWidgets.QLabel(parent=self.rightPart)
-        self.label.setGeometry(QtCore.QRect(80, 20, 141, 16))
+        self.label.setGeometry(QtCore.QRect(70, -140, 141, 16))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(20)
@@ -81,7 +94,7 @@ class Ui_LoginWindow(object):
         self.pushButton_2.setGeometry(QtCore.QRect(50, 30, 181, 161))
         self.pushButton_2.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../Downloads/Copie de Sauatge (1).png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("./images//Copie de Sauatge (1).png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_2.setIcon(icon)
         self.pushButton_2.setIconSize(QtCore.QSize(100, 100))
         self.pushButton_2.setObjectName("pushButton_2")
@@ -93,6 +106,13 @@ class Ui_LoginWindow(object):
         self.label_2.raise_()
         self.horizontalLayout.addWidget(self.rightPart)
         MainWindow.setCentralWidget(self.centralwidget)
+        self.label_87 = QtWidgets.QLabel(parent=self.rightPart)
+        self.label_87.setGeometry(QtCore.QRect(300, 40, 500, 500))
+        self.label.setFixedSize(500, 500)  # Set the width and height
+        self.label_87.setText("")
+        self.label_87.setPixmap(QtGui.QPixmap("./images/LogoSautage1.png"))
+        self.label_87.setObjectName("label_87")
+        self.label_87.raise_()
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -104,7 +124,7 @@ class Ui_LoginWindow(object):
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Mot de passe"))
         self.pushButton.setText(_translate("MainWindow", "Login"))
         self.label.setText(_translate("MainWindow", "Application BG Blast"))
-        self.label_2.setText(_translate("MainWindow", "Continuer autnat que visiteur?"))
+        self.label_2.setText(_translate("MainWindow", "Continuer autant que visiteur?"))
 
 
 if __name__ == "__main__":
@@ -115,3 +135,6 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())
+
+
+
