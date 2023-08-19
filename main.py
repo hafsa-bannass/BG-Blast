@@ -1,118 +1,54 @@
 import sys
 from PyQt6 import QtWidgets
-from PyQt6.QtCore import QIODevice, QFile
 from PyQt6.QtWidgets import QApplication
-import os
 import sys
-import sqlite3
 from mainwindow_ui import Ui_MainWindow
-import threading
-from flask import Flask
-from Login import Ui_LoginWindow
+from login import Ui_LoginWindow
+from PyQt6.QtGui import QIcon
 
-class LoginDialog(QtWidgets.QDialog):
+class Login(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_LoginWindow()
         self.ui.setupUi(self)
-
-        # Connect the login button to the login function
+        self.login_successful = False
+        icon = QIcon("./images/icon.png")  
+        self.setWindowIcon(icon)
         self.ui.loginButton.clicked.connect(self.login)
+    
+    def show_warning_message(self, title, text):
+        message_box = QtWidgets.QMessageBox()
+        message_box.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        message_box.setWindowTitle(title)
+        message_box.setText(text)
+        icon = QIcon("./images/icon.png")  
+        message_box.setWindowIcon(icon)
+        message_box.exec()
+
 
     def login(self):
-        
         username = self.ui.usernameLineEdit.text()
         password = self.ui.passwordLineEdit.text()
+
         if username == "admin" and password == "password":
-            self.accept()
-        else:
-            QtWidgets.QMessageBox.warning(self, "Login", " Login Invalid ")
+            self.login_successful = True
+            # quit the login wndow when login in if login is successful
+            login_window.close()
+            if username != "admin":
+                self.show_warning_message( "Login", " Nom d'utilisateur Incorrect ")
+            elif password != "password":
+                self.show_warning_message( "Login", "  Mot de passe Incorrect ")
+            else:
+                self.show_warning_message( "Login", " Nom d'utilisateur et Mot de passe Incorrect ")
 
-"""
-#Creation of the database
-def create_database():
-    connection = sqlite3.connect('bgblast.db')  # Replace 'bgblast.db' with your desired database name
-    cursor = connection.cursor()
-    
-    # Create the "commande" table
-    cursor.execute('''CREATE TABLE IF NOT EXISTS commande 
-                   (id_C INTEGER PRIMARY KEY,
-                    date DATE,
-                    type_tir VARCHAR(50),
-                    mode_tir VARCHAR(50),
-                    schema_tir VARCHAR(50),
-                    mode_chargement VARCHAR(50),
-                    machine_foration VARCHAR(50),
-                    machine_decappage VARCHAR(50),
-                    panneau VARCHAR(50),
-                    tranche VARCHAR(50),
-                    niveau VARCHAR(50),
-                    nombre_trous INTEGER,
-                    nombre_rangs INTEGER,
-                    dosage_prevu REAL,
-                    maille VARCHAR(50))''')
-    
-    # Create the "resultat" table with a foreign key reference
-    cursor.execute('''CREATE TABLE IF NOT EXISTS resultat 
-                   (id_R INTEGER PRIMARY KEY,
-                    id_commande INTEGER,
-                    longueur DOUBLE,
-                    largeur DOUBLE,
-                    surface DOUBLE,
-                    volume DOUBLE,
-                    ammonix DOUBLE,
-                    tovex DOUBLE,
-                    cordeau12g DOUBLE,
-                    ligne_tir DOUBLE,
-                    A_E_I DOUBLE,
-                    metrage_fore DOUBLE,
-                    reccords_17 DOUBLE,
-                    reccords_25 DOUBLE,
-                    reccords_42 DOUBLE,
-                    reccords_65 DOUBLE,
-                    reccords_100 DOUBLE,
-                    repartition DOUBLE,
-                    C_I DOUBLE,
-                    detos_450 DOUBLE,
-                    detos_500 DOUBLE,
-                    bourage_final DOUBLE,
-                    rendu_prevu DOUBLE,
-                    FOREIGN KEY (id_commande) REFERENCES commande(id_C))''')
-   
-    # Create the "cout" table
-    cursor.execute('''CREATE TABLE IF NOT EXISTS cout 
-                   (id_ct INTEGER PRIMARY KEY,
-                    cout_initial INTEGER,
-                    cout_actuel INTEGER,
-                    type VARCHAR(50),
-                   numero INTEGER)''')
-    
-    # Create the "user" table
-    cursor.execute('''CREATE TABLE IF NOT EXISTS user 
-                   (id_user INTEGER PRIMARY KEY,
-                    name VARCHAR(50),
-                    role VARCHAR(50))''')
-    
-    # Create the "client" table
-    cursor.execute('''CREATE TABLE IF NOT EXISTS client 
-                   (id_d INTEGER PRIMARY KEY,
-                    id_commande INTEGER,
-                    machine VARCHAR(50),
-                    pa,
-                    FOREIGN KEY (id_commande) REFERENCES commande(id_C))''')
-
-    connection.commit()
-    connection.close()
-
-# Call the function to create the tables
-create_database()
-"""
 
 class my_app(QtWidgets.QMainWindow):
     def __init__(self, parent= None):
         super().__init__(parent)
         self.ui= Ui_MainWindow()
         self.ui.setupUi(self)
+        icon = QIcon("./images/icon.png")  
+        self.setWindowIcon(icon)
         #self.options= self.ui.stackedWidget_2
         self.ui.pushButton_4.clicked.connect(self.menu_show)
         self.ui.AccBtn.clicked.connect(lambda:self.ui.stackedWidget.setCurrentWidget(self.ui.Acceuil))
@@ -206,7 +142,6 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.Historiques.setCurrentWidget(self.ui.Historique_Acces)
         ))
        # self.ui.pushButton_10.clicked.connect(self.exit)
-
     def calculations(self):
         try:
             #input Data
@@ -227,13 +162,8 @@ class my_app(QtWidgets.QMainWindow):
             maille1 = float(self.ui.comboBox_10.currentText())
             maille2 = float(self.ui.comboBox_11.currentText())
             dosagePrevu= float(self.ui.line6.text())
-
-           
-
         except ValueError:
             output = "Invalid input"
-
-
         #operations 
         longueur= maille1*nbrRang
         largeur= maille2*nbrRang
@@ -245,7 +175,6 @@ class my_app(QtWidgets.QMainWindow):
         #Quantité tovex
         tovex = nbrTrous/2
         tovex = tovex if tovex % 25 == 0 else (int(tovex / 25) + 1) * 25
-
         cordeau = 0
         ligneTir = "500m"
         aei ="01"
@@ -253,12 +182,11 @@ class my_app(QtWidgets.QMainWindow):
         repartition = ammonix/nbrTrous 
         renduPrevu = volume/21 # 21 heures de marche 
         bourrageFinal = profondeur - (repartition*0.75)
-        ci = repartition*25
-        
+        ci = repartition*25       
         if modeCharg=="Unique":
             detos500 = nbrTrous+2
             detos450 ="0"
-        elif modeCharg== "Deux Etages":
+        else:
             detos500 = "0"
             detos450 = nbrTrous+2
             
@@ -286,17 +214,6 @@ class my_app(QtWidgets.QMainWindow):
             reccords42 = 'none'
             reccords65 = 'none'
             reccords100 = nbrTrousRange
-            
-        """ else:
-            reccords25 = nbrRang + 2
-            reccords42 = nbrRang + 2
-            reccords65 = nbrRang + 2
-            reccords100 = nbrTrousRange
-            
-        self.ui.o17.setText(str(detos450))
-        self.ui.o18.setText(str(detos500))
-        """
-
         #output 
         self.ui.o1.setText(str(longueur))
         self.ui.o2.setText(str(largeur))
@@ -318,10 +235,7 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.o16.setText(str(renduPrevu))
         self.ui.o19.setText(str(bourrageFinal))
         self.ui.o20.setText(str(ci)) 
-        self.ui.o21.setText(str(reccords100))
-
-
-        
+        self.ui.o21.setText(str(reccords100))        
     def menu_show(self):
         if self.ui.leftMenu.isHidden():
             self.ui.leftMenu.show()
@@ -336,22 +250,134 @@ class my_app(QtWidgets.QMainWindow):
         if self.ui.stackedWidget_2.isHidden():
             self.ui.stackedWidget_2.show() 
 
+if __name__ == "__main__":
+
+    # Create the Qt application
+    app = QApplication(sys.argv)
+
+    # Create the login window
+    login_window = Login()
+
+    # Show the login window
+    login_window.show()
+    
+    # Start the application event loop
+    app.exec()
+
+    # After the event loop ends (user logs in or closes the window), check if login was successful
+    if login_window.login_successful== True:
+        # quit the login wndow when login in if login is successful
+        
+
+        # Create the main window
+        main_window = my_app()
+
+        # Show the main window
+        main_window.show()
+
+        sys.exit(app.exec())
+   
 
 
-# Start the Flask application in a separate thread
-def start_flask_app():
-    app.run(host='localhost')
-
+"""
 if __name__ == '__main__':
     
     # Create the Qt application
     app = QApplication(sys.argv)
 
     # Create the main window
-    window = LoginDialog()
-
-    # Show the main window
+    window = Login()
+     # Show the login window
     window.show()
+     # Start the application event loop
+    app.exec()
 
-    # Start the Qt application event loop
+    # After the event loop ends (user logs in or closes the window), check if login was successful
+    if window.login_successful:
+        window.close() # quit the login wndow when login in
+        main_window = my_app()
+        main_window.show()
+
     sys.exit(app.exec())
+
+
+#Creation of the database
+def create_database():
+    connection = sqlite3.connect('bgblast.db')  # Replace 'bgblast.db' with your desired database name
+    cursor = connection.cursor()
+    
+    # Create the "commande" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS commande 
+                   (id_C INTEGER PRIMARY KEY,
+                    date DATE,
+                    type_tir VARCHAR(50),
+                    mode_tir VARCHAR(50),
+                    schema_tir VARCHAR(50),
+                    mode_chargement VARCHAR(50),
+                    machine_foration VARCHAR(50),
+                    machine_decappage VARCHAR(50),
+                    panneau VARCHAR(50),
+                    tranche VARCHAR(50),
+                    niveau VARCHAR(50),
+                    nombre_trous INTEGER,
+                    nombre_rangs INTEGER,
+                    dosage_prevu REAL,
+                    maille VARCHAR(50))''')
+    
+    # Create the "resultat" table with a foreign key reference
+    cursor.execute('''CREATE TABLE IF NOT EXISTS resultat 
+                   (id_R INTEGER PRIMARY KEY,
+                    id_commande INTEGER,
+                    longueur DOUBLE,
+                    largeur DOUBLE,
+                    surface DOUBLE,
+                    volume DOUBLE,
+                    ammonix DOUBLE,
+                    tovex DOUBLE,
+                    cordeau12g DOUBLE,
+                    ligne_tir DOUBLE,
+                    A_E_I DOUBLE,
+                    metrage_fore DOUBLE,
+                    reccords_17 DOUBLE,
+                    reccords_25 DOUBLE,
+                    reccords_42 DOUBLE,
+                    reccords_65 DOUBLE,
+                    reccords_100 DOUBLE,
+                    repartition DOUBLE,
+                    C_I DOUBLE,
+                    detos_450 DOUBLE,
+                    detos_500 DOUBLE,
+                    bourage_final DOUBLE,
+                    rendu_prevu DOUBLE,
+                    FOREIGN KEY (id_commande) REFERENCES commande(id_C))''')
+   
+    # Create the "cout" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS cout 
+                   (id_ct INTEGER PRIMARY KEY,
+                    cout_initial INTEGER,
+                    cout_actuel INTEGER,
+                    type VARCHAR(50),
+                   numero INTEGER)''')
+    
+    # Create the "user" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS user 
+                   (id_user INTEGER PRIMARY KEY,
+                    name VARCHAR(50),
+                    username VARCHAR(50) ,
+                    password VARCHAR(50),
+                    role VARCHAR(50))''')
+    
+    # Create the "client" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS client 
+                   (id_d INTEGER PRIMARY KEY,
+                    id_commande INTEGER,
+                    machine VARCHAR(50),
+                    pa,
+                    FOREIGN KEY (id_commande) REFERENCES commande(id_C))''')
+
+    connection.commit()
+    connection.close()
+
+# Call the function to create the tables
+create_database()
+"""
