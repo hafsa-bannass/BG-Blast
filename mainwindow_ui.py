@@ -39,7 +39,7 @@ class Ui_MainWindow(object):
 "}\n"
 "#AccBtn{\n"
 "border-left: 3px solid #ffffff;\n"
-"font-weight: bold\n"
+
 "}\n"
 "#RechercheBtn{\n"
 "background-color: #ffffff;\n"
@@ -110,6 +110,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(16)
+        font.setBold(True)
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.horizontalLayout_4.addWidget(self.label)
@@ -119,6 +120,7 @@ class Ui_MainWindow(object):
         self.RechercheBtn.setObjectName("RechercheBtn")
         self.horizontalLayout.addWidget(self.RechercheBtn)
         self.pushButton_5 = QtWidgets.QPushButton(parent=self.header)
+        self.pushButton_5.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.pushButton_5.setMinimumSize(QtCore.QSize(10, 0))
         self.pushButton_5.setMaximumSize(QtCore.QSize(25, 16777215))
         self.pushButton_5.setText("")
@@ -155,6 +157,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.pushButton)
         self.horizontalLayout.addWidget(self.frame, 0, QtCore.Qt.AlignmentFlag.AlignRight)
         self.verticalLayout.addWidget(self.header, 0, QtCore.Qt.AlignmentFlag.AlignTop)
+        
+       
         self.mainBody = QtWidgets.QWidget(parent=self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -194,7 +198,6 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
-        font.setBold(True)
         self.AccBtn.setFont(font)
         self.AccBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         icon3 = QtGui.QIcon()
@@ -382,7 +385,20 @@ class Ui_MainWindow(object):
         self.pushButton_8.setIcon(icon10)
         self.pushButton_8.setIconSize(QtCore.QSize(14, 14))
         self.pushButton_8.setObjectName("pushButton_8")
+        self.pushButton_8.setStyleSheet("""
+           QPushButton {
+                background-color: transparent;
+                border: none;
+            }
+            QPushButton:hover {
+                background-color: #003f5c;
+                font: bold;
+                border-left: 3px solid #ffffff; 
+                
+            }
+        """)
         self.verticalLayout_6.addWidget(self.pushButton_8)
+
         self.pushButton_9 = QtWidgets.QPushButton(parent=self.frame_4)
         font = QtGui.QFont()
         font.setFamily("Gabriola")
@@ -394,7 +410,20 @@ class Ui_MainWindow(object):
         self.pushButton_9.setIcon(icon11)
         self.pushButton_9.setIconSize(QtCore.QSize(14, 14))
         self.pushButton_9.setObjectName("pushButton_9")
+        self.pushButton_9.setStyleSheet("""
+           QPushButton {
+                background-color: transparent;
+                border: none;
+            }
+            QPushButton:hover {
+                background-color: #003f5c;
+                font: bold;
+                border-left: 3px solid #ffffff; 
+                
+            }
+        """)
         self.verticalLayout_6.addWidget(self.pushButton_9)
+
         self.pushButton_10 = QtWidgets.QPushButton(parent=self.frame_4)
         font = QtGui.QFont()
         font.setFamily("Gabriola")
@@ -406,6 +435,18 @@ class Ui_MainWindow(object):
         self.pushButton_10.setIcon(icon12)
         self.pushButton_10.setIconSize(QtCore.QSize(14, 14))
         self.pushButton_10.setObjectName("pushButton_10")
+        self.pushButton_10.setStyleSheet("""
+           QPushButton {
+                background-color: transparent;
+                border: none;
+            }
+            QPushButton:hover {
+                background-color: #003f5c;
+                font: bold;
+                border-left: 3px solid #ffffff; 
+                
+            }
+        """)
         self.verticalLayout_6.addWidget(self.pushButton_10)
         self.verticalLayout_5.addWidget(self.frame_4)
         self.verticalLayout_3.addWidget(self.widget)
@@ -428,10 +469,119 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.stackedWidget.setFont(font)
         self.stackedWidget.setObjectName("stackedWidget")
-        self.Acceuil = QtWidgets.QWidget()
+        
+        
+        self.Ges_Users = QtWidgets.QWidget()
+        self.Titre_11 = QtWidgets.QLabel(parent=self.Ges_Users)
+        self.Titre_11.setGeometry(QtCore.QRect(540, 30, 191, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(24)
+        font.setUnderline(False)
+        font.setBold(False)
+        self.Titre_11.setFont(font)
+        self.Titre_11.setObjectName("Titre_11")
+        self.frame_Current_Users = QtWidgets.QFrame(parent=self.Ges_Users)
+        self.frame_Current_Users.setGeometry(QtCore.QRect(0, 85, 1100, 170))
+        self.frame_Current_Users.setStyleSheet("QFrame{\n"
+"border: 3px solid #ffffff;\n"
+"border-radius: 10px;\n"
+"background-color: #00557f;\n"
+"}\n"
+"#l22,#l23,#l24,#l25,#l26,#l27{\n"
+"color: #ffffff;\n"
+"border: 3px solid #00557f;\n"
+"}\n"
+"#o22,#o23,#o24,#o25,#o26,#o27{\n"
+"background-color: #ffffff;\n"
+"color: #55557f; \n"
+"border-radius: 10px 10px 10px 10px;\n"
+"padding: 3px 5px;\n"
+#"border-radius: 10px;\n"
+"}")
+
+        self.frame_Current_Users.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_Current_Users.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_Current_Users.setObjectName("frame_Current_Users")
+
+        self.l22 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.l22.setGeometry(QtCore.QRect( 40, 50, 120, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l22.setFont(font)
+        self.l22.setObjectName("l22")
+        self.l23 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.l23.setGeometry(QtCore.QRect(400, 50, 120, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l23.setFont(font)
+        self.l23.setObjectName("l23")
+        self.l24 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.l24.setGeometry(QtCore.QRect(760, 50, 120, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l24.setFont(font)
+        self.l24.setObjectName("l24")
+        self.l25 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.l25.setGeometry(QtCore.QRect(40, 100, 120, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l25.setFont(font)
+        self.l25.setObjectName("l25")
+        self.l26 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.l26.setGeometry(QtCore.QRect(400, 100, 120, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l26.setFont(font)
+        self.l26.setObjectName("l26")
+        self.l27 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.l27.setGeometry(QtCore.QRect(760, 100, 120, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
+        self.l27.setFont(font)
+        self.l27.setObjectName("l27")
+
+        self.o22 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.o22.setGeometry(QtCore.QRect(180, 50, 160, 30))
+        self.o22.setText("")
+        self.o22.setObjectName("o22")        
+        self.o23 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.o23.setGeometry(QtCore.QRect(540, 50, 160, 30))
+        self.o23.setText("")
+        self.o23.setObjectName("o23")        
+        self.o24 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.o24.setGeometry(QtCore.QRect(900, 50, 160, 30))
+        self.o24.setText("")
+        self.o24.setObjectName("o24")
+        self.o25 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.o25.setGeometry(QtCore.QRect(180, 100, 160, 30))
+        self.o25.setText("")
+        self.o25.setObjectName("o25")
+        self.o26 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.o26.setGeometry(QtCore.QRect(540, 100, 160, 30))
+        self.o26.setText("")
+        self.o26.setObjectName("o26")
+        self.o27 = QtWidgets.QLabel(self.frame_Current_Users)
+        self.o27.setGeometry(QtCore.QRect(900, 100, 160, 30))
+        self.o27.setText("")
+        self.o27.setObjectName("o27")
+
+        self.Ges_Users.raise_()
+        self.frame_Current_Users.raise_()
+        self.Titre_11.raise_()
+        self.stackedWidget.addWidget(self.Ges_Users)
+
+
+        self.Acceuil = QtWidgets.QWidget(parent=self.centralwidget)
         self.Acceuil.setObjectName("Acceuil")
         self.label_86 = QtWidgets.QLabel(parent=self.Acceuil)
-        self.label_86.setGeometry(QtCore.QRect(130, 40, 430, 111))
+        self.label_86.setGeometry(QtCore.QRect(130, 30, 430, 111))
         font = QtGui.QFont()
         font.setFamily("Poor Richard")
         font.setPointSize(36)
@@ -440,7 +590,7 @@ class Ui_MainWindow(object):
         self.label_86.setFont(font)
         self.label_86.setObjectName("label_86")
         self.label_87 = QtWidgets.QLabel(parent=self.Acceuil)
-        self.label_87.setGeometry(QtCore.QRect(100, 150, 500, 500))
+        self.label_87.setGeometry(QtCore.QRect(100, 111, 500, 500))
         self.label_87.setStyleSheet("QPixmax{\n"
 "scaled: (200,100)\n"
 "}")
@@ -998,10 +1148,10 @@ class Ui_MainWindow(object):
 "border-radius: 10px;\n"
 "background-color: #00557f;\n"
 "}\n"
-"#l1,#l2,#l3,#l4,#l5,#l6,#l7,#l8,#l9,#l10,#l11,#l12,#l13,#l14,#l15,#l16,#l17,#l18,#l19,#l20,#l21,#l22,#l23,#l24{\n"
+"#l1,#l2,#l3,#l4,#l5,#l6,#l7,#l8,#l9,#l10,#l11,#l12,#l13,#l14,#l15,#l16,#l17,#l18,#l19,#l20,#l21{\n"
 "color: rgb(255, 255, 255);\n"
 "}\n"
-"#o1,#o2,#o3,#o4,#o5,#o6,#o7,#o8,#o9,#o10,#o11,#o12,#o13,#o14,#o15,#o16,#o17,#o18,#o19,#o20,#o21,#o22,#o23,#o24{\n"
+"#o1,#o2,#o3,#o4,#o5,#o6,#o7,#o8,#o9,#o10,#o11,#o12,#o13,#o14,#o15,#o16,#o17,#o18,#o19,#o20,#o21{\n"
 "background-color: #ffffff;\n"
 "color: #55557f; \n"
 "border-radius: 10px 10px 10px 10px;\n"
@@ -2918,8 +3068,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Application BG Blast"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "BG Blast"))
+        self.label.setText(_translate("MainWindow", "BG Blast"))
         self.RechercheBtn.setPlaceholderText(_translate("MainWindow", "Recherche...."))
         self.AccBtn.setText(_translate("MainWindow", "Acceuil"))
         self.TbBtn.setText(_translate("MainWindow", "Tableau de Bord"))
@@ -3044,9 +3194,14 @@ class Ui_MainWindow(object):
         self.l16.setText(_translate("MainWindow", "C.I"))
         self.l20.setText(_translate("MainWindow", "Rendu prévu"))
         self.l21.setText(_translate("MainWindow", "Reccords100"))
-        #self.l22.setText(_translate("MainWindow", "essai2"))
-        #self.l23.setText(_translate("MainWindow", "essai 3"))
-        #self.l24.setText(_translate("MainWindow", "essai 4"))
+
+        self.l22.setText(_translate("MainWindow", "Nom Complet "))
+        self.l23.setText(_translate("MainWindow", "Profession"))
+        self.l24.setText(_translate("MainWindow", "Role"))
+        self.l25.setText(_translate("MainWindow", "Direction"))
+        self.l26.setText(_translate("MainWindow", "Entité"))
+        self.l27.setText(_translate("MainWindow", "Organisme"))
+
         self.Titre_2.setText(_translate("MainWindow", "Fiche des resultats "))
         self.label_20.setText(_translate("MainWindow", "Stock Global"))
         self.label_21.setText(_translate("MainWindow", "Stock Restant"))
@@ -3097,6 +3252,7 @@ class Ui_MainWindow(object):
         self.Titre_7.setText(_translate("MainWindow", "\"Suivi de Décappage\""))
         self.Titre_4.setText(_translate("MainWindow", "\"Documentation\""))
         self.Titre_10.setText(_translate("MainWindow", "\"Archives\""))
+        self.Titre_11.setText(_translate("MainWindow", "Utisateur"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
         item = self.tableWidget.horizontalHeaderItem(1)

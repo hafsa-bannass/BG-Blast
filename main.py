@@ -5,6 +5,11 @@ import sys
 from mainwindow_ui import Ui_MainWindow
 from login import Ui_LoginWindow
 from PyQt6.QtGui import QIcon
+import sqlite3
+
+
+
+   
 
 class Login(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
@@ -33,7 +38,7 @@ class Login(QtWidgets.QMainWindow):
         if username == "admin" and password == "password":
             self.login_successful = True
             # quit the login wndow when login in if login is successful
-            login_window.close()
+            #login_window.close()
             if username != "admin":
                 self.show_warning_message( "Login", " Nom d'utilisateur Incorrect ")
             elif password != "password":
@@ -41,6 +46,7 @@ class Login(QtWidgets.QMainWindow):
             else:
                 self.show_warning_message( "Login", " Nom d'utilisateur et Mot de passe Incorrect ")
 
+   
 
 class my_app(QtWidgets.QMainWindow):
     def __init__(self, parent= None):
@@ -49,6 +55,10 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         icon = QIcon("./images/icon.png")  
         self.setWindowIcon(icon)
+
+        #show L'Acceuil
+        self.ui.stackedWidget_2.hide()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.Acceuil)
         #self.options= self.ui.stackedWidget_2
         self.ui.pushButton_4.clicked.connect(self.menu_show)
         self.ui.AccBtn.clicked.connect(lambda:self.ui.stackedWidget.setCurrentWidget(self.ui.Acceuil))
@@ -60,6 +70,12 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Commande_Calcul)
         ))
         self.ui.GesComBtn.clicked.connect(self.show_Options)     
+
+        self.ui.pushButton.clicked.connect(lambda:(
+            self.ui.stackedWidget.setCurrentWidget(self.ui.Ges_Users),
+            self.ui.stackedWidget_2.hide()
+        ))
+       # self.ui.pushButton.clicked.connect(self.hide_Options)
 
         self.ui.GesStockBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Ges_Stock),
@@ -102,7 +118,6 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.stackedWidget.setCurrentWidget(self.ui.Ges_Commandes_resultats),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Commande_Resultats)
         ))    
-        #self.calcul.clicked.connect(create_database)
         self.calcul.clicked.connect(self.show_Options) 
         self.calcul.clicked.connect(self.calculations) 
 
@@ -142,6 +157,12 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.Historiques.setCurrentWidget(self.ui.Historique_Acces)
         ))
        # self.ui.pushButton_10.clicked.connect(self.exit)
+
+    #def show_acceuil(self):
+     #   self.acceuil_widget = QtWidgets.QWidget()
+      #  self.ui.setupUi(self.acceuil_widget)
+       # self.setCentralWidget(self.acceuil_widget)
+
     def calculations(self):
         try:
             #input Data
@@ -254,6 +275,27 @@ if __name__ == "__main__":
 
     # Create the Qt application
     app = QApplication(sys.argv)
+    # Create the main window
+    main_window = my_app()
+
+    # Show the main window
+    main_window.show()
+
+    sys.exit(app.exec())
+    
+
+       
+   
+
+
+"""
+
+if __name__ == "__main__":
+    # Call the function to create the database and table
+    create_database()
+
+    # Create the Qt application
+    app = QApplication(sys.argv)
 
     # Create the login window
     login_window = Login()
@@ -266,8 +308,7 @@ if __name__ == "__main__":
 
     # After the event loop ends (user logs in or closes the window), check if login was successful
     if login_window.login_successful== True:
-        # quit the login wndow when login in if login is successful
-        
+        # quit the login wndow when login in if login is successful    
 
         # Create the main window
         main_window = my_app()
@@ -279,26 +320,65 @@ if __name__ == "__main__":
    
 
 
-"""
-if __name__ == '__main__':
+def create_database():
+    connection = sqlite3.connect('bgblast.db')  # Replace 'bgblast.db' with your desired database name
+    cursor = connection.cursor()
+    # Create the "user" table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS user 
+                   (id_user INTEGER PRIMARY KEY,
+                    name VARCHAR(50),
+                    role VARCHAR(50),
+                    username VARCHAR(50) ,
+                    password VARCHAR(50))''')
     
-    # Create the Qt application
-    app = QApplication(sys.argv)
+    connection.commit()
+    connection.close()
 
-    # Create the main window
-    window = Login()
-     # Show the login window
-    window.show()
-     # Start the application event loop
-    app.exec()
 
-    # After the event loop ends (user logs in or closes the window), check if login was successful
-    if window.login_successful:
-        window.close() # quit the login wndow when login in
-        main_window = my_app()
-        main_window.show()
+#def login :
 
-    sys.exit(app.exec())
+         # Connect to the SQLite database
+        connection = sqlite3.connect("bgblast.db")
+        cursor = connection.cursor()
+
+        # Retrieve user data from the database based on the entered username
+        cursor.execute("SELECT username, password FROM users WHERE username = ?", (username,))
+        user_data = cursor.fetchone()
+
+        if user_data is None:
+            self.show_warning_message("Login", "Nom d'utilisateur Incorrect")
+        elif user_data[1] != password:
+            self.show_warning_message("Login", "Mot de passe Incorrect")
+        else:
+            self.login_successful = True
+            login_window.close()
+
+        # Close the database connection
+        connection.close()
+
+        import sqlite3
+
+def register_user(username, password, name):
+    # Connect to the SQLite database
+    connection = sqlite3.connect("your_database.db")
+    cursor = connection.cursor()
+
+    # Define the data for the new user
+    new_user = (username, password, name)
+
+    try:
+        # Insert the new user into the database
+        cursor.execute("INSERT INTO users (username, password, name) VALUES (?, ?, ?)", new_user)
+
+        # Commit the changes
+        connection.commit()
+    except sqlite3.IntegrityError:
+        # Handle the case where the username is already taken
+        print("Username already exists!")
+
+    # Close the database connection
+    connection.close()
+
 
 
 #Creation of the database

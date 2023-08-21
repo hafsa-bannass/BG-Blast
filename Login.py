@@ -77,7 +77,7 @@ class Ui_LoginWindow(object):
         self.guestLabel = QtWidgets.QLabel(self.rightPart)
         font = QtGui.QFont()
         font.setPointSize(8)
-        self.guestLabel.setGeometry(QtCore.QRect(75, 250, 170, 30))
+        self.guestLabel.setGeometry(QtCore.QRect(70, 250, 170, 30))
         font.setUnderline(True)
         self.guestLabel.setFont(font)
         self.guestLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
