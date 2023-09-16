@@ -47,8 +47,9 @@ class Ui_MainWindow(object):
 "border-radius: 10px 10px 10px 10px;\n"
 "padding: 3px 5px;\n"
 "}\n"
-"#Titre, #Titre_2, #Titre_5, #Titre_7, #Titre_8, #Titre_9, #Titre_10, #Titre_11{\n"
-"color: #55aaff\n"
+"#Titre, #Titre_2, #Titre_5,#Titre_6, #Titre_7, #Titre_8, #Titre_9, #Titre_10, #Titre_11{\n"
+"color: #ffffff;\n"
+"font: Bold\n"
 "}\n"
 "#line2, #line3, #line4, #line5, #line1, #line6, #line8{\n"
 "background-color: #ffffff;\n"
@@ -486,7 +487,7 @@ class Ui_MainWindow(object):
         
         self.Ges_Users = QtWidgets.QWidget()
         self.Titre_11 = QtWidgets.QLabel(parent=self.Ges_Users)
-        self.Titre_11.setGeometry(QtCore.QRect(540, 30, 191, 30))
+        self.Titre_11.setGeometry(QtCore.QRect(300, 25, 280, 30))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(24)
@@ -892,7 +893,7 @@ class Ui_MainWindow(object):
 "}")
         self.Ges_Commandes_calcul.setObjectName("Ges_Commandes_calcul")
         self.Titre = QtWidgets.QLabel(parent=self.Ges_Commandes_calcul)
-        self.Titre.setGeometry(QtCore.QRect(260, 30, 191, 30))
+        self.Titre.setGeometry(QtCore.QRect(300, 25, 280, 30))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(24)
@@ -1094,6 +1095,7 @@ class Ui_MainWindow(object):
         self.dateEdit = QtWidgets.QDateEdit(parent=self.frame_fiche_saisie)
         self.dateEdit.setGeometry(QtCore.QRect(20, 90, 150, 30))
         self.dateEdit.setObjectName("dateEdit")
+        self.dateEdit.setDate(QtCore.QDate.currentDate())
         self.L5 = QtWidgets.QLabel(parent=self.frame_fiche_saisie)
         self.L5.setGeometry(QtCore.QRect(20, 60, 41, 20))
         font = QtGui.QFont()
@@ -1147,7 +1149,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.Ges_Commandes_calcul)
         self.Ges_Commandes_resultats = QtWidgets.QWidget()
         self.Titre_2 = QtWidgets.QLabel(parent=self.Ges_Commandes_resultats)
-        self.Titre_2.setGeometry(QtCore.QRect(260, 30, 191, 30))
+        self.Titre_2.setGeometry(QtCore.QRect(300, 25, 280, 30))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(24)
@@ -1449,7 +1451,7 @@ class Ui_MainWindow(object):
         self.Ges_Stock.setObjectName("Ges_Stock")
        
         self.Titre_9 = QtWidgets.QLabel(parent=self.Ges_Stock)
-        self.Titre_9.setGeometry(QtCore.QRect(240, 25, 230, 30))
+        self.Titre_9.setGeometry(QtCore.QRect(300, 25, 280, 30))
         self.Titre_9.setStyleSheet("#Titre_9{\n"
 "color: #ffffff;\n"
 "}\n")
@@ -1462,10 +1464,8 @@ class Ui_MainWindow(object):
         
         
         self.suivreStock= QtWidgets.QLabel(parent=self.Ges_Stock)
-        self.suivreStock.setGeometry(QtCore.QRect(27, 215, 130, 30))
-        self.suivreStock.setStyleSheet("#Titre_9{\n"
-"color: #ffffff;\n"
-"}\n")
+        self.suivreStock.setGeometry(QtCore.QRect(27, 208, 130, 30))
+      
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(15)
@@ -1481,9 +1481,9 @@ class Ui_MainWindow(object):
 
 
         self.Tableau_Stock = QtWidgets.QTableWidget(parent=self.rectStock)
-        self.Tableau_Stock.setGeometry(QtCore.QRect(110, 243, 580, 350))  # Use setGeometry method
-        self.Tableau_Stock.setObjectName("tableWidget")
-        self.Tableau_Stock.setColumnCount(5)
+        self.Tableau_Stock.setGeometry(QtCore.QRect(80, 243, 660, 350))  # Use setGeometry method
+        self.Tableau_Stock.setObjectName("Tableau_Stock")
+        self.Tableau_Stock.setColumnCount(6)
         self.Tableau_Stock.setRowCount(0)
 
         item = QtWidgets.QTableWidgetItem()
@@ -1496,6 +1496,8 @@ class Ui_MainWindow(object):
         self.Tableau_Stock.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
         self.Tableau_Stock.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Stock.setHorizontalHeaderItem(5, item)
         
         self.Ajout_Stock = QtWidgets.QFrame(parent=self.Ges_Stock)
         self.Ajout_Stock.setGeometry(QtCore.QRect(0, 120, 770, 80))
@@ -1561,7 +1563,8 @@ class Ui_MainWindow(object):
         self.stockInitial.setObjectName("stockInitial")
         self.dateEdit_2 = QtWidgets.QDateEdit(parent=self.Ajout_Stock)
         self.dateEdit_2.setGeometry(QtCore.QRect(75, 30, 90, 22))
-        self.dateEdit_2.setObjectName("dateEdit")
+        self.dateEdit_2.setObjectName("dateEdit_2")
+        self.dateEdit_2.setDate(QtCore.QDate.currentDate())
         self.typeLine = QtWidgets.QComboBox(parent=self.Ajout_Stock)
         self.typeLine.setGeometry(QtCore.QRect(250, 30, 112, 22))
         self.typeLine.setObjectName("typeLine")
@@ -1576,7 +1579,7 @@ class Ui_MainWindow(object):
         self.typeLine.addItem("")
         self.typeLine.addItem("")
         self.typeLine.addItem("")
-        self.typeLine.addItem("")
+       
         
         self.stockInitialLine = QtWidgets.QLineEdit(parent=self.Ajout_Stock)
         self.stockInitialLine.setGeometry(QtCore.QRect(498, 30, 105, 22))
@@ -1589,86 +1592,162 @@ class Ui_MainWindow(object):
         self.ajouStockBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.ajouStockBtn.setObjectName("ajouStockBtn")
         self.stackedWidget.addWidget(self.Ges_Stock)
+
         self.Ges_Cout = QtWidgets.QWidget()
         self.Ges_Cout.setObjectName("Ges_Cout")
         self.Titre_8 = QtWidgets.QLabel(parent=self.Ges_Cout)
-        self.Titre_8.setGeometry(QtCore.QRect(275, 35, 200, 30))
+        self.Titre_8.setGeometry(QtCore.QRect(300, 25, 280, 30))
+        self.Titre_8.setStyleSheet("#Titre_8{\n"
+"color: #ffffff;\n"
+"}\n")
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(30)
-        font.setUnderline(False)
+        font.setBold(True)
         self.Titre_8.setFont(font)
         self.Titre_8.setObjectName("Titre_8")
-        self.Param_Cout = QtWidgets.QFrame(parent=self.Ges_Cout)
-        self.Param_Cout.setGeometry(QtCore.QRect(0, 130, 720, 71))
-        self.Param_Cout.setStyleSheet("#Param_Cout{\n"
+        
+
+
+        self.suivreCout= QtWidgets.QLabel(parent=self.Ges_Cout)
+        self.suivreCout.setGeometry(QtCore.QRect(27, 208, 130, 30))
+       
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setUnderline(True)
+        self.suivreCout.setFont(font)
+        self.suivreCout.setObjectName("suivreCout")
+
+
+        self.rectCout = QtWidgets.QWidget(parent=self.Ges_Cout)
+        self.rectCout.setObjectName("rectCout")
+
+        self.Tableau_Cout = QtWidgets.QTableWidget(parent=self.rectCout)
+        self.Tableau_Cout.setGeometry(QtCore.QRect(60, 243, 660, 350))  # Use setGeometry method
+        self.Tableau_Cout.setObjectName("Tableau_Cout")
+        self.Tableau_Cout.setColumnCount(6)
+        self.Tableau_Cout.setRowCount(0)
+
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Cout.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Cout.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Cout.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Cout.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Cout.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Cout.setHorizontalHeaderItem(5, item)
+
+
+        self.Ajout_Cout = QtWidgets.QFrame(parent=self.Ges_Cout)
+        self.Ajout_Cout.setGeometry(QtCore.QRect(0, 120, 770, 80))
+        self.Ajout_Cout.setStyleSheet("#Ajout_Cout{\n"
 "border: 2px solid #002a3d;\n"
 "border-radius: 10px 10px 10px 10px;\n"
+"background-color:#0090ce;\n"
+"}\n"
+"QLineEdit,QDateEdit{\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"background-color: #ffffff;\n"
+"color: #002a3d;\n"
+"padding: 1px 3px;\n"
+"}\n"
+"#ajoutCout{\n"
+"color: #ffffff;\n"
+" text-align: center;\n"
+"}\n"
+"QLabel{\n"
+"font: Bold"
+"}\n"
+"\n"
+"QPushButton{\n"
+"border: 2px solid #002a3d;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"background-color: #002a3d;\n"
+" text-align: center;\n"
 "}")
-        self.Param_Cout.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.Param_Cout.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.Param_Cout.setObjectName("Param_Cout")
-        self.label_18 = QtWidgets.QLabel(parent=self.Param_Cout)
-        self.label_18.setGeometry(QtCore.QRect(320, 20, 80, 20))
+        self.Ajout_Cout.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.Ajout_Cout.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.Ajout_Cout.setObjectName("Ajout_Cout")
+        self.ajoutCout = QtWidgets.QLabel(parent=self.Ges_Cout)
+        self.ajoutCout.setGeometry(QtCore.QRect(20, 85, 130, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(15)
+        font.setUnderline(True)
+        font.setBold(True)
+        self.ajoutCout.setFont(font)
+        self.ajoutCout.setObjectName("ajoutCout")
+
+        self.dateC = QtWidgets.QLabel(parent=self.Ajout_Cout)
+        self.dateC.setGeometry(QtCore.QRect(30, 35, 32, 16))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setBold(True)
+        font.setPointSize(14)
+        self.dateC.setFont(font)
+        self.dateC.setObjectName("dateC")
+        
+        self.typeCout = QtWidgets.QLabel(parent=self.Ajout_Cout)
+        self.typeCout.setGeometry(QtCore.QRect(205, 35, 31, 16))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
-        self.label_18.setFont(font)
-        self.label_18.setObjectName("label_18")
-        self.label_19 = QtWidgets.QLabel(parent=self.Param_Cout)
-        self.label_19.setGeometry(QtCore.QRect(520, 20, 80, 20))
+        font.setBold(True)
+        self.typeCout.setFont(font)
+        self.typeCout.setObjectName("typeCout")
+        
+        self.coutInitial = QtWidgets.QLabel(parent=self.Ajout_Cout)
+        self.coutInitial.setGeometry(QtCore.QRect(400, 35, 85, 16))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
-        self.label_19.setFont(font)
-        self.label_19.setObjectName("label_19")
-        self.lineEdit_2 = QtWidgets.QLineEdit(parent=self.Param_Cout)
-        self.lineEdit_2.setGeometry(QtCore.QRect(620, 20, 70, 20))
-        self.lineEdit_2.setStyleSheet("QLineEdit{\n"
-"background-color: #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.lineEdit_3 = QtWidgets.QLineEdit(parent=self.Param_Cout)
-        self.lineEdit_3.setGeometry(QtCore.QRect(410, 20, 62, 20))
-        self.lineEdit_3.setStyleSheet("QLineEdit{\n"
-"background-color: #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.label_27 = QtWidgets.QLabel(parent=self.Param_Cout)
-        self.label_27.setGeometry(QtCore.QRect(170, 20, 60, 20))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(14)
-        self.label_27.setFont(font)
-        self.label_27.setObjectName("label_27")
-        self.lineEdit_17 = QtWidgets.QLineEdit(parent=self.Param_Cout)
-        self.lineEdit_17.setGeometry(QtCore.QRect(210, 20, 65, 20))
-        self.lineEdit_17.setStyleSheet("QLineEdit{\n"
-"background-color: #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.lineEdit_17.setObjectName("lineEdit_17")
-        self.label_28 = QtWidgets.QLabel(parent=self.Param_Cout)
-        self.label_28.setGeometry(QtCore.QRect(30, 20, 21, 20))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(14)
-        self.label_28.setFont(font)
-        self.label_28.setObjectName("label_28")
-        self.lineEdit_18 = QtWidgets.QLineEdit(parent=self.Param_Cout)
-        self.lineEdit_18.setGeometry(QtCore.QRect(60, 20, 41, 20))
-        self.lineEdit_18.setStyleSheet("QLineEdit{\n"
-"background-color: #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.lineEdit_18.setObjectName("lineEdit_18")
-        self.Tableau_Cout = QtWidgets.QFrame(parent=self.Ges_Cout)
-        self.Tableau_Cout.setGeometry(QtCore.QRect(0, 205, 720, 350))
-        self.Tableau_Cout.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.Tableau_Cout.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.Tableau_Cout.setObjectName("Tableau_Cout")
+        font.setBold(True)
+        self.coutInitial.setFont(font)
+        self.coutInitial.setObjectName("coutInitial")
+
+        self.dateEditC = QtWidgets.QDateEdit(parent=self.Ajout_Cout)
+        self.dateEditC.setGeometry(QtCore.QRect(75, 30, 90, 22))
+        self.dateEditC.setObjectName("dateEditC ")
+        self.dateEditC.setDate(QtCore.QDate.currentDate())
+
+        self.typeLineC = QtWidgets.QComboBox(parent=self.Ajout_Cout)
+        self.typeLineC.setGeometry(QtCore.QRect(250, 30, 112, 22))
+        self.typeLineC.setObjectName("typeLineC")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        self.typeLineC.addItem("")
+        
+        
+        self.coutInitialLine = QtWidgets.QLineEdit(parent=self.Ajout_Cout)
+        self.coutInitialLine.setGeometry(QtCore.QRect(498, 30, 105, 22))
+        self.coutInitialLine.setObjectName("coutInitialLine")
+        self.ajouCoutBtn= QtWidgets.QPushButton(parent=self.Ajout_Cout)
+        self.ajouCoutBtn.setGeometry(QtCore.QRect(640, 28, 100, 26))
+        font.setPointSize(12)
+        font.setBold(True)
+        self.ajouCoutBtn.setFont(font)
+        self.ajouCoutBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.ajouCoutBtn.setObjectName("ajouCoutBtn")
+
+        
+
+
+
+
         self.stackedWidget.addWidget(self.Ges_Cout)
         self.Ges_Apres_Sautage = QtWidgets.QWidget()
         self.Ges_Apres_Sautage.setStyleSheet("QLineEdit, QTimeEdit, QDateEdit{\n"
@@ -1677,12 +1756,10 @@ class Ui_MainWindow(object):
 "border-radius: 10px 10px 10px 10px;\n"
 "padding: 3px 5px;\n"
 "}\n"
-"#Titre_6{\n"
-"color: #55aaff;\n"
 "}")
         self.Ges_Apres_Sautage.setObjectName("Ges_Apres_Sautage")
         self.frame_Apres_Sautage = QtWidgets.QFrame(parent=self.Ges_Apres_Sautage)
-        self.frame_Apres_Sautage.setGeometry(QtCore.QRect(0, 85, 720 , 400))
+        self.frame_Apres_Sautage.setGeometry(QtCore.QRect(0, 95, 720 , 360))
         self.frame_Apres_Sautage.setStyleSheet("#frame_Apres_Sautage{\n"
 "border: 3px solid #ffffff;\n"
 "border-radius: 10px 10px 10px 10px;\n"
@@ -1693,7 +1770,7 @@ class Ui_MainWindow(object):
         self.frame_Apres_Sautage.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_Apres_Sautage.setObjectName("frame_Apres_Sautage")
         self.Titre_6 = QtWidgets.QLabel(parent=self.Ges_Apres_Sautage)
-        self.Titre_6.setGeometry(QtCore.QRect(260, 30, 250, 30))
+        self.Titre_6.setGeometry(QtCore.QRect(300, 25, 280, 30))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(22)
@@ -1701,218 +1778,307 @@ class Ui_MainWindow(object):
         self.Titre_6.setFont(font)
         self.Titre_6.setObjectName("Titre_6")
         self.label_4 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_4.setGeometry(QtCore.QRect(200, 60, 150, 20))
+        self.label_4.setGeometry(QtCore.QRect(200, 30, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
         self.label_5 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_5.setGeometry(QtCore.QRect(370, 60, 150, 20))
+        self.label_5.setGeometry(QtCore.QRect(370, 30, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_5.setFont(font)
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_6.setGeometry(QtCore.QRect(550, 60, 150, 20))
+        self.label_6.setGeometry(QtCore.QRect(550, 30, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
         self.dateEdit_3 = QtWidgets.QDateEdit(parent=self.frame_Apres_Sautage)
-        self.dateEdit_3.setGeometry(QtCore.QRect(20, 90, 150, 30))
+        self.dateEdit_3.setGeometry(QtCore.QRect(20, 60, 150, 30))
         self.dateEdit_3.setObjectName("dateEdit_3")
+        self.dateEdit_3.setDate(QtCore.QDate.currentDate())
         self.timeEdit_3 = QtWidgets.QTimeEdit(parent=self.frame_Apres_Sautage)
-        self.timeEdit_3.setGeometry(QtCore.QRect(200, 90, 150, 30))
+        self.timeEdit_3.setGeometry(QtCore.QRect(200, 60, 150, 30))
         self.timeEdit_3.setObjectName("timeEdit_3")
         self.timeEdit_4 = QtWidgets.QTimeEdit(parent=self.frame_Apres_Sautage)
-        self.timeEdit_4.setGeometry(QtCore.QRect(370, 90, 150, 30))
+        self.timeEdit_4.setGeometry(QtCore.QRect(370, 60, 150, 30))
         self.timeEdit_4.setObjectName("timeEdit_4")
+        self.timeEdit_3.setDateTime(QtCore.QDateTime.currentDateTime())
+        self.timeEdit_4.setDateTime(QtCore.QDateTime.currentDateTime())
         self.label_7 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_7.setGeometry(QtCore.QRect(20, 140, 150, 20))
+        self.label_7.setGeometry(QtCore.QRect(20, 110, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_8.setGeometry(QtCore.QRect(200, 140, 150, 20))
+        self.label_8.setGeometry(QtCore.QRect(200, 110, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_8.setFont(font)
         self.label_8.setObjectName("label_8")
         self.label_9 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_9.setGeometry(QtCore.QRect(370, 140, 150, 20))
+        self.label_9.setGeometry(QtCore.QRect(370, 110, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_9.setFont(font)
         self.label_9.setObjectName("label_9")
         self.label_10 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_10.setGeometry(QtCore.QRect(550, 140, 150, 20))
+        self.label_10.setGeometry(QtCore.QRect(550, 110, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_10.setFont(font)
         self.label_10.setObjectName("label_10")
         self.lineEdit_7 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_7.setGeometry(QtCore.QRect(20, 170, 150, 30))
+        self.lineEdit_7.setGeometry(QtCore.QRect(20, 140, 150, 30))
         self.lineEdit_7.setObjectName("lineEdit_7")
         self.lineEdit_8 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_8.setGeometry(QtCore.QRect(200, 170, 150, 30))
+        self.lineEdit_8.setGeometry(QtCore.QRect(200, 140, 150, 30))
         self.lineEdit_8.setObjectName("lineEdit_8")
         self.lineEdit_9 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_9.setGeometry(QtCore.QRect(370, 170, 150, 30))
+        self.lineEdit_9.setGeometry(QtCore.QRect(370, 140, 150, 30))
         self.lineEdit_9.setObjectName("lineEdit_9")
         self.lineEdit_10 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_10.setGeometry(QtCore.QRect(550, 170, 150, 30))
+        self.lineEdit_10.setGeometry(QtCore.QRect(550, 140, 150, 30))
         self.lineEdit_10.setObjectName("lineEdit_10")
         self.lineEdit_22 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_22.setGeometry(QtCore.QRect(20, 250, 150, 30))
+        self.lineEdit_22.setGeometry(QtCore.QRect(20, 220, 150, 30))
         self.lineEdit_22.setObjectName("lineEdit_22")
         self.label_11 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_11.setGeometry(QtCore.QRect(20, 220, 150, 20))
+        self.label_11.setGeometry(QtCore.QRect(20, 190, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_11.setFont(font)
         self.label_11.setObjectName("label_11")
         self.label_12 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_12.setGeometry(QtCore.QRect(200, 220, 150, 20))
+        self.label_12.setGeometry(QtCore.QRect(200, 190, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_12.setFont(font)
         self.label_12.setObjectName("label_12")
         self.label_13 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_13.setGeometry(QtCore.QRect(370, 220, 150, 20))
+        self.label_13.setGeometry(QtCore.QRect(370, 190, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_13.setFont(font)
         self.label_13.setObjectName("label_13")
         self.label_14 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_14.setGeometry(QtCore.QRect(550, 220, 150, 20))
+        self.label_14.setGeometry(QtCore.QRect(550, 190, 150, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_14.setFont(font)
         self.label_14.setObjectName("label_14")
         self.label_15 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_15.setGeometry(QtCore.QRect(20, 300, 150, 16))
+        self.label_15.setGeometry(QtCore.QRect(20, 270, 150, 16))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_15.setFont(font)
         self.label_15.setObjectName("label_15")
         self.label_16 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_16.setGeometry(QtCore.QRect(200, 300, 150, 16))
+        self.label_16.setGeometry(QtCore.QRect(200, 270, 150, 16))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_16.setFont(font)
         self.label_16.setObjectName("label_16")
         self.lineEdit_11 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_11.setGeometry(QtCore.QRect(20, 330, 150, 30))
+        self.lineEdit_11.setGeometry(QtCore.QRect(20, 300, 150, 30))
         self.lineEdit_11.setObjectName("lineEdit_11")
         self.lineEdit_12 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_12.setGeometry(QtCore.QRect(370, 250, 150, 30))
+        self.lineEdit_12.setGeometry(QtCore.QRect(370, 220, 150, 30))
         self.lineEdit_12.setObjectName("lineEdit_12")
         self.lineEdit_13 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_13.setGeometry(QtCore.QRect(550, 250, 150, 30))
+        self.lineEdit_13.setGeometry(QtCore.QRect(550, 220, 150, 30))
         self.lineEdit_13.setObjectName("lineEdit_13")
         self.lineEdit_14 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_14.setGeometry(QtCore.QRect(200, 250, 150, 30))
+        self.lineEdit_14.setGeometry(QtCore.QRect(200, 220, 150, 30))
         self.lineEdit_14.setObjectName("lineEdit_11")
         self.lineEdit_15 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_15.setGeometry(QtCore.QRect(200, 330, 250, 50))
+        self.lineEdit_15.setGeometry(QtCore.QRect(200, 300, 500, 30))
         self.lineEdit_15.setObjectName("lineEdit_15")
         self.label_2 = QtWidgets.QLabel(parent=self.frame_Apres_Sautage)
-        self.label_2.setGeometry(QtCore.QRect(20, 60, 41, 20))
+        self.label_2.setGeometry(QtCore.QRect(20, 30, 41, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.lineEdit_16 = QtWidgets.QLineEdit(parent=self.frame_Apres_Sautage)
-        self.lineEdit_16.setGeometry(QtCore.QRect(550, 90, 150, 30))
+        self.lineEdit_16.setGeometry(QtCore.QRect(550, 60, 150, 30))
         self.lineEdit_16.setObjectName("lineEdit_16")
         
         self.stackedWidget.addWidget(self.Ges_Apres_Sautage)
-        self.Ges_Aven_Decappage = QtWidgets.QWidget()
-        self.Ges_Aven_Decappage.setObjectName("Ges_Aven_Decappage")
-        self.Param_Avancement = QtWidgets.QFrame(parent=self.Ges_Aven_Decappage)
-        self.Param_Avancement.setGeometry(QtCore.QRect(0, 130, 720, 71))
+        self.Ges_Avan_Decapage = QtWidgets.QWidget()
+        self.Ges_Avan_Decapage.setObjectName("Ges_Avan_Decapage")
+        
+
+        self.Titre_7 = QtWidgets.QLabel(parent=self.Ges_Avan_Decapage)
+        self.Titre_7.setGeometry(QtCore.QRect(300, 25, 280, 30))
+        self.Titre_7.setStyleSheet("#Titre_7{\n"
+"color: #ffffff;\n"
+"}\n")
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(30)
+        font.setBold(True)
+        self.Titre_7.setFont(font)
+        self.Titre_7.setObjectName("Titre_7")
+
+        
+
+        self.suivreAvanc= QtWidgets.QLabel(parent=self.Ges_Avan_Decapage)
+        self.suivreAvanc.setGeometry(QtCore.QRect(27, 250, 130, 30))
+       
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setUnderline(True)
+        self.suivreAvanc.setFont(font)
+        self.suivreAvanc.setObjectName("suivreAvanc")
+
+
+        self.rectAvanc = QtWidgets.QWidget(parent=self.Ges_Avan_Decapage)
+        self.rectAvanc.setObjectName("rectAvanc")
+
+        self.Tableau_Avancement = QtWidgets.QTableWidget(parent=self.rectAvanc)
+        self.Tableau_Avancement.setGeometry(QtCore.QRect(110, 255, 580, 350))  # Use setGeometry method
+        self.Tableau_Avancement.setObjectName("Tableau_Avancement")
+        self.Tableau_Avancement.setColumnCount(3)
+        self.Tableau_Avancement.setRowCount(0)
+
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Avancement.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Avancement.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.Tableau_Avancement.setHorizontalHeaderItem(2, item)
+        self.Tableau_Avancement.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+        
+        
+        self.Param_Avancement = QtWidgets.QFrame(parent=self.Ges_Avan_Decapage)
+        self.Param_Avancement.setGeometry(QtCore.QRect(0, 120, 770, 115))
         self.Param_Avancement.setStyleSheet("#Param_Avancement{\n"
 "border: 2px solid #002a3d;\n"
 "border-radius: 10px 10px 10px 10px;\n"
+"background-color:#0090ce;\n"
+"}\n"
+"QLineEdit,QDateEdit{\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"background-color: #ffffff;\n"
+"color: #002a3d;\n"
+"padding: 1px 3px;\n"
+"}\n"
+"#ajouterAvanc{\n"
+"color: #ffffff;\n"
+" text-align: center;\n"
+"}\n"
+"QLabel{\n"
+"font: Bold"
+"}\n"
+"\n"
+"QPushButton{\n"
+"border: 2px solid #002a3d;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"background-color: #002a3d;\n"
+" text-align: center;\n"
 "}")
         self.Param_Avancement.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.Param_Avancement.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.Param_Avancement.setObjectName("Param_Avancement")
-        self.label_3 = QtWidgets.QLabel(parent=self.Param_Avancement)
-        self.label_3.setGeometry(QtCore.QRect(30, 20, 60, 20))
+        self.ajouterAvanc = QtWidgets.QLabel(parent=self.Ges_Avan_Decapage)
+        self.ajouterAvanc.setGeometry(QtCore.QRect(20, 85, 130, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(15)
+        font.setUnderline(True)
+        font.setBold(True)
+        self.ajouterAvanc.setFont(font)
+        self.ajouterAvanc.setObjectName("ajouterAvanc")
+
+
+
+        self.machineDecap= QtWidgets.QLabel(parent=self.Param_Avancement)
+        self.machineDecap.setGeometry(QtCore.QRect(30, 75, 150, 18))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
-        self.label_3.setFont(font)
-        self.label_3.setObjectName("label_3")
-        self.label_17 = QtWidgets.QLabel(parent=self.Param_Avancement)
-        self.label_17.setGeometry(QtCore.QRect(520, 20, 100, 20))
+        font.setBold(True)
+        self.machineDecap.setFont(font)
+        self.machineDecap.setObjectName("machineDecap")
+        
+        self.avancForation = QtWidgets.QLabel(parent=self.Param_Avancement)
+        self.avancForation.setGeometry(QtCore.QRect(30, 25, 170, 18))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
-        self.label_17.setFont(font)
-        self.label_17.setObjectName("label_17")
-        self.lineEdit = QtWidgets.QLineEdit(parent=self.Param_Avancement)
-        self.lineEdit.setGeometry(QtCore.QRect(620, 20, 70, 20))
-        self.lineEdit.setStyleSheet("QLineEdit{\n"
-"background-color: #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_23 = QtWidgets.QLineEdit(parent=self.Param_Avancement)
-        self.lineEdit_23.setGeometry(QtCore.QRect(120, 20, 91, 20))
-        self.lineEdit_23.setStyleSheet("QLineEdit{\n"
-"background-color: #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.lineEdit_23.setObjectName("lineEdit_23")
-        self.label_56 = QtWidgets.QLabel(parent=self.Param_Avancement)
-        self.label_56.setGeometry(QtCore.QRect(270, 20, 100, 20))
+        font.setBold(True)
+        self.avancForation.setFont(font)
+        self.avancForation.setObjectName("avancForation")
+
+        self.avancDecap= QtWidgets.QLabel(parent=self.Param_Avancement)
+        self.avancDecap.setGeometry(QtCore.QRect(370, 25, 175, 18))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
-        self.label_56.setFont(font)
-        self.label_56.setObjectName("label_56")
-        self.lineEdit_24 = QtWidgets.QLineEdit(parent=self.Param_Avancement)
-        self.lineEdit_24.setGeometry(QtCore.QRect(380, 20, 80, 20))
-        self.lineEdit_24.setStyleSheet("QLineEdit{\n"
-"background-color: #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.lineEdit_24.setObjectName("lineEdit_24")
-        self.Tableau_Avancement = QtWidgets.QFrame(parent=self.Ges_Aven_Decappage)
-        self.Tableau_Avancement.setGeometry(QtCore.QRect(0, 205, 720, 350))
-        self.Tableau_Avancement.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.Tableau_Avancement.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.Tableau_Avancement.setObjectName("Tableau_Avancement")
-        self.Titre_7 = QtWidgets.QLabel(parent=self.Ges_Aven_Decappage)
-        self.Titre_7.setGeometry(QtCore.QRect(260, 35, 250, 30))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(30)
-        font.setUnderline(False)
-        self.Titre_7.setFont(font)
-        self.Titre_7.setObjectName("Titre_7")
-        self.stackedWidget.addWidget(self.Ges_Aven_Decappage)
+        font.setBold(True)
+        self.avancDecap.setFont(font)
+        self.avancDecap.setObjectName("avancDecap")
+
+
+        self.machineDecapLine = QtWidgets.QComboBox(parent=self.Param_Avancement)
+        self.machineDecapLine.setGeometry(QtCore.QRect(215, 73, 105, 22))
+        self.machineDecapLine.setObjectName("machineDecapLine")
+        self.machineDecapLine.addItem("")
+        self.machineDecapLine.addItem("")
+        self.machineDecapLine.addItem("")
+        self.machineDecapLine.addItem("")
+        self.machineDecapLine.addItem("")
+        self.machineDecapLine.addItem("")
+        
+        
+        
+        self.avancForationLine = QtWidgets.QLineEdit(parent=self.Param_Avancement)
+        self.avancForationLine.setGeometry(QtCore.QRect(215, 20, 105, 22))
+        self.avancForationLine.setObjectName("avancForationLine")
+
+        self.avancDecapLine = QtWidgets.QLineEdit(parent=self.Param_Avancement)
+        self.avancDecapLine.setGeometry(QtCore.QRect(555, 20, 105, 22))
+        self.avancDecapLine.setObjectName("avancDecapLine")
+
+        self.ajouterBtn= QtWidgets.QPushButton(parent=self.Param_Avancement)
+        self.ajouterBtn.setGeometry(QtCore.QRect(450, 70, 110, 30))
+        font.setPointSize(12)
+        font.setBold(True)
+        self.ajouterBtn.setFont(font)
+        self.ajouterBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.ajouterBtn.setObjectName("ajouterBtn")
+
+        
+
+
+
+
+
+        self.stackedWidget.addWidget(self.Ges_Avan_Decapage)
         self.Documentation = QtWidgets.QWidget()
         self.Documentation.setObjectName("Documentation")
         self.Titre_4 = QtWidgets.QLabel(parent=self.Documentation)
-        self.Titre_4.setGeometry(QtCore.QRect(230, 20, 121, 20))
+        self.Titre_4.setGeometry(QtCore.QRect(300, 25, 280, 30))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(22)
@@ -1923,7 +2089,7 @@ class Ui_MainWindow(object):
         self.Archives = QtWidgets.QWidget()
         self.Archives.setObjectName("Archives")
         self.Titre_10 = QtWidgets.QLabel(parent=self.Archives)
-        self.Titre_10.setGeometry(QtCore.QRect(260, 30, 250, 30))
+        self.Titre_10.setGeometry(QtCore.QRect(300, 25, 280, 30))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(22)
@@ -1946,6 +2112,8 @@ class Ui_MainWindow(object):
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(38)
         self.tableWidget.setRowCount(0)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+
 
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, item)
@@ -2152,13 +2320,13 @@ class Ui_MainWindow(object):
         self.widget_2 = QtWidgets.QWidget()
         self.widget_2.setObjectName("widget_2")
         self.Historiques.addWidget(self.widget_2)
-        self.Historique_Avan_Decappage = QtWidgets.QWidget()
-        self.Historique_Avan_Decappage.setObjectName("Historique_Avan_Decappage")
-        self.verticalLayout_19 = QtWidgets.QVBoxLayout(self.Historique_Avan_Decappage)
+        self.Historique_Avan_decapage = QtWidgets.QWidget()
+        self.Historique_Avan_decapage.setObjectName("Historique_Avan_decapage")
+        self.verticalLayout_19 = QtWidgets.QVBoxLayout(self.Historique_Avan_decapage)
         self.verticalLayout_19.setContentsMargins(4, 4, 4, 4)
         self.verticalLayout_19.setSpacing(4)
         self.verticalLayout_19.setObjectName("verticalLayout_19")
-        self.tableWidget_5 = QtWidgets.QTableWidget(parent=self.Historique_Avan_Decappage)
+        self.tableWidget_5 = QtWidgets.QTableWidget(parent=self.Historique_Avan_decapage)
         self.tableWidget_5.setObjectName("tableWidget_5")
         self.tableWidget_5.setColumnCount(8)
         self.tableWidget_5.setRowCount(0)
@@ -2179,7 +2347,7 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_5.setHorizontalHeaderItem(7, item)
         self.verticalLayout_19.addWidget(self.tableWidget_5)
-        self.Historiques.addWidget(self.Historique_Avan_Decappage)
+        self.Historiques.addWidget(self.Historique_Avan_decapage)
         self.Historique_Acces = QtWidgets.QWidget()
         self.Historique_Acces.setObjectName("Historique_Acces")
         self.verticalLayout_18 = QtWidgets.QVBoxLayout(self.Historique_Acces)
@@ -2218,33 +2386,47 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setContentsMargins(4, 4, 4, 4)
         self.horizontalLayout_6.setSpacing(4)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.stackedWidget_2 = QtWidgets.QStackedWidget(parent=self.OptionMenu)
+        self.stackedWidget_2 = QtWidgets.QStackedWidget(parent=self.OptionMenu)    
         self.stackedWidget_2.setStyleSheet(
-"#frame_1, #frame_2,#frame_3,#frame_4,#frame_5,#frame_6,#frame_7,#frame_8,#frame_9,#frame_10,#frame_11,#frame_12,#frame_13,#frame_14,#frame_15,#frame_16,#frame_17,#frame_18, #Note_Com, #Note_Res, #Artifices, #Opperations, #Artifices_2, #Opperations_2{\n"
-"border: 2px solid #002a3d;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color:#0090ce;\n"
-"}\n"
-"QLineEdit,QDateEdit{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color: #ffffff;\n"
-"color: #002a3d;\n"
-" text-align: center;\n"
-"padding: 1px 3px;\n"
-"}\n"
-"#QLabel{\n"
-"color: #002a3d;\n"
-" text-align: center;\n"
-"}\n"
+    "#frame_1, #frame_2, #frame_3, #frame_4, #frame_5, #frame_6, #frame_7, #frame_8, #frame_9, #frame_10, #frame_11, #frame_12, #frame_13, #frame_14, #frame_15, #frame_16, #frame_17, #frame_18, #Note_Com, #Note_Res, #Artifices, #Opperations, #Artifices_2 {\n"
+    "border: 2px solid #002a3d;\n"
+    "border-radius: 10px 10px 10px 10px;\n"
+    "background-color: #0090ce;\n"
+    "}\n"
+    "QDateEdit {\n"
+    "border-radius: 10px 10px 10px 10px;\n"
+    "background-color: #ffffff;\n"
+    "color: #002a3d;\n"    
+    "text-align: center;\n"
+    "padding: 1px 3px;\n"
+    "}\n"
+    "QCheckBox, QLineEdit{\n"
+    "border-radius: 10px 10px 10px 10px;\n"
+    "background-color: #ffffff;\n"
+    "color: #002a3d;\n"
+    "text-align: center;\n"
+    "padding: 1px 3px;\n"
+    "}\n"
+    "QLabel {\n"
+    "color: #ffffff;\n"
+    "text-align: center;\n"
+    "}\n"
+    "#label_25, #label_22, #label_35, #label_31, #label_29, #label_37{\n"
+    "font: bold;\n"
+    "color: #002a3d;\n"
+    "text-align: center;\n"
+    "}\n"
+    "QPushButton {\n"
+    "border: 2px solid #002a3d;\n"
+    "border-radius: 10px 10px 10px 10px;\n"
+    "background-color: #002a3d;\n"
+    "font: bold;\n"
+    "color: #ffffff;\n"
+    "text-align: center;\n"
+    "}\n"
+)
 
-"\n"
-"QPushButton{\n"
-"border: 2px solid #002a3d;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color: #002a3d;\n"
-"color: #ffffff;\n"
-" text-align: center;\n"
-"}")
+
         self.stackedWidget_2.setObjectName("stackedWidget_2")
         self.widget_4 = QtWidgets.QWidget()
         self.widget_4.setObjectName("widget_4")
@@ -2265,14 +2447,14 @@ class Ui_MainWindow(object):
         self.label_29 = QtWidgets.QLabel(parent=self.Note_Com)
         self.label_29.setGeometry(QtCore.QRect(60, 30, 170, 20))
         font = QtGui.QFont()
-        font.setFamily("Helvetica")
-        font.setPointSize(17)
+        font.setFamily("Gabriola")
+        font.setPointSize(14)
         font.setUnderline(False)
         self.label_29.setFont(font)
         self.label_29.setStyleSheet("#label_29{\n"
 "color: #ffffff;\n"
 "}\n"
-"\n"
+
 "")
         self.label_29.setObjectName("label_29")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(parent=self.Note_Com)
@@ -2292,26 +2474,26 @@ class Ui_MainWindow(object):
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.verticalLayout_13.addWidget(self.Note_Com)
         self.frame_10 = QtWidgets.QFrame(parent=self.Options_Commande_Calcul)
-        self.frame_10.setMaximumSize(QtCore.QSize(16777215, 90))
+        self.frame_10.setMaximumSize(QtCore.QSize(16777215, 160))
         self.frame_10.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_10.setObjectName("frame_10")
         self.resetBtnFs = QtWidgets.QPushButton(parent=self.frame_10)
-        self.resetBtnFs.setGeometry(QtCore.QRect(20, 50, 71, 21))
+        self.resetBtnFs.setGeometry(QtCore.QRect(30, 60, 100, 24))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.resetBtnFs.setFont(font)
         self.resetBtnFs.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.resetBtnFs.setObjectName("resetBtnFs")
-        self.pushButton_7 = QtWidgets.QPushButton(parent=self.frame_10)
-        self.pushButton_7.setGeometry(QtCore.QRect(150, 50, 81, 21))
+        self.calculBtn = QtWidgets.QPushButton(parent=self.frame_10)
+        self.calculBtn.setGeometry(QtCore.QRect(150, 60, 100, 24))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
-        self.pushButton_7.setFont(font)
-        self.pushButton_7.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_7.setObjectName("pushButton_7")
+        self.calculBtn.setFont(font)
+        self.calculBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.calculBtn.setObjectName("calculBtn")
         self.label_32 = QtWidgets.QLabel(parent=self.frame_10)
         self.label_32.setGeometry(QtCore.QRect(70, 20, 150, 16))
         font = QtGui.QFont()
@@ -2363,42 +2545,50 @@ class Ui_MainWindow(object):
         self.plainTextEdit_2.setObjectName("plainTextEdit_2")
         self.verticalLayout_11.addWidget(self.Note_Res)
         self.frame_6 = QtWidgets.QFrame(parent=self.Options_Commande_Resultats)
-        self.frame_6.setMaximumSize(QtCore.QSize(16777215, 90))
+        self.frame_6.setMaximumSize(QtCore.QSize(16777215, 160))
         self.frame_6.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_6.setObjectName("frame_6")
         self.valResBtn = QtWidgets.QPushButton(parent=self.frame_6)
-        self.valResBtn.setGeometry(QtCore.QRect(30, 40, 81, 21))
+        self.valResBtn.setGeometry(QtCore.QRect(10, 50, 81, 21))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.valResBtn.setFont(font)
         self.valResBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.valResBtn.setObjectName("valResBtn")
-        self.genResBtn = QtWidgets.QPushButton(parent=self.frame_6)
-        self.genResBtn.setGeometry(QtCore.QRect(120, 40, 81, 21))
+        self.modResBtn = QtWidgets.QPushButton(parent=self.frame_6)
+        self.modResBtn.setGeometry(QtCore.QRect(100, 50, 81, 21))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
-        self.genResBtn.setFont(font)
-        self.genResBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.genResBtn.setObjectName("genResBtn")
-        self.ajtResBtn = QtWidgets.QPushButton(parent=self.frame_6)
-        self.ajtResBtn.setGeometry(QtCore.QRect(50, 70, 81, 21))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(12)
-        self.ajtResBtn.setFont(font)
-        self.ajtResBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.ajtResBtn.setObjectName("ajtResBtn")
+        self.modResBtn.setFont(font)
+        self.modResBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.modResBtn.setObjectName("modResBtn")
         self.suppResBtn = QtWidgets.QPushButton(parent=self.frame_6)
-        self.suppResBtn.setGeometry(QtCore.QRect(140, 70, 81, 21))
+        self.suppResBtn.setGeometry(QtCore.QRect(190, 50, 81, 21))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.suppResBtn.setFont(font)
         self.suppResBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.suppResBtn.setObjectName("suppResBtn")
+        self.genResBtn = QtWidgets.QPushButton(parent=self.frame_6)
+        self.genResBtn.setGeometry(QtCore.QRect( 50, 100, 81, 21))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.genResBtn.setFont(font)
+        self.genResBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.genResBtn.setObjectName("genResBtn")
+        self.retourResBtn = QtWidgets.QPushButton(parent=self.frame_6)
+        self.retourResBtn.setGeometry(QtCore.QRect( 160, 100, 81, 21))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.retourResBtn.setFont(font)
+        self.retourResBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.retourResBtn.setObjectName("retourResBtn")
         self.operRes = QtWidgets.QLabel(parent=self.frame_6)
         self.operRes.setGeometry(QtCore.QRect(90, 10, 91, 16))
         font = QtGui.QFont()
@@ -2422,50 +2612,25 @@ class Ui_MainWindow(object):
         self.Artifices.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.Artifices.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.Artifices.setObjectName("Artifices")
-        self.Artifices.setStyleSheet("#Artifices{\n"
-"border: 2px solid #002a3d;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color:#0090ce;\n"
-"}\n"
-"QLineEdit,QDateEdit{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color: #ffffff;\n"
-"color: #002a3d;\n"
-" text-align: center;\n"
-"padding: 1px 3px;\n"
-"}\n"
-"#label_22{\n"
-"color: #002a3d;\n"
-" text-align: center;\n"
-"}\n"
-
-"\n"
-"QPushButton{\n"
-"border: 2px solid #002a3d;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color: #002a3d;\n"
-"color: #ffffff;\n"
-" text-align: center;\n"
-
-"}")
+        
 
         self.label_22 = QtWidgets.QLabel(parent=self.Artifices)
-        self.label_22.setGeometry(QtCore.QRect(70, 25, 170, 19))
+        self.label_22.setGeometry(QtCore.QRect(70, 25, 190, 19))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(14)
+        font.setPointSize(16)
         font.setBold(True)
         self.label_22.setFont(font)
         
         self.label_22.setObjectName("label_22")
-        self.stockLabel= QtWidgets.QLabel(parent=self.Artifices)
-        self.stockLabel.setGeometry(QtCore.QRect(80, 70, 150, 25))
+        self.stockArt= QtWidgets.QLabel(parent=self.Artifices)
+        self.stockArt.setGeometry(QtCore.QRect(75, 70, 160, 25))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(12)
+        font.setPointSize(13)
         font.setBold(True)
-        self.stockLabel.setFont(font)
-        self.stockLabel.setObjectName("stockLabel")
+        self.stockArt.setFont(font)
+        self.stockArt.setObjectName("stockArt")
 
         self.checkBox = QtWidgets.QCheckBox(parent=self.Artifices)
         self.checkBox.setGeometry(QtCore.QRect(30, 100, 100, 26))
@@ -2554,30 +2719,33 @@ class Ui_MainWindow(object):
         self.stockArtBtn.setObjectName("stockArtBtn")
         
         self.stockDateAff= QtWidgets.QLabel(parent=self.Artifices)
-        self.stockDateAff.setGeometry(QtCore.QRect(80, 350, 150, 25))
+        self.stockDateAff.setGeometry(QtCore.QRect(75, 350, 160, 25))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(12)
+        font.setPointSize(13)
         font.setBold(True)
         self.stockDateAff.setFont(font)
         self.stockDateAff.setObjectName("stockDateAff")
         self.stockDate1 = QtWidgets.QDateEdit(parent=self.Artifices)
         self.stockDate1.setGeometry(QtCore.QRect(30, 380, 95, 23))
         self.stockDate1.setObjectName("stockDate1")
+        self.stockDate1.setDate(QtCore.QDate.currentDate())
         self.stockDate2 = QtWidgets.QDateEdit(parent=self.Artifices)
         self.stockDate2.setGeometry(QtCore.QRect(160, 380, 95, 23))
         self.stockDate2.setObjectName("stockDate2")
-        self.stockPerDateBtn = QtWidgets.QPushButton(parent=self.Artifices)
-        self.stockPerDateBtn.setGeometry(QtCore.QRect(90, 420, 100, 26))
+        self.stockDate2.setDate(QtCore.QDate.currentDate())
+
+        self.stockDateBtn = QtWidgets.QPushButton(parent=self.Artifices)
+        self.stockDateBtn.setGeometry(QtCore.QRect(90, 420, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
-        self.stockPerDateBtn.setFont(font)
-        self.stockPerDateBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.stockPerDateBtn.setObjectName("stockPerDateBtn")
+        self.stockDateBtn.setFont(font)
+        self.stockDateBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.stockDateBtn.setObjectName("stockPerDateBtn")
         
         self.stockAll= QtWidgets.QLabel(parent=self.Artifices)
-        self.stockAll.setGeometry(QtCore.QRect(55, 460, 180, 25))
+        self.stockAll.setGeometry(QtCore.QRect(50, 460, 190, 25))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
@@ -2609,74 +2777,57 @@ class Ui_MainWindow(object):
         self.Artifices_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.Artifices_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.Artifices_2.setObjectName("Artifices_2")
-        self.Artifices_2.setStyleSheet("#Artifices_2{\n"
-"border: 2px solid #002a3d;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color:#0090ce;\n"
-"}\n"
-"QLineEdit,QDateEdit{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color: #ffffff;\n"
-"color: #002a3d;\n"
-" text-align: center;\n"
-"padding: 1px 3px;\n"
-"}\n"
-"#label_25{\n"
-"color: #002a3d;\n"
-" text-align: center;\n"
-"}\n"
+          
 
-"\n"
-"QPushButton{\n"
-"border: 2px solid #002a3d;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"background-color: #002a3d;\n"
-"color: #ffffff;\n"
-" text-align: center;\n"
-
-"}")
-        self.label_25 = QtWidgets.QLabel(parent=self.Artifices_2)
-        self.label_25.setGeometry(QtCore.QRect(16777215, 10, 121, 20))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(14)
-        self.label_25.setFont(font)
-        self.label_25.setStyleSheet("#label_25{\n"
-"color: #111111;\n"
-"}")
-        self.label_25.setObjectName("label_25")
 
         
+        self.label_25 = QtWidgets.QLabel(parent=self.Artifices_2)
+        self.label_25.setGeometry(QtCore.QRect(75, 25, 190, 19))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(16)
+        font.setBold(True)
+        self.label_25.setFont(font)
+        self.label_25.setObjectName("label_25")
+
+        self.coutArt = QtWidgets.QLabel(parent=self.Artifices_2)
+        self.coutArt.setGeometry(QtCore.QRect(75, 70, 150, 25))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(13)
+        font.setBold(True)
+        self.coutArt.setFont(font)
+        self.coutArt.setObjectName("coutArt")
         self.checkBox_11 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_11.setGeometry(QtCore.QRect(20, 40, 61, 21))
+        self.checkBox_11.setGeometry(QtCore.QRect(30, 100, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.checkBox_11.setFont(font)
         self.checkBox_11.setObjectName("checkBox_11")
         self.checkBox_12 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_12.setGeometry(QtCore.QRect(70, 70, 51, 21))
+        self.checkBox_12.setGeometry(QtCore.QRect(30, 140, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.checkBox_12.setFont(font)
         self.checkBox_12.setObjectName("checkBox_12")
         self.checkBox_13 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_13.setGeometry(QtCore.QRect(20, 100, 61, 21))
+        self.checkBox_13.setGeometry(QtCore.QRect(30, 180, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.checkBox_13.setFont(font)
         self.checkBox_13.setObjectName("checkBox_13")
         self.checkBox_14 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_14.setGeometry(QtCore.QRect(50, 130, 71, 21))
+        self.checkBox_14.setGeometry(QtCore.QRect(30, 220, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.checkBox_14.setFont(font)
         self.checkBox_14.setObjectName("checkBox_14")
         self.checkBox_15 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_15.setGeometry(QtCore.QRect(90, 160, 71, 21))
+        self.checkBox_15.setGeometry(QtCore.QRect(30, 260, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
@@ -2684,93 +2835,102 @@ class Ui_MainWindow(object):
         self.checkBox_15.setTristate(False)
         self.checkBox_15.setObjectName("checkBox_15")
         self.checkBox_17 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_17.setGeometry(QtCore.QRect(110, 40, 81, 20))
+        self.checkBox_17.setGeometry(QtCore.QRect(160, 100, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.checkBox_17.setFont(font)
         self.checkBox_17.setObjectName("checkBox_17")
         self.checkBox_18 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_18.setGeometry(QtCore.QRect(150, 70, 81, 21))
+        self.checkBox_18.setGeometry(QtCore.QRect(160, 140, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.checkBox_18.setFont(font)
         self.checkBox_18.setObjectName("checkBox_18")
         self.checkBox_19 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_19.setGeometry(QtCore.QRect(110, 100, 81, 20))
+        self.checkBox_19.setGeometry(QtCore.QRect(160, 180, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.checkBox_19.setFont(font)
         self.checkBox_19.setObjectName("checkBox_19")
         self.checkBox_20 = QtWidgets.QCheckBox(parent=self.Artifices_2)
-        self.checkBox_20.setGeometry(QtCore.QRect(150, 130, 81, 21))
+        self.checkBox_20.setGeometry(QtCore.QRect(160, 220, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.checkBox_20.setFont(font)
         self.checkBox_20.setObjectName("checkBox_20")
+        self.checkBox_21 = QtWidgets.QCheckBox(parent=self.Artifices_2)
+        self.checkBox_21.setGeometry(QtCore.QRect(160, 260, 100, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.checkBox_21.setFont(font)
+        self.checkBox_21.setObjectName("checkBox_21")
+        self.checkBox_22 = QtWidgets.QCheckBox(parent=self.Artifices_2)
+        self.checkBox_22.setGeometry(QtCore.QRect(30, 300, 100, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.checkBox_22.setFont(font)
+        self.checkBox_22.setObjectName("checkBox_22")
+       
+        self.coutArtBtn = QtWidgets.QPushButton(parent=self.Artifices_2)
+        self.coutArtBtn.setGeometry(QtCore.QRect(160, 300, 100, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.coutArtBtn.setFont(font)
+        self.coutArtBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.coutArtBtn.setObjectName("coutArtBtn")
+
+        self.coutDate = QtWidgets.QLabel(parent=self.Artifices_2)
+        self.coutDate.setGeometry(QtCore.QRect(75, 350, 160, 25))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(13)
+        font.setBold(True)
+        self.coutDate.setFont(font)
+        self.coutDate.setObjectName("coutDate")
+        self.coutDate1 = QtWidgets.QDateEdit(parent=self.Artifices_2)
+        self.coutDate1.setGeometry(QtCore.QRect(30, 380, 95, 23))
+        self.coutDate1.setObjectName("coutDate1")
+        self.coutDate1.setDate(QtCore.QDate.currentDate())
+        self.coutDate2 = QtWidgets.QDateEdit(parent=self.Artifices_2)
+        self.coutDate2.setGeometry(QtCore.QRect(160, 380, 95, 23))
+        self.coutDate2.setObjectName("coutDate2")
+        self.coutDate2.setDate(QtCore.QDate.currentDate())
+
+        self.coutDateBtn = QtWidgets.QPushButton(parent=self.Artifices_2)
+        self.coutDateBtn.setGeometry(QtCore.QRect(90, 420, 100, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.coutDateBtn.setFont(font)
+        self.coutDateBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.coutDateBtn.setObjectName("coutDateBtn")
+
+        self.coutAll = QtWidgets.QLabel(parent=self.Artifices_2)
+        self.coutAll.setGeometry(QtCore.QRect(50, 460, 190, 25))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(13)
+        font.setBold(True)
+        self.coutAll.setFont(font)
+        
+        self.coutAll.setObjectName("coutAll")
+        self.coutAllBtn = QtWidgets.QPushButton(parent=self.Artifices_2)
+        self.coutAllBtn.setGeometry(QtCore.QRect(75, 495, 130, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.coutAllBtn.setFont(font)
+        self.coutAllBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.coutAllBtn.setObjectName("pushButton_21")
+       
         self.verticalLayout_10.addWidget(self.Artifices_2)
-        self.Opperations_2 = QtWidgets.QFrame(parent=self.Options_Cout)
-        self.Opperations_2.setMinimumSize(QtCore.QSize(0, 50))
-        self.Opperations_2.setMaximumSize(QtCore.QSize(16777215, 120))
-        self.Opperations_2.setSizeIncrement(QtCore.QSize(0, 200))
-        self.Opperations_2.setStyleSheet("")
-        self.Opperations_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.Opperations_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.Opperations_2.setObjectName("Opperations_2")
-        self.pushButton_19 = QtWidgets.QPushButton(parent=self.Opperations_2)
-        self.pushButton_19.setGeometry(QtCore.QRect(40, 90, 71, 21))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(12)
-        self.pushButton_19.setFont(font)
-        self.pushButton_19.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_19.setObjectName("pushButton_19")
-        self.pushButton_20 = QtWidgets.QPushButton(parent=self.Opperations_2)
-        self.pushButton_20.setGeometry(QtCore.QRect(10, 40, 81, 21))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(12)
-        self.pushButton_20.setFont(font)
-        self.pushButton_20.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_20.setObjectName("pushButton_20")
-        self.pushButton_21 = QtWidgets.QPushButton(parent=self.Opperations_2)
-        self.pushButton_21.setGeometry(QtCore.QRect(100, 40, 61, 21))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(12)
-        self.pushButton_21.setFont(font)
-        self.pushButton_21.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_21.setObjectName("pushButton_21")
-        self.pushButton_22 = QtWidgets.QPushButton(parent=self.Opperations_2)
-        self.pushButton_22.setGeometry(QtCore.QRect(170, 40, 61, 21))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(12)
-        self.pushButton_22.setFont(font)
-        self.pushButton_22.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_22.setObjectName("pushButton_22")
-        self.label_26 = QtWidgets.QLabel(parent=self.Opperations_2)
-        self.label_26.setGeometry(QtCore.QRect(16777215, 10, 111, 16))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(14)
-        self.label_26.setFont(font)
-        self.label_26.setStyleSheet("#label_26{\n"
-"color: 111111;\n"
-"}")
-        self.label_26.setObjectName("label_26")
-        self.pushButton_24 = QtWidgets.QPushButton(parent=self.Opperations_2)
-        self.pushButton_24.setGeometry(QtCore.QRect(140, 90, 71, 21))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(12)
-        self.pushButton_24.setFont(font)
-        self.pushButton_24.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_24.setObjectName("pushButton_24")
-        self.verticalLayout_10.addWidget(self.Opperations_2)
         self.stackedWidget_2.addWidget(self.Options_Cout)
         self.Options_Apres_Sautage = QtWidgets.QWidget()
         self.Options_Apres_Sautage.setObjectName("Options_Apres_Sautage")
@@ -2786,11 +2946,8 @@ class Ui_MainWindow(object):
         self.label_31.setGeometry(QtCore.QRect(40, 20, 220, 20))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(16)
+        font.setPointSize(14)
         self.label_31.setFont(font)
-        self.label_31.setStyleSheet("#label_31{\n"
-"color: #ffffff;\n"
-"}")
         self.label_31.setObjectName("label_31")
         self.plainTextEdit_3 = QtWidgets.QPlainTextEdit(parent=self.frame_8)
         self.plainTextEdit_3.setGeometry(QtCore.QRect(20, 40, 250, 280))
@@ -2809,42 +2966,42 @@ class Ui_MainWindow(object):
         self.plainTextEdit_3.setObjectName("plainTextEdit_3")
         self.verticalLayout_12.addWidget(self.frame_8)
         self.frame_7 = QtWidgets.QFrame(parent=self.Options_Apres_Sautage)
-        self.frame_7.setMaximumSize(QtCore.QSize(16777215, 90))
+        self.frame_7.setMaximumSize(QtCore.QSize(16777215, 160))
         self.frame_7.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_7.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_7.setObjectName("frame_7")
-        self.pushButton_11 = QtWidgets.QPushButton(parent=self.frame_7)
-        self.pushButton_11.setGeometry(QtCore.QRect(30, 40, 81, 21))
+        self.saveApresSautageBtn = QtWidgets.QPushButton(parent=self.frame_7)
+        self.saveApresSautageBtn.setGeometry(QtCore.QRect(30, 50, 100, 24))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
-        self.pushButton_11.setFont(font)
-        self.pushButton_11.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_11.setObjectName("pushButton_11")
-        self.pushButton_12 = QtWidgets.QPushButton(parent=self.frame_7)
-        self.pushButton_12.setGeometry(QtCore.QRect(120, 40, 81, 21))
+        self.saveApresSautageBtn.setFont(font)
+        self.saveApresSautageBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.saveApresSautageBtn.setObjectName("saveApresSautageBtn")
+        self.resetApresSautageBtn = QtWidgets.QPushButton(parent=self.frame_7)
+        self.resetApresSautageBtn.setGeometry(QtCore.QRect(160, 50, 100, 24))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
-        self.pushButton_12.setFont(font)
-        self.pushButton_12.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_12.setObjectName("pushButton_12")
+        self.resetApresSautageBtn.setFont(font)
+        self.resetApresSautageBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.resetApresSautageBtn.setObjectName("resetApresSautageBtn")
         self.pushButton_13 = QtWidgets.QPushButton(parent=self.frame_7)
-        self.pushButton_13.setGeometry(QtCore.QRect(50, 70, 81, 21))
+        self.pushButton_13.setGeometry(QtCore.QRect(30, 100, 100, 24))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
         self.pushButton_13.setFont(font)
         self.pushButton_13.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.pushButton_13.setObjectName("pushButton_13")
-        self.pushButton_14 = QtWidgets.QPushButton(parent=self.frame_7)
-        self.pushButton_14.setGeometry(QtCore.QRect(140, 70, 81, 21))
+        self.deleteApresSautageBtn = QtWidgets.QPushButton(parent=self.frame_7)
+        self.deleteApresSautageBtn.setGeometry(QtCore.QRect(160, 100, 100, 24))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(12)
-        self.pushButton_14.setFont(font)
-        self.pushButton_14.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pushButton_14.setObjectName("pushButton_14")
+        self.deleteApresSautageBtn.setFont(font)
+        self.deleteApresSautageBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.deleteApresSautageBtn.setObjectName("deleteApresSautageBtn")
         self.label_34 = QtWidgets.QLabel(parent=self.frame_7)
         self.label_34.setGeometry(QtCore.QRect(90, 10, 100, 20))
         font = QtGui.QFont()
@@ -2857,82 +3014,153 @@ class Ui_MainWindow(object):
         self.label_34.setObjectName("label_34")
         self.verticalLayout_12.addWidget(self.frame_7)
         self.stackedWidget_2.addWidget(self.Options_Apres_Sautage)
-        self.Options_Avan_Decappage = QtWidgets.QWidget()
-        self.Options_Avan_Decappage.setObjectName("Options_Avan_Decappage")
-        self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.Options_Avan_Decappage)
+        self.Options_Avan_decapage = QtWidgets.QWidget()
+        self.Options_Avan_decapage.setObjectName("Options_Avan_decapage")
+        self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.Options_Avan_decapage)
         self.verticalLayout_14.setContentsMargins(4, 4, 4, 4)
         self.verticalLayout_14.setSpacing(4)
         self.verticalLayout_14.setObjectName("verticalLayout_14")
-        self.frame_11 = QtWidgets.QFrame(parent=self.Options_Avan_Decappage)
+        self.frame_11 = QtWidgets.QFrame(parent=self.Options_Avan_decapage)
         self.frame_11.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_11.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_11.setObjectName("frame_11")
         self.label_35 = QtWidgets.QLabel(parent=self.frame_11)
-        self.label_35.setGeometry(QtCore.QRect(20, 20, 231, 25))
+        self.label_35.setGeometry(QtCore.QRect(75, 25, 230, 19))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
+        font.setBold(True)
         self.label_35.setFont(font)
-        self.label_35.setStyleSheet("#label_35{\n"
-"color: #111111;\n"
-"}")
         self.label_35.setObjectName("label_35")
-        self.checkBox_42 = QtWidgets.QCheckBox(parent=self.frame_11)
-        self.checkBox_42.setGeometry(QtCore.QRect(10, 70, 65, 21))
+
+        self.label_351 = QtWidgets.QLabel(parent=self.frame_11)
+        self.label_351.setGeometry(QtCore.QRect(40, 65, 205, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(11)
+        font.setPointSize(13)
+        font.setBold(True)
+        self.label_351.setFont(font)
+        self.label_351.setObjectName("label_351")
+
+        self.checkBox_42 = QtWidgets.QCheckBox(parent=self.frame_11)
+        self.checkBox_42.setGeometry(QtCore.QRect(30, 100, 100, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        font.setBold(True)
         self.checkBox_42.setFont(font)
         self.checkBox_42.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkBox_42.setObjectName("checkBox_42")
         self.checkBox_43 = QtWidgets.QCheckBox(parent=self.frame_11)
-        self.checkBox_43.setGeometry(QtCore.QRect(16777215, 70, 65, 21))
+        self.checkBox_43.setGeometry(QtCore.QRect(160, 100, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(11)
+        font.setPointSize(12)
+        font.setBold(True)
         self.checkBox_43.setFont(font)
         self.checkBox_43.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkBox_43.setObjectName("checkBox_43")
         self.checkBox_44 = QtWidgets.QCheckBox(parent=self.frame_11)
-        self.checkBox_44.setGeometry(QtCore.QRect(70, 110, 65, 21))
+        self.checkBox_44.setGeometry(QtCore.QRect(30, 140, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(11)
+        font.setPointSize(12)
+        font.setBold(True)
         self.checkBox_44.setFont(font)
         self.checkBox_44.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkBox_44.setObjectName("checkBox_44")
         self.checkBox_45 = QtWidgets.QCheckBox(parent=self.frame_11)
-        self.checkBox_45.setGeometry(QtCore.QRect(150, 70, 50, 21))
+        self.checkBox_45.setGeometry(QtCore.QRect(160, 140, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(11)
+        font.setPointSize(12)
+        font.setBold(True)
         self.checkBox_45.setFont(font)
         self.checkBox_45.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkBox_45.setObjectName("checkBox_45")
         self.checkBox_46 = QtWidgets.QCheckBox(parent=self.frame_11)
-        self.checkBox_46.setGeometry(QtCore.QRect(170, 110, 65, 21))
+        self.checkBox_46.setGeometry(QtCore.QRect(30, 180, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(11)
+        font.setPointSize(12)
+        font.setBold(True)
         self.checkBox_46.setFont(font)
         self.checkBox_46.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkBox_46.setObjectName("checkBox_46")
         self.checkBox_48 = QtWidgets.QCheckBox(parent=self.frame_11)
-        self.checkBox_48.setGeometry(QtCore.QRect(210, 70, 41, 20))
+        self.checkBox_48.setGeometry(QtCore.QRect(160, 180, 100, 26))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(11)
+        font.setPointSize(12)
+        font.setBold(True)
         self.checkBox_48.setFont(font)
         self.checkBox_48.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkBox_48.setObjectName("checkBox_48")
+        self.avdecArtBtn = QtWidgets.QPushButton(parent=self.frame_11)
+        self.avdecArtBtn.setGeometry(QtCore.QRect(100, 220, 100, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        font.setBold(True)
+        self.avdecArtBtn.setFont(font)
+        self.avdecArtBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.avdecArtBtn.setObjectName("avdecArtBtn")
+
+        self.label_352 = QtWidgets.QLabel(parent=self.frame_11)
+        self.label_352.setGeometry(QtCore.QRect(40, 260, 200, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(13)
+        font.setBold(True)
+        self.label_352.setFont(font)
+        self.label_352.setObjectName("label_352")
+
+        self.avDecForBox = QtWidgets.QComboBox(parent=self.frame_11)
+        self.avDecForBox.setGeometry(QtCore.QRect(65, 300, 150, 26))
+        self.avDecForBox.setObjectName("avDecForBox")
+        self.avDecForBox.addItem("")
+        self.avDecForBox.addItem("")
+
+
+        self.avDecForLine = QtWidgets.QLineEdit(parent=self.frame_11)
+        self.avDecForLine.setGeometry(QtCore.QRect(65, 340, 150, 26))
+        self.avDecForLine.setObjectName("avDecForLine")
+        
+        self.avDecForBtn = QtWidgets.QPushButton(parent=self.frame_11)
+        self.avDecForBtn.setGeometry(QtCore.QRect(100, 380, 100, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.avDecForBtn.setFont(font)
+        self.avDecForBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.avDecForBtn.setObjectName("avDecForBtn")
+
+        self.label_353 = QtWidgets.QLabel(parent=self.frame_11)
+        self.label_353.setGeometry(QtCore.QRect(40, 420, 200, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(13)
+        font.setBold(True)
+        self.label_353.setFont(font)
+        self.label_353.setObjectName("label_353")
+
+        self.avdecAllBtn = QtWidgets.QPushButton(parent=self.frame_11)
+        self.avdecAllBtn.setGeometry(QtCore.QRect(100, 470, 100, 26))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.avdecAllBtn.setFont(font)
+        self.avdecAllBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.avdecAllBtn.setObjectName("avdecAllBtn")
+
         self.verticalLayout_14.addWidget(self.frame_11)
-        self.frame_12 = QtWidgets.QFrame(parent=self.Options_Avan_Decappage)
+        self.frame_12 = QtWidgets.QFrame(parent=self.Options_Avan_decapage)
         self.frame_12.setMaximumSize(QtCore.QSize(16777215, 90))
         self.frame_12.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_12.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_12.setObjectName("frame_12")
         self.verticalLayout_14.addWidget(self.frame_12)
-        self.stackedWidget_2.addWidget(self.Options_Avan_Decappage)
+        self.stackedWidget_2.addWidget(self.Options_Avan_decapage)
         self.Options_Docummentation = QtWidgets.QWidget()
         self.Options_Docummentation.setObjectName("Options_Docummentation")
         self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.Options_Docummentation)
@@ -3139,7 +3367,7 @@ class Ui_MainWindow(object):
         self.GesStockBtn.setText(_translate("MainWindow", "Gestion de Stock"))
         self.GesCoutBtN.setText(_translate("MainWindow", "Gestion de Cout"))
         self.GesASBtn.setText(_translate("MainWindow", "Gestion Apres Sautage"))
-        self.GesADBtn.setText(_translate("MainWindow", "Gestion Avancement Decappage"))
+        self.GesADBtn.setText(_translate("MainWindow", "Gestion Avancement décapage"))
         self.documBtn.setText(_translate("MainWindow", "Documentation"))
         self.archiveBtn.setText(_translate("MainWindow", "Archives"))
         self.logoutBtn.setText(_translate("MainWindow", "Log Out"))
@@ -3148,7 +3376,7 @@ class Ui_MainWindow(object):
         self.label_83.setText(_translate("MainWindow", "Ligne de tir"))
         self.label_58.setText(_translate("MainWindow", "Ammonix"))
         self.label_80.setText(_translate("MainWindow", "Detos"))
-        self.label_73.setText(_translate("MainWindow", "Reccords"))
+        self.label_73.setText(_translate("MainWindow", "Raccords"))
         self.label_68.setText(_translate("MainWindow", "D.E.I"))
         self.Titre.setText(_translate("MainWindow", "Fiche de Saisie"))
         self.L11.setText(_translate("MainWindow", "Dosage prévu"))
@@ -3172,8 +3400,8 @@ class Ui_MainWindow(object):
         self.comboBox_10.setItemText(8, _translate("MainWindow", "9"))
         self.L10_2.setText(_translate("MainWindow", "Maille"))
         self.L10.setText(_translate("MainWindow", "Nombre de trousrangé"))
-        self.L9.setText(_translate("MainWindow", "Nombre de rang"))
-        self.L12.setText(_translate("MainWindow", "Tranche"))
+        self.L9.setText(_translate("MainWindow", "Nombre de rangé"))
+        self.L12.setText(_translate("MainWindow", "Tranché"))
         self.comboBox_9.setItemText(0, _translate("MainWindow", "RT/SB"))
         self.comboBox_9.setItemText(1, _translate("MainWindow", "RT/SA2"))
         self.comboBox_9.setItemText(2, _translate("MainWindow", "RT/C0"))
@@ -3191,8 +3419,8 @@ class Ui_MainWindow(object):
         self.comboBox_9.setItemText(14, _translate("MainWindow", "Int C3/C4"))
         self.comboBox_9.setItemText(15, _translate("MainWindow", "Int C3/C5"))
         self.comboBox_9.setItemText(16, _translate("MainWindow", "Int C5/C6"))
-        self.comboBox_9.setItemText(17, _translate("MainWindow", "Prdecappage/C1"))
-        self.comboBox_9.setItemText(18, _translate("MainWindow", "Prdecappage/C2"))
+        self.comboBox_9.setItemText(17, _translate("MainWindow", "Prdécapage/C1"))
+        self.comboBox_9.setItemText(18, _translate("MainWindow", "Prdécapage/C2"))
         self.L13.setText(_translate("MainWindow", "Niveau"))
         self.L15.setText(_translate("MainWindow", "Nombre de trous"))
         self.L14.setText(_translate("MainWindow", "Profondeur"))
@@ -3220,7 +3448,7 @@ class Ui_MainWindow(object):
         self.comboBox_7.setItemText(7, _translate("MainWindow", "P8"))
         self.L4.setText(_translate("MainWindow", "Panneau"))
         self.L3.setText(_translate("MainWindow", "Schema de tir"))
-        self.L2.setText(_translate("MainWindow", "Machine de decappage"))
+        self.L2.setText(_translate("MainWindow", "Machine de décapage"))
         self.L1.setText(_translate("MainWindow", "Machine de foration"))
         self.L5.setText(_translate("MainWindow", "Date"))
         self.comboBox.setItemText(0, _translate("MainWindow", "LABRIKIYINE"))
@@ -3238,24 +3466,24 @@ class Ui_MainWindow(object):
         self.l1.setText(_translate("MainWindow", "longueur"))
         self.l5.setText(_translate("MainWindow", "Ammonix"))
         self.l9.setText(_translate("MainWindow", "A.E.I"))
-        self.l13.setText(_translate("MainWindow", "Reccords65"))
+        self.l13.setText(_translate("MainWindow", "Raccords65"))
         self.l17.setText(_translate("MainWindow", "Detos450ms"))
         self.l2.setText(_translate("MainWindow", "largueur"))
         self.l6.setText(_translate("MainWindow", "Tovex"))
         self.l10.setText(_translate("MainWindow", "metrage foré"))
-        self.l14.setText(_translate("MainWindow", "Reccords17"))
+        self.l14.setText(_translate("MainWindow", "Raccords17"))
         self.l18.setText(_translate("MainWindow", "Detos500ms"))
         self.l3.setText(_translate("MainWindow", "surface"))
         self.l7.setText(_translate("MainWindow", "Cordeau"))
-        self.l11.setText(_translate("MainWindow", "Reccords25"))
+        self.l11.setText(_translate("MainWindow", "Raccords25"))
         self.l15.setText(_translate("MainWindow", "Répartition"))
         self.l19.setText(_translate("MainWindow", "Bourrage final"))
         self.l4.setText(_translate("MainWindow", "volume"))
         self.l8.setText(_translate("MainWindow", "ligne de tir"))
-        self.l12.setText(_translate("MainWindow", "Reccords42"))
+        self.l12.setText(_translate("MainWindow", "Raccords42"))
         self.l16.setText(_translate("MainWindow", "C.I"))
         self.l20.setText(_translate("MainWindow", "Rendu prévu"))
-        self.l21.setText(_translate("MainWindow", "Reccords100"))
+        self.l21.setText(_translate("MainWindow", "Raccords100"))
 
         self.l22.setText(_translate("MainWindow", "Nom Complet "))
         self.l23.setText(_translate("MainWindow", "Profession"))
@@ -3284,11 +3512,13 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Stock Global"))
         item = self.Tableau_Stock.horizontalHeaderItem(4)
         item.setText(_translate("MainWindow", "Stock Restant"))
+        item = self.Tableau_Stock.horizontalHeaderItem(5)
+        item.setText(_translate("MainWindow", "Stock Consomé"))
 
 
         self.typeLine.setItemText(0, _translate("MainWindow", "Ammonix"))
         self.typeLine.setItemText(1, _translate("MainWindow", "Tovex"))
-        self.typeLine.setItemText(2, _translate("MainWindow", "A.E.I"))
+        self.typeLine.setItemText(2, _translate("MainWindow", "aei"))
         self.typeLine.setItemText(3, _translate("MainWindow", "Detos450ms"))
         self.typeLine.setItemText(4, _translate("MainWindow", "Detos500ms"))
         self.typeLine.setItemText(5, _translate("MainWindow", "Raccords17ms"))
@@ -3298,13 +3528,75 @@ class Ui_MainWindow(object):
         self.typeLine.setItemText(9, _translate("MainWindow", "Raccords100ms"))
         self.typeLine.setItemText(10, _translate("MainWindow", "Ligne de tir"))
         self.ajouStockBtn.setText(_translate("MainWindow", "Ajouter"))
-        self.Titre_8.setText(_translate("MainWindow", "\"Suivi du Cout\""))
-        self.label_18.setText(_translate("MainWindow", "Cout Global"))
-        self.label_19.setText(_translate("MainWindow", "Cout Restant"))
-        self.label_27.setText(_translate("MainWindow", "Type"))
-        self.label_28.setText(_translate("MainWindow", "N°"))
-        self.Titre_6.setText(_translate("MainWindow", "\"Forzmulaire Apres Sautage\""))
-        self.label_4.setText(_translate("MainWindow", "H.Arrivée.camion"))
+        self.Titre_8.setText(_translate("MainWindow", "Suivi du Cout"))
+        
+        self.ajoutCout.setText(_translate("MainWindow", "Ajout du Cout"))
+        self.suivreCout.setText(_translate("MainWindow", "Suivi du Cout"))
+
+        
+        self.dateC.setText(_translate("MainWindow", "Date"))
+        self.typeCout.setText(_translate("MainWindow", "Type"))
+        self.coutInitial.setText(_translate("MainWindow", "Cout initial"))
+        
+        item = self.Tableau_Cout.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "id_Commmande"))
+        item = self.Tableau_Cout.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Date"))
+        item = self.Tableau_Cout.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Type"))
+        item = self.Tableau_Cout.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Cout Global"))
+        item = self.Tableau_Cout.horizontalHeaderItem(4)
+        item.setText(_translate("MainWindow", "Cout Restant"))
+        item = self.Tableau_Cout.horizontalHeaderItem(5)
+        item.setText(_translate("MainWindow", "Cout Consomé"))
+
+
+        self.typeLineC.setItemText(0, _translate("MainWindow", "Ammonix"))
+        self.typeLineC.setItemText(1, _translate("MainWindow", "Tovex"))
+        self.typeLineC.setItemText(2, _translate("MainWindow", "aei"))
+        self.typeLineC.setItemText(3, _translate("MainWindow", "Detos450ms"))
+        self.typeLineC.setItemText(4, _translate("MainWindow", "Detos500ms"))
+        self.typeLineC.setItemText(5, _translate("MainWindow", "Raccords17ms"))
+        self.typeLineC.setItemText(6, _translate("MainWindow", "Raccords25ms"))
+        self.typeLineC.setItemText(7, _translate("MainWindow", "Raccords42ms"))
+        self.typeLineC.setItemText(8, _translate("MainWindow", "Raccords65ms"))
+        self.typeLineC.setItemText(9, _translate("MainWindow", "Raccords100ms"))
+        self.typeLineC.setItemText(10, _translate("MainWindow", "Ligne de tir"))
+        self.ajouCoutBtn.setText(_translate("MainWindow", "Ajouter"))
+
+
+
+        
+        self.ajouterAvanc.setText(_translate("MainWindow", "Ajouter"))
+        self.suivreAvanc.setText(_translate("MainWindow", "Suivre"))
+
+        
+       
+        self.avancForation.setText(_translate("MainWindow", "Avancemment Foration"))
+        self.machineDecap.setText(_translate("MainWindow", "Machine de décapage"))
+        self.avancDecap.setText(_translate("MainWindow", "Avancemment décapage"))
+
+        item = self.Tableau_Avancement.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Avancemment Foration"))
+        item = self.Tableau_Avancement.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Avancemment décapage"))
+        item = self.Tableau_Avancement.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Machine de décapage"))
+        
+        
+
+        self.machineDecapLine.setItemText(0, _translate("MainWindow", "7500M1"))
+        self.machineDecapLine.setItemText(1, _translate("MainWindow", "7500M2"))
+        self.machineDecapLine.setItemText(2, _translate("MainWindow", "PH1"))
+        self.machineDecapLine.setItemText(3, _translate("MainWindow", "PH2"))
+        self.machineDecapLine.setItemText(4, _translate("MainWindow", "ZD11"))
+        self.machineDecapLine.setItemText(5, _translate("MainWindow", "EE"))
+        self.ajouterBtn.setText(_translate("MainWindow", "Ajouter"))
+
+
+        self.Titre_6.setText(_translate("MainWindow", "Formulaire Après Sautage"))
+        self.label_4.setText(_translate("MainWindow", "Heure arrivée camion"))
         self.label_5.setText(_translate("MainWindow", "Heure de tir"))
         self.label_6.setText(_translate("MainWindow", "BLF Ammonix"))
         self.label_7.setText(_translate("MainWindow", "BLF Tovex"))
@@ -3318,13 +3610,11 @@ class Ui_MainWindow(object):
         self.label_15.setText(_translate("MainWindow", "Fréquence"))
         self.label_16.setText(_translate("MainWindow", "Observation"))
         self.label_2.setText(_translate("MainWindow", "Date"))
-        self.label_3.setText(_translate("MainWindow", "Panneau"))
-        self.label_17.setText(_translate("MainWindow", "Surface Restante"))
-        self.label_56.setText(_translate("MainWindow", "Surface Globale"))
-        self.Titre_7.setText(_translate("MainWindow", "\"Suivi de Décappage\""))
-        self.Titre_4.setText(_translate("MainWindow", "\"Documentation\""))
-        self.Titre_10.setText(_translate("MainWindow", "\"Archives\""))
-        self.Titre_11.setText(_translate("MainWindow", "Utisateur"))
+     
+        self.Titre_7.setText(_translate("MainWindow", "Suivi de Décappage"))
+        self.Titre_4.setText(_translate("MainWindow", "Documentation"))
+        self.Titre_10.setText(_translate("MainWindow", "Archives"))
+        self.Titre_11.setText(_translate("MainWindow", "A propos"))
         
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
@@ -3339,13 +3629,13 @@ class Ui_MainWindow(object):
         item = self.tableWidget.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "Machine de foration"))
         item = self.tableWidget.horizontalHeaderItem(6)
-        item.setText(_translate("MainWindow", "Machine de decappage"))
+        item.setText(_translate("MainWindow", "Machine de décapage"))
         item = self.tableWidget.horizontalHeaderItem(7)
         item.setText(_translate("MainWindow", "Schéma de tir"))
         item = self.tableWidget.horizontalHeaderItem(8)
         item.setText(_translate("MainWindow", "Panneau"))
         item = self.tableWidget.horizontalHeaderItem(9)
-        item.setText(_translate("MainWindow", "Tranche"))
+        item.setText(_translate("MainWindow", "Tranché"))
         item = self.tableWidget.horizontalHeaderItem(10)
         item.setText(_translate("MainWindow", "Niveau"))
         item = self.tableWidget.horizontalHeaderItem(11)
@@ -3381,15 +3671,15 @@ class Ui_MainWindow(object):
         item = self.tableWidget.horizontalHeaderItem(26)
         item.setText(_translate("MainWindow", "Metrage foré"))
         item = self.tableWidget.horizontalHeaderItem(27)
-        item.setText(_translate("MainWindow", "Reccords17ms"))
+        item.setText(_translate("MainWindow", "Raccords17ms"))
         item = self.tableWidget.horizontalHeaderItem(28)
-        item.setText(_translate("MainWindow", "Reccords25ms"))
+        item.setText(_translate("MainWindow", "Raccords25ms"))
         item = self.tableWidget.horizontalHeaderItem(29)
-        item.setText(_translate("MainWindow", "Reccords42ms"))
+        item.setText(_translate("MainWindow", "Raccords42ms"))
         item = self.tableWidget.horizontalHeaderItem(30)
-        item.setText(_translate("MainWindow", "Reccords65ms"))
+        item.setText(_translate("MainWindow", "Raccords65ms"))
         item = self.tableWidget.horizontalHeaderItem(31)
-        item.setText(_translate("MainWindow", "Reccords100ms"))
+        item.setText(_translate("MainWindow", "Raccords100ms"))
         item = self.tableWidget.horizontalHeaderItem(32)
         item.setText(_translate("MainWindow", "Répartition"))
         item = self.tableWidget.horizontalHeaderItem(33)
@@ -3421,25 +3711,25 @@ class Ui_MainWindow(object):
         item = self.tableWidget_2.horizontalHeaderItem(7)
         item.setText(_translate("MainWindow", "Cordeau12g (A)"))
         item = self.tableWidget_2.horizontalHeaderItem(8)
-        item.setText(_translate("MainWindow", "Reccords17ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords17ms (B)"))
         item = self.tableWidget_2.horizontalHeaderItem(9)
-        item.setText(_translate("MainWindow", "Reccords17ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords17ms (A)"))
         item = self.tableWidget_2.horizontalHeaderItem(10)
-        item.setText(_translate("MainWindow", "Reccords25ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords25ms (B)"))
         item = self.tableWidget_2.horizontalHeaderItem(11)
-        item.setText(_translate("MainWindow", "Reccords25ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords25ms (A)"))
         item = self.tableWidget_2.horizontalHeaderItem(12)
-        item.setText(_translate("MainWindow", "Reccords42ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords42ms (B)"))
         item = self.tableWidget_2.horizontalHeaderItem(13)
-        item.setText(_translate("MainWindow", "Reccords42ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords42ms (A)"))
         item = self.tableWidget_2.horizontalHeaderItem(14)
-        item.setText(_translate("MainWindow", "Reccords65ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords65ms (B)"))
         item = self.tableWidget_2.horizontalHeaderItem(15)
-        item.setText(_translate("MainWindow", "Reccords65ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords65ms (A)"))
         item = self.tableWidget_2.horizontalHeaderItem(16)
-        item.setText(_translate("MainWindow", "Reccords100ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords100ms (B)"))
         item = self.tableWidget_2.horizontalHeaderItem(17)
-        item.setText(_translate("MainWindow", "Reccords100ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords100ms (A)"))
         item = self.tableWidget_2.horizontalHeaderItem(18)
         item.setText(_translate("MainWindow", "Detos450ms (B)"))
         item = self.tableWidget_2.horizontalHeaderItem(19)
@@ -3469,25 +3759,25 @@ class Ui_MainWindow(object):
         item = self.tableWidget_3.horizontalHeaderItem(7)
         item.setText(_translate("MainWindow", "Cordeau12g (A)"))
         item = self.tableWidget_3.horizontalHeaderItem(8)
-        item.setText(_translate("MainWindow", "Reccords17ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords17ms (B)"))
         item = self.tableWidget_3.horizontalHeaderItem(9)
-        item.setText(_translate("MainWindow", "Reccords17ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords17ms (A)"))
         item = self.tableWidget_3.horizontalHeaderItem(10)
-        item.setText(_translate("MainWindow", "Reccords25ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords25ms (B)"))
         item = self.tableWidget_3.horizontalHeaderItem(11)
-        item.setText(_translate("MainWindow", "Reccords25ms "))
+        item.setText(_translate("MainWindow", "Raccords25ms "))
         item = self.tableWidget_3.horizontalHeaderItem(12)
-        item.setText(_translate("MainWindow", "Reccords42ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords42ms (B)"))
         item = self.tableWidget_3.horizontalHeaderItem(13)
-        item.setText(_translate("MainWindow", "Reccords42ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords42ms (A)"))
         item = self.tableWidget_3.horizontalHeaderItem(14)
-        item.setText(_translate("MainWindow", "Reccords65ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords65ms (B)"))
         item = self.tableWidget_3.horizontalHeaderItem(15)
-        item.setText(_translate("MainWindow", "Reccords65ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords65ms (A)"))
         item = self.tableWidget_3.horizontalHeaderItem(16)
-        item.setText(_translate("MainWindow", "Reccords100ms (B)"))
+        item.setText(_translate("MainWindow", "Raccords100ms (B)"))
         item = self.tableWidget_3.horizontalHeaderItem(17)
-        item.setText(_translate("MainWindow", "Reccords100ms (A)"))
+        item.setText(_translate("MainWindow", "Raccords100ms (A)"))
         item = self.tableWidget_3.horizontalHeaderItem(18)
         item.setText(_translate("MainWindow", "Nouvelle colonne"))
         item = self.tableWidget_3.horizontalHeaderItem(19)
@@ -3530,7 +3820,7 @@ class Ui_MainWindow(object):
 "\n"
 "-N\'hesitez pas a reinitialiser votre commande ou a modifier les valeurs des champs deja saisies."))
         self.resetBtnFs.setText(_translate("MainWindow", "Réinitialiser"))
-        self.pushButton_7.setText(_translate("MainWindow", "Calculer"))
+        self.calculBtn.setText(_translate("MainWindow", "Calculer"))
         self.label_32.setText(_translate("MainWindow", "Choisissez vos operations!"))
         self.optRes.setText(_translate("MainWindow", "Verifiez les resultats!"))
         self.plainTextEdit_2.setPlainText(_translate("MainWindow", "\n"
@@ -3539,13 +3829,14 @@ class Ui_MainWindow(object):
 " "))
         self.valResBtn.setText(_translate("MainWindow", "Valider"))
         self.genResBtn.setText(_translate("MainWindow", "Generer"))
-        self.ajtResBtn.setText(_translate("MainWindow", "Ajouter"))
+        self.retourResBtn.setText(_translate("MainWindow", "Retour"))        
+        self.modResBtn.setText(_translate("MainWindow", "Modifier"))
         self.suppResBtn.setText(_translate("MainWindow", "Supprimer"))
         self.operRes.setText(_translate("MainWindow", "Faites un choix!"))
-        self.label_25.setText(_translate("MainWindow", "Choisissez vos Artifices!"))
+        
         self.checkBox.setText(_translate("MainWindow", "Ammonix"))
         self.checkBox_2.setText(_translate("MainWindow", "Tovex"))
-        self.checkBox_3.setText(_translate("MainWindow", "A.E.I"))
+        self.checkBox_3.setText(_translate("MainWindow", "aei"))
         self.checkBox_4.setText(_translate("MainWindow", "Detos450ms"))
         self.checkBox_5.setText(_translate("MainWindow", "Detos500ms"))
         self.checkBox_7.setText(_translate("MainWindow", "Raccords17ms"))
@@ -3558,41 +3849,59 @@ class Ui_MainWindow(object):
         self.stockArtBtn.setText(_translate("MainWindow", "Afficher"))
         self.stockAllBtn.setText(_translate("MainWindow", "Afficher tous"))
         self.stockAll.setText(_translate("MainWindow", "Consulez tous les statistiques:"))
-        self.stockLabel.setText(_translate("MainWindow", "Choisissez vos Artifices:"))
-        self.stockPerDateBtn.setText(_translate("MainWindow", "Afficher"))
+        self.stockArt.setText(_translate("MainWindow", "Choisissez vos Artifices:"))
+        self.stockDateBtn.setText(_translate("MainWindow", "Afficher"))
         self.stockDateAff.setText(_translate("MainWindow", "Choisissez vos dates:"))
         self.label_22.setText(_translate("MainWindow", "Consultez votre stock"))
         self.checkBox_11.setText(_translate("MainWindow", "Ammonix"))
         self.checkBox_12.setText(_translate("MainWindow", "Tovex"))
-        self.checkBox_13.setText(_translate("MainWindow", "D.E.I"))
+        self.checkBox_13.setText(_translate("MainWindow", "aei"))
         self.checkBox_14.setText(_translate("MainWindow", "Detos450ms"))
         self.checkBox_15.setText(_translate("MainWindow", "Detos500ms"))
         self.checkBox_17.setText(_translate("MainWindow", "Raccords17ms"))
         self.checkBox_18.setText(_translate("MainWindow", "Raccords25ms"))
         self.checkBox_19.setText(_translate("MainWindow", "Raccords42ms"))
-        self.checkBox_20.setText(_translate("MainWindow", "Raccords100ms"))
-        self.pushButton_19.setText(_translate("MainWindow", "Modifier"))
-        self.pushButton_20.setText(_translate("MainWindow", "Hebdomadaire"))
-        self.pushButton_21.setText(_translate("MainWindow", "Mensuel"))
-        self.pushButton_22.setText(_translate("MainWindow", "Annuel"))
-        self.label_26.setText(_translate("MainWindow", "Consultez les statistiques!"))
-        self.pushButton_24.setText(_translate("MainWindow", "Reinitialiser"))
+        self.checkBox_20.setText(_translate("MainWindow", "Raccords65ms"))
+        self.checkBox_21.setText(_translate("MainWindow", "Raccords100ms"))
+        self.checkBox_22.setText(_translate("MainWindow", "Ligne de tir"))
+        self.coutArtBtn.setText(_translate("MainWindow", "Afficher"))
+        self.coutDateBtn.setText(_translate("MainWindow", "Afficher"))
+        self.coutAllBtn.setText(_translate("MainWindow", "Afficher tous"))
+        self.coutDate.setText(_translate("MainWindow", "Choisissez vos dates:"))
+        self.coutAll.setText(_translate("MainWindow", "Consulez tous les statistiques:"))
+        self.coutArt.setText(_translate("MainWindow", "Choisissez vos Artifices:"))
+        self.label_25.setText(_translate("MainWindow", "Consultez vos cout"))
+
         self.label_31.setText(_translate("MainWindow", "Créez un rapport Apres-Sautage!"))
         self.plainTextEdit_3.setPlainText(_translate("MainWindow", "\n"
 "- N\'oubliez pas de remplire tout les champs du formulaire afin d\'obtenir un rapport complet.\n"
 "-Enregistrez votre formulaire en cas de satisfaction et cliquez sur \"Generer\" pour avoir un rapport complet de votre commande et son traitement apres -sautage."))
-        self.pushButton_11.setText(_translate("MainWindow", "Enregistrer"))
-        self.pushButton_12.setText(_translate("MainWindow", "Reinitialiser"))
+        self.saveApresSautageBtn.setText(_translate("MainWindow", "Enregistrer"))
+        self.resetApresSautageBtn.setText(_translate("MainWindow", "Reinitialiser"))
         self.pushButton_13.setText(_translate("MainWindow", "Generer"))
-        self.pushButton_14.setText(_translate("MainWindow", "Supprimer"))
+        self.deleteApresSautageBtn.setText(_translate("MainWindow", "Supprimer"))
         self.label_34.setText(_translate("MainWindow", "Faites un choix!"))
-        self.label_35.setText(_translate("MainWindow", "Obtenez l\'avencement de decappage !"))
+        self.label_35.setText(_translate("MainWindow", "Suivi de Décapage "))
+        self.label_351.setText(_translate("MainWindow", "Affichez par machine de décapage:"))
+        self.label_352.setText(_translate("MainWindow", "Choisissez, puis entrez une valeur:"))
+        self.label_353.setText(_translate("MainWindow", "Si vous voulez tous afficher:"))
+
+        self.avDecForBtn.setText(_translate("MainWindow", "Afficher"))
+
+        self.avdecAllBtn.setText(_translate("MainWindow", "Afficher"))
+        self.avdecArtBtn.setText(_translate("MainWindow", "Afficher"))
+
         self.checkBox_42.setText(_translate("MainWindow", "7500M1"))
         self.checkBox_43.setText(_translate("MainWindow", "7500M2"))
         self.checkBox_44.setText(_translate("MainWindow", "PH1"))
         self.checkBox_45.setText(_translate("MainWindow", "PH2"))
         self.checkBox_46.setText(_translate("MainWindow", "ZD11"))
         self.checkBox_48.setText(_translate("MainWindow", "EE"))
+
+        self.avDecForBox.setItemText(0,_translate("MainWindow", "Avancement décapage"))
+        self.avDecForBox.setItemText(1,_translate("MainWindow", "Avancement Foration"))
+       
+
         self.label_36.setText(_translate("MainWindow", "Consultez la documentation!"))
         self.pushButton_25.setText(_translate("MainWindow", "Fiches"))
         self.pushButton_26.setText(_translate("MainWindow", "Videos"))
@@ -3606,7 +3915,7 @@ class Ui_MainWindow(object):
         self.historiqueStockBtn.setText(_translate("MainWindow", "Historique du Stock"))
         self.historiqueCoutBtn.setText(_translate("MainWindow", "Historique du Cout"))
         self.historiqueApSautBtn.setText(_translate("MainWindow", "Historique d\'Apres sautage"))
-        self.historiqueAvDcpBtn.setText(_translate("MainWindow", "Historique d\'Avancement de decappage"))
+        self.historiqueAvDcpBtn.setText(_translate("MainWindow", "Historique d\'Avancement de décapage"))
         self.pushButton_38.setText(_translate("MainWindow", "Historique d\'Acces"))
         self.pushButton_39.setText(_translate("MainWindow", "Imprimer"))
         self.label_40.setText(_translate("MainWindow", "Obtenez l\'historique!"))
