@@ -253,11 +253,11 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.avdecAllBtn.clicked.connect(self.showAvancDecap)    
         self.ui.avdecArtBtn.clicked.connect(self.showAvancMach)    
 
-        self.ui.documBtn.clicked.connect(lambda:(
+        '''self.ui.documBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Documentation),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Docummentation)
         ))
-        self.ui.documBtn.clicked.connect(self.show_Options)   
+        self.ui.documBtn.clicked.connect(self.show_Options)  ''' 
 
 
         self.ui.archiveBtn.clicked.connect(self.show_Options)     
@@ -278,7 +278,8 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.Historiques.setCurrentWidget(self.ui.Historique_Com_Avan)
         ))
 
-        self.ui.historiqueStockBtn.clicked.connect(self.show_Options)     
+        self.ui.historiqueStockBtn.clicked.connect(self.show_Options)  
+        self.ui.historiqueStockBtn.clicked.connect(self.hisStock)           
         self.ui.historiqueStockBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Archives),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
@@ -286,7 +287,8 @@ class my_app(QtWidgets.QMainWindow):
         ))
     
 
-        self.ui.historiqueCoutBtn.clicked.connect(self.show_Options)     
+        self.ui.historiqueCoutBtn.clicked.connect(self.show_Options)   
+        self.ui.historiqueCoutBtn.clicked.connect(self.hisCout)       
         self.ui.historiqueCoutBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Archives),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
@@ -294,17 +296,19 @@ class my_app(QtWidgets.QMainWindow):
         ))
 
         self.ui.historiqueAvDcpBtn.clicked.connect(self.show_Options)     
+        self.ui.historiqueAvDcpBtn.clicked.connect(self.hisAD)       
         self.ui.historiqueAvDcpBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Archives),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
-            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Avan_Decappage)
+            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Avan_decapage)
         ))
 
-        self.ui.pushButton_38.clicked.connect(self.show_Options)     
-        self.ui.pushButton_38.clicked.connect(lambda:(
+        self.ui.historiqueApSautBtn.clicked.connect(self.show_Options)     
+        self.ui.historiqueApSautBtn.clicked.connect(self.hisAs)     
+        self.ui.historiqueApSautBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Archives),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
-            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Acces)
+            self.ui.Historiques.setCurrentWidget(self.ui.Historique_AS)
         ))
        # self.ui.pushButton_10.clicked.connect(self.exit)
     
@@ -635,6 +639,8 @@ class my_app(QtWidgets.QMainWindow):
 
 # fonction de ajout de stock
     def hisCommandeResulat(self):
+        
+        connection = sqlite3.connect('bgblast.db')
         # Assuming you have a database connection established as 'connection'
         cursor = connection.cursor()
         
@@ -874,6 +880,39 @@ class my_app(QtWidgets.QMainWindow):
         except Exception as e:
             self.show_warning("Stock", f"Unexpected Error: {str(e)}")
 
+    def hisStock (self):
+        
+        connection = sqlite3.connect('bgblast.db')
+          # Assuming you have a database connection established as 'connection'
+        cursor = connection.cursor()
+        
+        # Execute a query to fetch data from the 'commande' and 'resultat' tables
+        cursor.execute('''
+            SELECT id_Commande, date, type, stock_global, stock_actuel, stock_consome FROM stock ''')
+
+        # Fetch all rows from the query result
+        data = cursor.fetchall()
+        if data : 
+            # Clear the existing table content
+            self.ui.tableWidget_2.clearContents()
+
+            # Set the number of rows in the table
+            self.ui.tableWidget_2.setRowCount(len(data))
+
+            # Iterate through the data and populate the table
+            for row_num, row_data in enumerate(data):
+                for col_num, col_value in enumerate(row_data):
+                    # Create a QTableWidgetItem and set its text to the database value
+                    item = QtWidgets.QTableWidgetItem(str(col_value))
+                    # Set the item in the appropriate cell of the table
+                    self.ui.tableWidget_2.setItem(row_num, col_num, item)
+        else :
+            self.show_Information(" Gestion du Stock ", "Aucune donnée à afficher!")
+
+        connection.commit()
+        connection.close()  
+
+
 
     def coutStorage(self):
         try:
@@ -969,6 +1008,7 @@ class my_app(QtWidgets.QMainWindow):
                 self.show_warning("Cout", f"Unexpected Error: {str(e)}")
         else:
             self.show_warning("Cout",  "Aucune donnée trouvée pour la plage de dates spécifiée, réssayez! ")
+        connection.close()  
 #fonction qui affiche les statistiques du cout par spécifications des types    
     def coutAffichageType(self):
         
@@ -1023,6 +1063,7 @@ class my_app(QtWidgets.QMainWindow):
                         self.ui.Tableau_Cout.setItem(row_num, col_num, item)
 
                 connection.commit()
+                connection.close()  
             else:
                 self.show_warning("Cout", "Aucune donnée trouvée pour les types sélectionnés")
 
@@ -1030,6 +1071,40 @@ class my_app(QtWidgets.QMainWindow):
             self.show_warning("SQLite Error", f"Error: {str(e)}")
         except Exception as e:
             self.show_warning("Cout", f"Unexpected Error: {str(e)}") 
+
+    def hisCout(self):
+        connection = sqlite3.connect('bgblast.db')
+        # Assuming you have a database connection established as 'connection'
+        cursor = connection.cursor()
+        
+        # Execute a query to fetch data from the 'cout' table
+        cursor.execute('''
+            SELECT id_Commande, date, type, cout_global, cout_actuel, cout_consome FROM cout ''')
+
+        # Fetch all rows from the query result
+        data = cursor.fetchall()
+        if data:
+            # Clear the existing table content
+            self.ui.tableWidget_3.clearContents()
+
+            # Set the number of rows in the table
+            self.ui.tableWidget_3.setRowCount(len(data))
+
+            # Iterate through the data and populate the table
+            for row_num, row_data in enumerate(data):
+                for col_num, col_value in enumerate(row_data):
+                    # Create a QTableWidgetItem and set its text to the database value
+                    item = QtWidgets.QTableWidgetItem(str(col_value))
+                    # Set the item in the appropriate cell of the table
+                    self.ui.tableWidget_3.setItem(row_num, col_num, item)
+        else: 
+            self.show_Information(" Gestion du cout" ,"Aucune donnée à affiche")
+        
+        connection.commit()
+        connection.close()    
+
+
+
 
 
 
@@ -1146,7 +1221,43 @@ class my_app(QtWidgets.QMainWindow):
         finally:
             if connection:
                 connection.close()
-                
+
+    def hisAs(self):
+        connection = sqlite3.connect('bgblast.db')
+        # Assuming you have a database connection established as 'connection'
+        cursor = connection.cursor()
+        
+        # Execute a query to fetch data from the 'cout' table
+        cursor.execute('''
+            SELECT  date, heure1, heure2, blf_ammonix, blf_tovex, blf_artifice, bs_ammonix, bs_tovex_artifice, type, effectif, vitesse, son, frequence, observation FROM apres_sautage ''')
+
+        # Fetch all rows from the query result
+        data = cursor.fetchall()
+        if data:
+            # Clear the existing table content
+            self.ui.tableWidget_4.clearContents()
+
+            # Set the number of rows in the table
+            self.ui.tableWidget_4.setRowCount(len(data))
+
+            # Iterate through the data and populate the table
+            for row_num, row_data in enumerate(data):
+                for col_num, col_value in enumerate(row_data):
+                    # Create a QTableWidgetItem and set its text to the database value
+                    item = QtWidgets.QTableWidgetItem(str(col_value))
+                    # Set the item in the appropriate cell of the table
+                    self.ui.tableWidget_4.setItem(row_num, col_num, item)
+        else: 
+            self.show_Information("Après Sautage" ,"Aucune donnée à affiché")
+        
+        connection.commit()
+        connection.close()    
+
+
+
+
+
+
 
     def saveAvancDecap(self):
         avancForation = self.ui.avancForationLine.text()
@@ -1182,8 +1293,7 @@ class my_app(QtWidgets.QMainWindow):
             if connection:
                 connection.close()
 
-    def showAvancDecap(self):
-        
+    def showAvancDecap(self): 
         # Connectez-vous à la base de données SQLite
         connection = sqlite3.connect('bgblast.db')
         cursor = connection.cursor()
@@ -1312,6 +1422,37 @@ class my_app(QtWidgets.QMainWindow):
             except sqlite3.Error as e:
                 self.show_warning("Erreur base de données", f"Erreur SQLite : {str(e)}")
 
+    def hisAD (self):
+        # Connectez-vous à la base de données SQLite
+        connection = sqlite3.connect('bgblast.db')
+        cursor = connection.cursor()
+
+        # Exécutez la commande PRAGMA pour obtenir des informations sur les colonnes de la table "avanc_decap"
+        cursor.execute(" select avanc_Foration, avanc_decap, machine_decap from avanc_decap")
+
+        # Récupérez les informations sur les colonnes
+        data = cursor.fetchall()
+        if data:
+            self.ui.tableWidget_5.clearContents()
+
+            # Set the number of rows in the table
+            self.ui.tableWidget_5.setRowCount(len(data))
+
+            # Mettez à jour les en-têtes du tableau avec les noms des colonnes
+            for row_num, row_data in enumerate(data):
+                for col_num, col_value in enumerate(row_data):
+                    # Create a QTableWidgetItem and set its text to the database value
+                    item = QtWidgets.QTableWidgetItem(str(col_value))
+                    # Set the item in the appropriate cell of the table
+                    self.ui.tableWidget_5.setItem(row_num, col_num, item)
+            
+        else:
+            self.show_Information("Avancement décapage","Aucune donnée à afficher!")
+
+        connection.commit()
+        connection.close()
+
+
             
 
 
@@ -1341,6 +1482,7 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.leftMenu.show()
         else:
             self.ui.leftMenu.hide()
+
     def user_show(self):
         if self.ui.Ges_Users.isHidden():
             self.ui.Ges_Users.show()
