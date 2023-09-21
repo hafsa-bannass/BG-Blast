@@ -8,6 +8,11 @@ from mainwindow_ui import Ui_MainWindow
 from login import Ui_LoginWindow
 from PyQt6.QtGui import QIcon
 import sqlite3
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+import subprocess
+from PyQt6.QtWidgets import QFileDialog
+
 
 
 class Login(QtWidgets.QMainWindow):
@@ -120,7 +125,7 @@ def create_database():
     
     cursor.execute('''CREATE TABLE IF NOT EXISTS apres_sautage 
                    (id_AS INTEGER PRIMARY KEY,
-                    date VARCHAR(50),
+                    date Date,
                     heure1 VARCHAR(50),
                     heure2 VARCHAR(50),
                     blf_ammonix VARCHAR(50),
@@ -236,7 +241,7 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.saveApresSautageBtn.clicked.connect(self.saveApresSautage)
         self.ui.resetApresSautageBtn.clicked.connect(self.resetApresSautage)
         self.ui.deleteApresSautageBtn.clicked.connect(self.deleteApresSautage)
-
+        self.ui.pushButton_13.clicked.connect(self.createPdfAS)
 
 
 
@@ -275,7 +280,8 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.historiqueCommandeBtn.clicked.connect(self.hisCommandeResulat)  
         self.ui.historiqueCommandeBtn.clicked.connect(lambda:(
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
-            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Com_Avan)
+            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Com_Avan),
+            self.ui.Title.setText("Historique des Commandes")
         ))
 
         self.ui.historiqueStockBtn.clicked.connect(self.show_Options)  
@@ -283,7 +289,8 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.historiqueStockBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Archives),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
-            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Stock)
+            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Stock),
+            self.ui.Title.setText("Historique Gestin des Stocks")
         ))
     
 
@@ -292,7 +299,8 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.historiqueCoutBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Archives),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
-            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Cout)
+            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Cout),
+            self.ui.Title.setText("Historique Gestion des Couts")
         ))
 
         self.ui.historiqueAvDcpBtn.clicked.connect(self.show_Options)     
@@ -300,7 +308,8 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.historiqueAvDcpBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Archives),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
-            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Avan_decapage)
+            self.ui.Historiques.setCurrentWidget(self.ui.Historique_Avan_decapage),
+            self.ui.Title.setText("Historique Avant Décapage")
         ))
 
         self.ui.historiqueApSautBtn.clicked.connect(self.show_Options)     
@@ -308,7 +317,8 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.historiqueApSautBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Archives),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Archives),
-            self.ui.Historiques.setCurrentWidget(self.ui.Historique_AS)
+            self.ui.Historiques.setCurrentWidget(self.ui.Historique_AS),
+            self.ui.Title.setText("Historique Après Sautage")
         ))
        # self.ui.pushButton_10.clicked.connect(self.exit)
     
@@ -676,7 +686,6 @@ class my_app(QtWidgets.QMainWindow):
                 # Set the item in the appropriate cell of the table
                 self.ui.tableWidget.setItem(row_num, col_num, item)
 
-
     def deleteCommandeResultat(self):
         try:
             # Connect to the SQLite database
@@ -710,8 +719,6 @@ class my_app(QtWidgets.QMainWindow):
             if connection:
                 connection.close()
             
-
-
 
 
 # fonction de ajout de stock
@@ -1105,14 +1112,11 @@ class my_app(QtWidgets.QMainWindow):
 
 
 
-
-
-
     def saveApresSautage(self):
         # Retrieve the text from QLineEdit widgets
         date = self.ui.dateEdit_3.date().toPyDate()
-        heure1 = self.ui.timeEdit_3.dateTime().toPyDateTime()
-        heure2 = self.ui.timeEdit_4.dateTime().toPyDateTime()
+        heure1 = self.ui.timeEdit_3.time().toString()
+        heure2 = self.ui.timeEdit_4.time().toString()
         blf_ammonix = self.ui.lineEdit_16.text()
         blf_tovex = self.ui.lineEdit_7.text()
         blf_artifice = self.ui.lineEdit_8.text()
@@ -1129,7 +1133,7 @@ class my_app(QtWidgets.QMainWindow):
         if (not date or not heure1 or not heure2 or not blf_ammonix or not blf_tovex or
             not blf_artifice or not bs_ammonix or not bs_tovex_artifice or not type or
             not effectif or not vitesse or not son or not frequence or not observation):
-            self.show_warning("Apres Sautage", "Tous les champs doivent être remplis.")
+            self.show_warning("Après Sautage", "Tous les champs doivent être remplis.")
             return  # Exit the function if any field is empty
         try:
             connection = sqlite3.connect('bgblast.db')
@@ -1140,10 +1144,10 @@ class my_app(QtWidgets.QMainWindow):
             ''', (date, heure1, heure2, blf_ammonix, blf_tovex, blf_artifice, bs_ammonix, bs_tovex_artifice, type, effectif, vitesse, son, frequence, observation))
             connection.commit()
             connection.close()
-            self.show_Information("Apres Sautage", "Données enregistrées avec succès")
+            self.show_Information("Après Sautage", "Données enregistrées avec succès")
         except Exception as e:
             # Handle any exceptions (e.g., database errors)
-            self.show_warning("Apres Sautage", "Une erreur s'est produite lors de l'enregistrement : " + str(e))
+            self.show_warning("Après Sautage", "Une erreur s'est produite lors de l'enregistrement : " + str(e))
 
     def resetApresSautage(self):
         # Reset the values of QLineEdit widgets
@@ -1252,10 +1256,6 @@ class my_app(QtWidgets.QMainWindow):
         
         connection.commit()
         connection.close()    
-
-
-
-
 
 
 
@@ -1453,7 +1453,76 @@ class my_app(QtWidgets.QMainWindow):
         connection.close()
 
 
-            
+
+
+        # Connect your button to the function that generates the PDF
+        self.ui.generatePdfButton.clicked.connect(self.create_pdf_page)
+
+
+
+
+    def createPdfAS(self):
+        filename = "Apres_Sautage.pdf"  # Provide the desired filename
+        title = "Gestion Après Sautage"  # Specify the title
+
+        # Collect user-entered data
+        data = {
+            "Date:": str(self.ui.dateEdit_3.date().toPyDate()),
+            "Heure 1:": self.ui.timeEdit_3.time().toString(),
+            "Heure 2:": self.ui.timeEdit_4.time().toString(),
+            "BLF Ammonix:": self.ui.lineEdit_16.text(),
+            "BLF Tovex:": self.ui.lineEdit_7.text(),
+            "BLF Artifice:": self.ui.lineEdit_8.text(),
+            "BS Ammonix:": self.ui.lineEdit_9.text(),
+            "BS Tovex Artifice:": self.ui.lineEdit_10.text(),
+            "Type:": self.ui.lineEdit_22.text(),
+            "Effectif:": self.ui.lineEdit_12.text(),
+            "Vitesse:": self.ui.lineEdit_13.text(),
+            "Son:": self.ui.lineEdit_14.text(),
+            "Fréquence:": self.ui.lineEdit_11.text(),
+            "Observation:": self.ui.lineEdit_15.text(),
+        }
+
+        # Generate the PDF
+        self.generate_pdf_with_data(filename, title, data)
+
+        # Display a message to the user indicating that the PDF has been generated
+        try:
+            subprocess.Popen(["xdg-open", filename])  # Use "xdg-open" on Linux, adjust for other platforms
+        except Exception as e:
+            print(e)
+
+        # Allow the user to choose a save location
+        save_path, _ = QFileDialog.getSaveFileName(self, "Save PDF File", "~/Apres_Sautage", "PDF Files (*.pdf)")
+
+        if save_path:
+            import shutil
+            shutil.move(filename, save_path)  # Move the generated PDF to the chosen location
+            QMessageBox.information(self, "PDF Saved", f"PDF saved to '{save_path}'.")
+
+        # Display a message to the user indicating that the PDF has been generated
+        QMessageBox.information(self, "PDF Generated", f"PDF '{filename}' has been generated successfully!")
+
+    def generate_pdf_with_data(self, filename, title, data):
+        try:
+            c = canvas.Canvas(filename, pagesize=letter)
+            c.drawString(100, 750, title)
+
+            # Iterate over the data and labels to display them in the PDF
+            y = 720  # Starting y-coordinate for data
+            label_x = 100  # x-coordinate for labels
+            data_x = 200  # x-coordinate for data
+            for label, value in data.items():
+                c.drawString(label_x, y, label)
+                c.drawString(data_x, y, value)
+                y -= 20  # Adjust the vertical position for the next data
+
+            c.showPage()
+            c.save()
+        except Exception as e:
+            print(e)
+            QMessageBox.critical(self, "Error", f"An error occurred while generating the PDF: {str(e)}")
+
 
 
 

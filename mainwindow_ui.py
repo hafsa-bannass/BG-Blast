@@ -921,7 +921,7 @@ class Ui_MainWindow(object):
         self.L11.setFont(font)
         self.L11.setObjectName("L11")
         self.comboBox_11 = QtWidgets.QComboBox(parent=self.frame_fiche_saisie)
-        self.comboBox_11.setGeometry(QtCore.QRect(430, 330, 55, 30))
+        self.comboBox_11.setGeometry(QtCore.QRect(450, 330, 70, 30))
         self.comboBox_11.setObjectName("comboBox_11")
         self.comboBox_11.addItem("")
         self.comboBox_11.addItem("")
@@ -933,7 +933,7 @@ class Ui_MainWindow(object):
         self.comboBox_11.addItem("")
         self.comboBox_11.addItem("")
         self.comboBox_10 = QtWidgets.QComboBox(parent=self.frame_fiche_saisie)
-        self.comboBox_10.setGeometry(QtCore.QRect(370, 330, 55, 30))
+        self.comboBox_10.setGeometry(QtCore.QRect(370, 330, 70, 30))
         self.comboBox_10.setObjectName("comboBox_10")
         self.comboBox_10.addItem("")
         self.comboBox_10.addItem("")
@@ -1759,8 +1759,8 @@ class Ui_MainWindow(object):
 "color: #55557f;\n"
 "border-radius: 10px 10px 10px 10px;\n"
 "padding: 3px 5px;\n"
-"}\n"
 "}")
+
         self.Ges_Apres_Sautage.setObjectName("Ges_Apres_Sautage")
         self.frame_Apres_Sautage = QtWidgets.QFrame(parent=self.Ges_Apres_Sautage)
         self.frame_Apres_Sautage.setGeometry(QtCore.QRect(0, 95, 720 , 360))
@@ -1992,7 +1992,7 @@ class Ui_MainWindow(object):
 " text-align: center;\n"
 "}\n"
 "QLabel{\n"
-"font: Bold"
+"font: Bold;\n"
 "}\n"
 "\n"
 "QPushButton{\n"
@@ -2072,12 +2072,6 @@ class Ui_MainWindow(object):
         self.ajouterBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.ajouterBtn.setObjectName("ajouterBtn")
 
-        
-
-
-
-
-
         self.stackedWidget.addWidget(self.Ges_Avan_Decapage)
         '''self.Documentation = QtWidgets.QWidget()
         self.Documentation.setObjectName("Documentation")
@@ -2100,12 +2094,24 @@ class Ui_MainWindow(object):
         font.setUnderline(False)
         self.Titre_10.setFont(font)
         self.Titre_10.setObjectName("Titre_10")
+        self.Title = QtWidgets.QLabel(parent=self.Archives)
+        self.Title.setGeometry(QtCore.QRect(30, 85, 280, 25))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(16)
+        font.setUnderline(True)
+        font.setBold(True)
+        self.Title.setFont(font)
+        self.Title.setObjectName("Title")
         self.Historiques = QtWidgets.QStackedWidget(parent=self.Archives)
-        self.Historiques.setGeometry(QtCore.QRect(0, 85, 800 , 400))
+        self.Historiques.setGeometry(QtCore.QRect(0, 130, 800, 400))
         self.Historiques.setStyleSheet("#Historiques{\n"
 "background-color: #00557f;\n"
 "}")
         self.Historiques.setObjectName("Historiques")
+
+        
+
         self.Historique_Com_Avan = QtWidgets.QWidget()
         self.Historique_Com_Avan.setObjectName("Historique_Com_Avan")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.Historique_Com_Avan)
@@ -2113,12 +2119,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setSpacing(4)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.tableWidget = QtWidgets.QTableWidget(parent=self.Historique_Com_Avan)
+        self.tableWidget.setGeometry(QtCore.QRect(0, 170, 760, 360))  # Use setGeometry method
+
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(38)
         self.tableWidget.setRowCount(0)
         #self.tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-
-
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -2238,7 +2244,6 @@ class Ui_MainWindow(object):
         self.tableWidget_3.setColumnCount(6)
         self.tableWidget_3.setRowCount(0)
         self.tableWidget_3.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_3.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -2268,7 +2273,6 @@ class Ui_MainWindow(object):
         self.tableWidget_5.setColumnCount(3)
         self.tableWidget_5.setRowCount(0)
         self.tableWidget_5.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_5.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -2288,7 +2292,6 @@ class Ui_MainWindow(object):
         self.tableWidget_4.setColumnCount(14)
         self.tableWidget_4.setRowCount(0)
         self.tableWidget_4.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_4.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -2425,7 +2428,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.verticalLayout_13.addWidget(self.Note_Com)
         self.frame_10 = QtWidgets.QFrame(parent=self.Options_Commande_Calcul)
-        self.frame_10.setMaximumSize(QtCore.QSize(16777215, 160))
+        self.frame_10.setMaximumSize(QtCore.QSize(16777215, 120))
         self.frame_10.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_10.setObjectName("frame_10")
@@ -3233,6 +3236,8 @@ class Ui_MainWindow(object):
 "color: #111111;\n"
 "}")
         self.label_37.setObjectName("label_37")
+
+
         self.historiqueCommandeBtn = QtWidgets.QPushButton(parent=self.frame_15)
         self.historiqueCommandeBtn.setGeometry(QtCore.QRect(10, 60, 260, 22))
         font = QtGui.QFont()
@@ -3576,7 +3581,7 @@ class Ui_MainWindow(object):
         self.Titre_11.setText(_translate("MainWindow", "A propos"))
         
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "ID"))
+        item.setText(_translate("MainWindow", "ID Commande"))
         item = self.tableWidget.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "Date"))
         item = self.tableWidget.horizontalHeaderItem(2)
@@ -3705,10 +3710,10 @@ class Ui_MainWindow(object):
         item = self.tableWidget_4.horizontalHeaderItem(9)
         item.setText(_translate("MainWindow", "Effectif"))
         item = self.tableWidget_4.horizontalHeaderItem(10)
-        item.setText(_translate("MainWindow", "Vitesse(mm/s)"))
+        item.setText(_translate("MainWindow", "Vitesse"))
      
         item = self.tableWidget_4.horizontalHeaderItem(11)
-        item.setText(_translate("MainWindow", "Son(db)"))
+        item.setText(_translate("MainWindow", "Son"))
         item = self.tableWidget_4.horizontalHeaderItem(12)
         item.setText(_translate("MainWindow", "Fréquence"))
         item = self.tableWidget_4.horizontalHeaderItem(13)
@@ -3779,7 +3784,7 @@ class Ui_MainWindow(object):
 "-Enregistrez votre formulaire en cas de satisfaction et cliquez sur \"Generer\" pour avoir un rapport complet de votre commande et son traitement apres -sautage."))
         self.saveApresSautageBtn.setText(_translate("MainWindow", "Enregistrer"))
         self.resetApresSautageBtn.setText(_translate("MainWindow", "Reinitialiser"))
-        self.pushButton_13.setText(_translate("MainWindow", "Generer"))
+        self.pushButton_13.setText(_translate("MainWindow", "Généner"))
         self.deleteApresSautageBtn.setText(_translate("MainWindow", "Supprimer"))
         self.label_34.setText(_translate("MainWindow", "Faites un choix!"))
         self.label_35.setText(_translate("MainWindow", "Suivi de Décapage "))
