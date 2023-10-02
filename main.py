@@ -13,6 +13,17 @@ from reportlab.lib.pagesizes import letter
 import subprocess
 from PyQt6.QtWidgets import QFileDialog
 
+from PyQt6.QtWidgets import QFileDialog  # Import QFileDialog to allow the user to choose the save path
+
+from PyQt6.QtWidgets import QFileDialog  # Import QFileDialog to allow the user to choose the save path
+
+import os
+import shutil
+from PyQt6.QtWidgets import QMainWindow, QMessageBox
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+
+
 
 
 class Login(QtWidgets.QMainWindow):
@@ -51,6 +62,7 @@ class Login(QtWidgets.QMainWindow):
                 self.show_warning( "Login", " Nom d'utilisateur et Mot de passe Incorrect ")
 
 def create_database():
+
     connection = sqlite3.connect('bgblast.db')  # Replace 'bgblast.db' with your desired database name
     cursor = connection.cursor()
     
@@ -184,6 +196,16 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.stackedWidget.setCurrentWidget(self.ui.Ges_Commandes_calcul),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Commande_Calcul)
         ))
+
+
+        self.ui.tockBtn.clicked.connect(self.tableauBord)
+
+        
+
+
+
+
+
         self.ui.GesComBtn.clicked.connect(self.show_Options)   
 
         self.ui.calculBtn.clicked.connect(self.calculations)   
@@ -321,7 +343,187 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.Title.setText("Historique Après Sautage")
         ))
        # self.ui.pushButton_10.clicked.connect(self.exit)
+
+
+    def tableauBord(self):
+        #types=["Ammonix","Tovex","A.E.I","Detos450ms","Detos500ms","Raccords17ms","Raccords25ms","Raccords42ms","Raccords65ms","Raccords100ms","Ligne de tir"]
+
+        try:
+            connection = sqlite3.connect('bgblast.db')  
+            cursor = connection.cursor()
+            
+            # Use placeholders for the selected types in the query
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Ammonix",))
     
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_70.setText(str(rows[0]))
+                self.ui.label_71.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_70.setText("0")
+                self.ui.label_71.setText("0")
+            
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Tovex",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_60.setText(str(rows[0]))
+                self.ui.label_61.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_60.setText("0")
+                self.ui.label_61.setText("0")
+
+
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("A.E.I",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_65.setText(str(rows[0]))
+                self.ui.label_66.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_65.setText("0")
+                self.ui.label_66.setText("0")
+
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Ligne de tir",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_81.setText(str(rows[0]))
+                self.ui.label_82.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_81.setText("0")
+                self.ui.label_82.setText("0")
+
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Raccords17ms",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_76.setText(str(rows[0]))
+                self.ui.label_77.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_76.setText("0")
+                self.ui.label_77.setText("0")
+
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Raccords25ms",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_84.setText(str(rows[0]))
+                self.ui.label_85.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_84.setText("0")
+                self.ui.label_85.setText("0")
+
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Raccords42ms",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_871.setText(str(rows[0]))
+                self.ui.label_861.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_871.setText("0")
+                self.ui.label_861.setText("0")
+            
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Raccords65ms",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_90.setText(str(rows[0]))
+                self.ui.label_91.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_90.setText("0")
+                self.ui.label_91.setText("0")
+
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Raccords100ms",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_93.setText(str(rows[0]))
+                self.ui.label_94.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_93.setText("0")
+                self.ui.label_94.setText("0")
+            
+            
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Detos450ms",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_96.setText(str(rows[0]))
+                self.ui.label_97.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_96.setText("0")
+                self.ui.label_97.setText("0")
+
+            query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
+            cursor.execute(query, ("Detos500ms",))
+    
+            # Fetch the results for the current type
+            rows = cursor.fetchone()
+            print(rows)
+            if rows:
+                self.ui.label_99.setText(str(rows[0]))
+                self.ui.label_100.setText(str(rows[1]))
+                connection.commit()
+            else:
+                self.ui.label_99.setText("0")
+                self.ui.label_100.setText("0")
+            connection.commit()
+        except sqlite3.Error as e:
+            self.show_warning("SQLite Error", f"Error: {str(e)}")
+        except Exception as e:
+            self.show_warning("Stock", f"Unexpected Error: {str(e)}")
+
+
+
     def resetCommande (self):
         # Reset the first QComboBox
         self.ui.dateEdit.setDate(QtCore.QDate.currentDate())
@@ -427,8 +629,6 @@ class my_app(QtWidgets.QMainWindow):
    
         #proceed with calculations
         if self.valid_inputs == True:        
-            
-             
             #operations 
             longueur= maille1*nbrTrousRange
             largeur= maille2*nbrRang
@@ -1455,11 +1655,6 @@ class my_app(QtWidgets.QMainWindow):
 
 
 
-        # Connect your button to the function that generates the PDF
-        self.ui.generatePdfButton.clicked.connect(self.create_pdf_page)
-
-
-
 
     def createPdfAS(self):
         filename = "Apres_Sautage.pdf"  # Provide the desired filename
@@ -1468,8 +1663,8 @@ class my_app(QtWidgets.QMainWindow):
         # Collect user-entered data
         data = {
             "Date:": str(self.ui.dateEdit_3.date().toPyDate()),
-            "Heure 1:": self.ui.timeEdit_3.time().toString(),
-            "Heure 2:": self.ui.timeEdit_4.time().toString(),
+            "Heure arrivée camion:": self.ui.timeEdit_3.time().toString(),
+            "Heure de tir:": self.ui.timeEdit_4.time().toString(),
             "BLF Ammonix:": self.ui.lineEdit_16.text(),
             "BLF Tovex:": self.ui.lineEdit_7.text(),
             "BLF Artifice:": self.ui.lineEdit_8.text(),
@@ -1477,8 +1672,8 @@ class my_app(QtWidgets.QMainWindow):
             "BS Tovex Artifice:": self.ui.lineEdit_10.text(),
             "Type:": self.ui.lineEdit_22.text(),
             "Effectif:": self.ui.lineEdit_12.text(),
-            "Vitesse:": self.ui.lineEdit_13.text(),
-            "Son:": self.ui.lineEdit_14.text(),
+            "Vitesse(mm/s):": self.ui.lineEdit_13.text(),
+            "Son(db):": self.ui.lineEdit_14.text(),
             "Fréquence:": self.ui.lineEdit_11.text(),
             "Observation:": self.ui.lineEdit_15.text(),
         }
@@ -1486,45 +1681,51 @@ class my_app(QtWidgets.QMainWindow):
         # Generate the PDF
         self.generate_pdf_with_data(filename, title, data)
 
-        # Display a message to the user indicating that the PDF has been generated
-        try:
-            subprocess.Popen(["xdg-open", filename])  # Use "xdg-open" on Linux, adjust for other platforms
-        except Exception as e:
-            print(e)
-
-        # Allow the user to choose a save location
-        save_path, _ = QFileDialog.getSaveFileName(self, "Save PDF File", "~/Apres_Sautage", "PDF Files (*.pdf)")
-
-        if save_path:
-            import shutil
-            shutil.move(filename, save_path)  # Move the generated PDF to the chosen location
-            QMessageBox.information(self, "PDF Saved", f"PDF saved to '{save_path}'.")
-
-        # Display a message to the user indicating that the PDF has been generated
-        QMessageBox.information(self, "PDF Generated", f"PDF '{filename}' has been generated successfully!")
-
     def generate_pdf_with_data(self, filename, title, data):
         try:
             c = canvas.Canvas(filename, pagesize=letter)
-            c.drawString(100, 750, title)
+        
+            # Draw the first picture (replace 'path_to_picture1' with the actual file path)
+            c.drawImage('./images/logosautage.png', 500, 680, width=72, height=80)
+
+            # Draw the second picture (replace 'path_to_picture2' with the actual file path)
+            c.drawImage('./images/ocp.jpg', 100, 680, width=63, height=80)
+
+            # Set the font to bold (Helvetica-Bold) and specify the font size for the title
+            c.setFont("Helvetica-Bold", 14)
+            c.drawString(230, 650, title)
 
             # Iterate over the data and labels to display them in the PDF
-            y = 720  # Starting y-coordinate for data
+            y = 600  # Starting y-coordinate for data
             label_x = 100  # x-coordinate for labels
-            data_x = 200  # x-coordinate for data
+            data_x = 300  # x-coordinate for data
+              # Set the font to bold (Helvetica-Bold) and specify the font size
             for label, value in data.items():
+                c.setFont("Helvetica-Bold", 12)
                 c.drawString(label_x, y, label)
+                c.setFont("Helvetica", 12)
                 c.drawString(data_x, y, value)
-                y -= 20  # Adjust the vertical position for the next data
+                y -= 25
 
+            # Add the specified text
+            c.setFont("Helvetica-Bold", 10)
+            c.drawString(180, 750, "DIRECTION INDUSTRIELLES MINES GANTOUR")
+            c.drawString(180, 735, "SAUTAGE DE BENGUERIR")
+            c.drawString(180, 720, "GROUP OCP")
             c.showPage()
             c.save()
+
+            # Prompt the user to choose the save path for the PDF file
+            # Prompt the user to choose the save path for the PDF file
+
+            save_path, _ = QFileDialog.getSaveFileName(self, "Save PDF File", "", "PDF Files (*.pdf)")
+
+            if save_path:
+                shutil.move(filename, save_path)  # Move the generated PDF to the chosen location
+                self.show_Information(self, "PDF Generated", f"PDF '{filename}' has been generated successfully and saved to the chosen location!")
         except Exception as e:
-            print(e)
-            QMessageBox.critical(self, "Error", f"An error occurred while generating the PDF: {str(e)}")
-
-
-
+            print("generate_pdf_with_data", e)
+            self.show_warning(self, "Error", f"An error occurred while generating the PDF: {str(e)}")
 
 
 

@@ -617,17 +617,99 @@ class Ui_MainWindow(object):
         self.Tablaeu_de_bord = QtWidgets.QWidget()
         self.Tablaeu_de_bord.setStyleSheet("")
         self.Tablaeu_de_bord.setObjectName("Tablaeu_de_bord")
-        self.label_54 = QtWidgets.QLabel(parent=self.Tablaeu_de_bord)
-        self.label_54.setGeometry(QtCore.QRect(0, 0, 531, 331))
-        self.label_54.setStyleSheet("QLabel {\n"
-"    background-repeat: no-repeat;\n"
-"    background-position: center;\n"
+        self.titre_1 = QtWidgets.QLabel(parent=self.Tablaeu_de_bord)
+        self.titre_1.setGeometry(QtCore.QRect(300, 25, 280, 30))
+        self.titre_1.setStyleSheet("#Titre_8{\n"
+"color: #ffffff;\n"
+"}\n")
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(30)
+        font.setBold(True)
+        self.titre_1.setFont(font)
+        self.titre_1.setText("")
+        self.titre_1.setObjectName("titre_1")
+
+
+        self.label_72 = QtWidgets.QLabel(parent=self.Tablaeu_de_bord)
+        self.label_72.setGeometry(QtCore.QRect(16, 110, 210, 30))
+        self.label_72.setStyleSheet("QLabel{\n"
+"color: #ffffff;\n"
 "}")
-        self.label_54.setText("")
-        self.label_54.setObjectName("label_54")
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setUnderline(True)
+        self.label_72.setFont(font)
+        self.label_72.setText("")
+        self.label_72.setObjectName("label_72")
+
+        
+        self.label_721 = QtWidgets.QLabel(parent=self.Tablaeu_de_bord)
+        self.label_721.setGeometry(QtCore.QRect(235, 110, 50, 25))
+        self.label_721.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"}")
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.label_721.setFont(font)
+        self.label_721.setText("")
+        self.label_721.setObjectName("label_721")
+
+        self.label_722 = QtWidgets.QLabel(parent=self.Tablaeu_de_bord)
+        self.label_722.setGeometry(QtCore.QRect(290, 110, 50, 25))
+        self.label_722.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"}")
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(12)
+        self.label_722.setFont(font)
+        self.label_722.setText("")
+        self.label_722.setObjectName("label_722")
+
+        self.tockBtn= QtWidgets.QPushButton(parent=self.Tablaeu_de_bord)
+        self.tockBtn.setGeometry(QtCore.QRect(360, 110, 70,25))
+        self.tockBtn.setStyleSheet(
+    "QPushButton {"
+    "    background-color: #002a3d;"
+    "    text-align: center;"
+    "    padding: 3px 5px;"
+    "    border-radius: 10px;"
+    "}"
+)
+        font.setPointSize(16)
+        font.setBold(True)
+        self.tockBtn.setFont(font)
+        self.tockBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.tockBtn.setObjectName("tockBtn")
+        """
+        self.coutBtn= QtWidgets.QPushButton(parent=self.Tablaeu_de_bord)
+        self.coutBtn.setGeometry(QtCore.QRect(460, 110, 70, 25))
+        self.coutBtn.setStyleSheet(
+    "QPushButton {"
+    "    background-color: #002a3d;"
+    "    text-align: center;"
+    "    padding: 3px 5px;"
+    "    border-radius: 10px;"
+    "}"
+)
+        font.setPointSize(14)
+        font.setBold(True)
+        self.coutBtn.setFont(font)
+        self.coutBtn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.coutBtn.setObjectName("coutBtn")
+
+        """
         self.frame_5 = QtWidgets.QFrame(parent=self.Tablaeu_de_bord)
-        self.frame_5.setGeometry(QtCore.QRect(0, -1, 531, 181))
-        self.frame_5.setStyleSheet("")
+        self.frame_5.setGeometry(QtCore.QRect(15, 150, 1040, 350))
+        
         self.frame_5.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_5.setObjectName("frame_5")
@@ -635,254 +717,521 @@ class Ui_MainWindow(object):
         self.gridLayout.setContentsMargins(4, 4, 4, 4)
         self.gridLayout.setSpacing(4)
         self.gridLayout.setObjectName("gridLayout")
-        self.frame_19 = QtWidgets.QFrame(parent=self.frame_5)
-        self.frame_19.setStyleSheet("QFrame{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"border: 2px solid transparent;\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(170, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QLabel{\n"
-"background-color: transparent;\n"
-"}")
-        self.frame_19.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_19.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_19.setObjectName("frame_19")
-        self.label_63 = QtWidgets.QLabel(parent=self.frame_19)
-        self.label_63.setGeometry(QtCore.QRect(10, 10, 41, 16))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(14)
-        self.label_63.setFont(font)
-        self.label_63.setStyleSheet("color: rgb(85, 0, 127);")
-        self.label_63.setObjectName("label_63")
-        self.label_65 = QtWidgets.QLabel(parent=self.frame_19)
-        self.label_65.setGeometry(QtCore.QRect(100, 30, 41, 21))
-        self.label_65.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_65.setText("")
-        self.label_65.setObjectName("label_65")
-        self.label_66 = QtWidgets.QLabel(parent=self.frame_19)
-        self.label_66.setGeometry(QtCore.QRect(30, 30, 41, 21))
-        self.label_66.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_66.setText("")
-        self.label_66.setObjectName("label_66")
-        self.gridLayout.addWidget(self.frame_19, 0, 2, 1, 1)
-        self.frame_22 = QtWidgets.QFrame(parent=self.frame_5)
-        self.frame_22.setMinimumSize(QtCore.QSize(0, 0))
-        self.frame_22.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.frame_22.setStyleSheet("QFrame{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"border: 2px solid transparent;\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 127, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QLabel{\n"
-"background-color: transparent;\n"
-"}")
-        self.frame_22.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_22.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_22.setObjectName("frame_22")
-        self.label_83 = QtWidgets.QLabel(parent=self.frame_22)
-        self.label_83.setGeometry(QtCore.QRect(20, 10, 61, 16))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(14)
-        self.label_83.setFont(font)
-        self.label_83.setStyleSheet("color: rgb(170, 170, 127);")
-        self.label_83.setObjectName("label_83")
-        self.label_84 = QtWidgets.QLabel(parent=self.frame_22)
-        self.label_84.setGeometry(QtCore.QRect(40, 30, 41, 21))
-        self.label_84.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_84.setText("")
-        self.label_84.setObjectName("label_84")
-        self.label_85 = QtWidgets.QLabel(parent=self.frame_22)
-        self.label_85.setGeometry(QtCore.QRect(90, 30, 41, 21))
-        self.label_85.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_85.setText("")
-        self.label_85.setObjectName("label_85")
-        self.gridLayout.addWidget(self.frame_22, 2, 3, 1, 1)
-        self.frame_18 = QtWidgets.QFrame(parent=self.frame_5)
-        self.frame_18.setStyleSheet("QFrame{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"border: 2px solid transparent;\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(93, 187, 139, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QLabel{\n"
-"background-color: transparent;\n"
-"}\n"
-"")
-        self.frame_18.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_18.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_18.setObjectName("frame_18")
-        self.label_58 = QtWidgets.QLabel(parent=self.frame_18)
-        self.label_58.setGeometry(QtCore.QRect(10, 15, 91, 21))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(20)
-        self.label_58.setFont(font)
-        self.label_58.setStyleSheet("color: rgb(77, 155, 115);")
-        self.label_58.setObjectName("label_58")
-        self.label_60 = QtWidgets.QLabel(parent=self.frame_18)
-        self.label_60.setGeometry(QtCore.QRect(20, 60, 41, 21))
-        self.label_60.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_60.setText("")
-        self.label_60.setObjectName("label_60")
-        self.label_61 = QtWidgets.QLabel(parent=self.frame_18)
-        self.label_61.setGeometry(QtCore.QRect(90, 60, 41, 21))
-        self.label_61.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_61.setText("")
-        self.label_61.setObjectName("label_61")
-        self.gridLayout.addWidget(self.frame_18, 0, 1, 2, 1)
-        self.frame_20 = QtWidgets.QFrame(parent=self.frame_5)
-        self.frame_20.setEnabled(True)
-        self.frame_20.setMinimumSize(QtCore.QSize(0, 0))
-        self.frame_20.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.frame_20.setStyleSheet("QFrame{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"border: 2px solid transparent;\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QLabel{\n"
-"background-color: transparent;\n"
-"}\n"
-"")
-        self.frame_20.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_20.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_20.setObjectName("frame_20")
-        self.label_80 = QtWidgets.QLabel(parent=self.frame_20)
-        self.label_80.setGeometry(QtCore.QRect(16, 12, 81, 20))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(20)
-        self.label_80.setFont(font)
-        self.label_80.setStyleSheet("color: rgb(205, 137, 205);")
-        self.label_80.setObjectName("label_80")
-        self.label_81 = QtWidgets.QLabel(parent=self.frame_20)
-        self.label_81.setGeometry(QtCore.QRect(20, 60, 41, 21))
-        self.label_81.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_81.setText("")
-        self.label_81.setObjectName("label_81")
-        self.label_82 = QtWidgets.QLabel(parent=self.frame_20)
-        self.label_82.setGeometry(QtCore.QRect(90, 60, 41, 21))
-        self.label_82.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_82.setText("")
-        self.label_82.setObjectName("label_82")
-        self.gridLayout.addWidget(self.frame_20, 0, 3, 2, 1)
-        self.frame_21 = QtWidgets.QFrame(parent=self.frame_5)
-        self.frame_21.setStyleSheet("QFrame{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"border: 2px solid transparent;\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 85, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QLabel{\n"
-"background-color: transparent;\n"
-"}")
-        self.frame_21.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_21.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_21.setObjectName("frame_21")
-        self.label_73 = QtWidgets.QLabel(parent=self.frame_21)
-        self.label_73.setGeometry(QtCore.QRect(20, 20, 81, 21))
-        font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(20)
-        self.label_73.setFont(font)
-        self.label_73.setStyleSheet("color: rgb(239, 80, 0);")
-        self.label_73.setObjectName("label_73")
-        self.label_76 = QtWidgets.QLabel(parent=self.frame_21)
-        self.label_76.setGeometry(QtCore.QRect(30, 60, 41, 21))
-        self.label_76.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_76.setText("")
-        self.label_76.setObjectName("label_76")
-        self.label_77 = QtWidgets.QLabel(parent=self.frame_21)
-        self.label_77.setGeometry(QtCore.QRect(100, 60, 41, 21))
-        self.label_77.setStyleSheet("QLabel{\n"
-"border-left: 2px solid #ffffff;\n"
-"border-right: 2px solid #ffffff;\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"}")
-        self.label_77.setText("")
-        self.label_77.setObjectName("label_77")
-        self.gridLayout.addWidget(self.frame_21, 1, 2, 2, 1)
+        
         self.frame_17 = QtWidgets.QFrame(parent=self.frame_5)
-        self.frame_17.setStyleSheet("QFrame{\n"
-"border-radius: 10px 10px 10px 10px;\n"
-"border: 2px solid transparent;\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 86, 80, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QLabel{\n"
-"background-color: transparent;\n"
-"}")
+        self.frame_17.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+
         self.frame_17.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_17.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_17.setObjectName("frame_17")
+
+
         self.label_68 = QtWidgets.QLabel(parent=self.frame_17)
-        self.label_68.setGeometry(QtCore.QRect(10, 10, 41, 16))
+        self.label_68.setGeometry(QtCore.QRect(15, 15, 150, 30))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(14)
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)     # Make the font bold
         self.label_68.setFont(font)
-        self.label_68.setStyleSheet("color: rgb(255, 0, 0);")
+        self.label_68.setStyleSheet("color: #002a3d;")
         self.label_68.setObjectName("label_68")
         self.label_70 = QtWidgets.QLabel(parent=self.frame_17)
-        self.label_70.setGeometry(QtCore.QRect(30, 30, 41, 21))
+        self.label_70.setGeometry(QtCore.QRect(10, 70, 110, 25))
         self.label_70.setStyleSheet("QLabel{\n"
 "border-left: 2px solid #ffffff;\n"
 "border-right: 2px solid #ffffff;\n"
 "border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+
 "}")
         self.label_70.setText("")
         self.label_70.setObjectName("label_70")
         self.label_71 = QtWidgets.QLabel(parent=self.frame_17)
-        self.label_71.setGeometry(QtCore.QRect(90, 30, 41, 21))
+        self.label_71.setGeometry(QtCore.QRect(130, 70, 110, 25))
         self.label_71.setStyleSheet("QLabel{\n"
 "border-left: 2px solid #ffffff;\n"
 "border-right: 2px solid #ffffff;\n"
 "border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
 "}")
         self.label_71.setText("")
         self.label_71.setObjectName("label_71")
-        self.gridLayout.addWidget(self.frame_17, 2, 1, 1, 1)
-        self.frame_9 = QtWidgets.QFrame(parent=self.Tablaeu_de_bord)
-        self.frame_9.setGeometry(QtCore.QRect(0, 179, 531, 151))
-        self.frame_9.setStyleSheet("background-color: #00557f;\n"
-"border-radius: 10px;")
-        self.frame_9.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_9.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_9.setObjectName("frame_9")
+        #self.gridLayout.addWidget(self.frame_17, 2, 1, 1, 1)
+        self.frame_18 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_18.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+
+        self.frame_18.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_18.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_18.setObjectName("frame_18")
+        self.label_58 = QtWidgets.QLabel(parent=self.frame_18)
+        self.label_58.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)     # Make the font bold
+        self.label_58.setFont(font)
+        self.label_58.setStyleSheet("color: #002a3d;")
+        self.label_58.setObjectName("label_58")
+        self.label_60 = QtWidgets.QLabel(parent=self.frame_18)
+        self.label_60.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_60.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_60.setText("")
+        self.label_60.setObjectName("label_60")
+        self.label_61 = QtWidgets.QLabel(parent=self.frame_18)
+        self.label_61.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_61.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_61.setText("")
+        self.label_61.setObjectName("label_61")
+
+        self.frame_19 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_19.setStyleSheet("QFrame{\n"
+        "border-radius: 10px 10px 10px 10px;\n"
+        "background-color: #0090ce;\n"
+        "}\n"
+        )
+           
+        self.frame_19.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_19.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_19.setObjectName("frame_19")
+        self.label_63 = QtWidgets.QLabel(parent=self.frame_19)
+        self.label_63.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)     # Make the font bold
+        self.label_63.setFont(font)
+        self.label_63.setStyleSheet("color: #002a3d;")
+
+        self.label_63.setObjectName("label_63")
+        self.label_65 = QtWidgets.QLabel(parent=self.frame_19)
+        self.label_65.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_65.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_65.setText("")
+        self.label_65.setObjectName("label_65")
+        self.label_66 = QtWidgets.QLabel(parent=self.frame_19)
+        self.label_66.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_66.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_66.setText("")
+        self.label_66.setObjectName("label_66")
+        #self.gridLayout.addWidget(self.frame_19, 0, 2, 1, 1)
+        
+        
+        self.frame_20 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_20.setEnabled(True)
+        self.frame_20.setMinimumSize(QtCore.QSize(0, 0))
+        self.frame_20.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        
+        self.frame_20.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+
+        self.frame_20.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_20.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_20.setObjectName("frame_20")
+        
+        self.label_80 = QtWidgets.QLabel(parent=self.frame_20)
+        self.label_80.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)     # Make the font bold
+        self.label_80.setFont(font)
+        self.label_80.setStyleSheet("color: #002a3d;")
+        self.label_80.setObjectName("label_80")
+        self.label_81 = QtWidgets.QLabel(parent=self.frame_20)
+        self.label_81.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_81.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_81.setText("")
+        self.label_81.setObjectName("label_81")
+        self.label_82 = QtWidgets.QLabel(parent=self.frame_20)
+        self.label_82.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_82.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_82.setText("")
+        self.label_82.setObjectName("label_82")
+        #self.gridLayout.addWidget(self.frame_20, 0, 3, 2, 1)
+        self.frame_21 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_21.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+
+        self.frame_21.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_21.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_21.setObjectName("frame_21")
+        self.label_73 = QtWidgets.QLabel(parent=self.frame_21)
+        self.label_73.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)     # Make the font bold
+        self.label_73.setFont(font)
+        self.label_73.setStyleSheet("color: #002a3d;")
+        self.label_73.setObjectName("label_73")
+        self.label_76 = QtWidgets.QLabel(parent=self.frame_21)
+        self.label_76.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_76.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_76.setText("")
+        self.label_76.setObjectName("label_76")
+        self.label_77 = QtWidgets.QLabel(parent=self.frame_21)
+        self.label_77.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_77.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_77.setText("")
+        self.label_77.setObjectName("label_77")
+        #self.gridLayout.addWidget(self.frame_21, 1, 2, 2, 1)
+        
+        
+        
+        self.frame_22 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_22.setMinimumSize(QtCore.QSize(0, 0))
+        self.frame_22.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        
+        self.frame_22.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+
+        self.frame_22.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_22.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_22.setObjectName("frame_22")
+        self.label_83 = QtWidgets.QLabel(parent=self.frame_22)
+        self.label_83.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)
+        font.setBold(True)     
+        self.label_83.setFont(font)
+        self.label_83.setStyleSheet("color: #002a3d;")
+        self.label_83.setObjectName("label_83")
+        self.label_84 = QtWidgets.QLabel(parent=self.frame_22)
+        self.label_84.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_84.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_84.setText("")
+        self.label_84.setObjectName("label_84")
+        self.label_85 = QtWidgets.QLabel(parent=self.frame_22)
+        self.label_85.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_85.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_85.setText("")
+        self.label_85.setObjectName("label_85")
+        #self.gridLayout.addWidget(self.frame_22, 2, 3, 1, 1)
+       
+        #self.gridLayout.addWidget(self.frame_18, 0, 1, 2, 1)
+       
+        
+        # Create and style frame 23
+        self.frame_23 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_23.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+        
+
+        self.frame_23.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_23.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_23.setObjectName("frame_23")
+
+        self.label_88 = QtWidgets.QLabel(parent=self.frame_23)
+        self.label_88.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)
+        self.label_88.setFont(font)
+        self.label_88.setStyleSheet("color: #002a3d;")
+        self.label_88.setObjectName("label_88")
+
+        self.label_871 = QtWidgets.QLabel(parent=self.frame_23)
+        self.label_871.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_871.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_871.setText("")
+        self.label_871.setObjectName("label_871")
+
+        self.label_861 = QtWidgets.QLabel(parent=self.frame_23)
+        self.label_861.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_861.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_861.setText("")
+        self.label_861.setObjectName("label_861")
+
+        #self.gridLayout.addWidget(self.frame_23, 0, 3, 1, 1)
+
+        # Create and style frame 24
+        self.frame_24 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_24.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+        
+
+        self.frame_24.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_24.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_24.setObjectName("frame_24")
+
+        self.label_89 = QtWidgets.QLabel(parent=self.frame_24)
+        self.label_89.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)
+        self.label_89.setFont(font)
+        self.label_89.setStyleSheet("color: #002a3d;")
+        self.label_89.setObjectName("label_89")
+
+        self.label_90 = QtWidgets.QLabel(parent=self.frame_24)
+        self.label_90.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_90.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_90.setText("")
+        self.label_90.setObjectName("label_90")
+
+        self.label_91 = QtWidgets.QLabel(parent=self.frame_24)
+        self.label_91.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_91.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_91.setText("")
+        self.label_91.setObjectName("label_91")
+
+        # Create and style frame 25
+        self.frame_25 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_25.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+        
+
+        self.frame_25.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_25.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_25.setObjectName("frame_25")
+
+        self.label_92 = QtWidgets.QLabel(parent=self.frame_25)
+        self.label_92.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)
+        self.label_92.setFont(font)
+        self.label_92.setStyleSheet("color: #002a3d;")
+        self.label_92.setObjectName("label_92")
+
+        self.label_93 = QtWidgets.QLabel(parent=self.frame_25)
+        self.label_93.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_93.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_93.setText("")
+        self.label_93.setObjectName("label_93")
+
+        self.label_94 = QtWidgets.QLabel(parent=self.frame_25)
+        self.label_94.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_94.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_94.setText("")
+        self.label_94.setObjectName("label_94")
+
+        # Create and style frame 26
+        self.frame_26 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_26.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+        
+
+        self.frame_26.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_26.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_26.setObjectName("frame_26")
+
+        self.label_95 = QtWidgets.QLabel(parent=self.frame_26)
+        self.label_95.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)
+        self.label_95.setFont(font)
+        self.label_95.setStyleSheet("color: #002a3d;")
+        self.label_95.setObjectName("label_95")
+
+        self.label_96 = QtWidgets.QLabel(parent=self.frame_26)
+        self.label_96.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_96.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_96.setText("")
+        self.label_96.setObjectName("label_96")
+
+        self.label_97 = QtWidgets.QLabel(parent=self.frame_26)
+        self.label_97.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_97.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_97.setText("")
+        self.label_97.setObjectName("label_97")
+
+        # Create and style frame 27
+        self.frame_27 = QtWidgets.QFrame(parent=self.frame_5)
+        self.frame_27.setStyleSheet("QFrame{"
+        "border-radius: 10px 10px 10px 10px;"
+        "background-color: #0090ce;"
+        "}")
+        
+
+        self.frame_27.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_27.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_27.setObjectName("frame_27")
+
+        self.label_98 = QtWidgets.QLabel(parent=self.frame_27)
+        self.label_98.setGeometry(QtCore.QRect(15, 15, 150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Gabriola")
+        font.setPointSize(20)  # Adjust the point size to make the font bigger
+        font.setBold(True)
+        self.label_98.setFont(font)
+        self.label_98.setStyleSheet("color: #002a3d;")
+        self.label_98.setObjectName("label_98")
+
+        self.label_99 = QtWidgets.QLabel(parent=self.frame_27)
+        self.label_99.setGeometry(QtCore.QRect(10, 70, 110, 25))
+        self.label_99.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_99.setText("")
+        self.label_99.setObjectName("label_99")
+
+        self.label_100 = QtWidgets.QLabel(parent=self.frame_27)
+        self.label_100.setGeometry(QtCore.QRect(130, 70, 110, 25))
+        self.label_100.setStyleSheet("QLabel{\n"
+"border-left: 2px solid #ffffff;\n"
+"border-right: 2px solid #ffffff;\n"
+"border-radius: 10px 10px 10px 10px;\n"
+"font-size: 14px;\n"
+"font-weight: bold;\n"
+"}")
+        self.label_100.setText("")
+        self.label_100.setObjectName("label_100")
+        
+
+        # Add frames to the grid layout, specifying row and column positions
+        self.gridLayout.addWidget(self.frame_17, 0, 0, 1, 1)  # Frame 17 at row 0, column 0
+        self.gridLayout.addWidget(self.frame_18, 0, 1, 1, 1)  # Frame 18 at row 0, column 1
+        self.gridLayout.addWidget(self.frame_19, 0, 2, 1, 1)  # Frame 19 at row 0, column 2
+        self.gridLayout.addWidget(self.frame_20, 0, 3, 1, 1)  # Frame 20 at row 0, column 3
+        self.gridLayout.addWidget(self.frame_21, 1, 0, 1, 1)  # Frame 21 at row 1, column 0
+        self.gridLayout.addWidget(self.frame_22, 1, 1, 1, 1)  # Frame 22 at row 1, column 1
+        self.gridLayout.addWidget(self.frame_23, 1, 2, 1, 1)  # Frame 23 at row 1, column 2
+        self.gridLayout.addWidget(self.frame_24, 1, 3, 1, 1)  # Frame 24 at row 1, column 3
+        self.gridLayout.addWidget(self.frame_25, 2, 0, 1, 1)  # Frame 25 at row 2, column 0
+        self.gridLayout.addWidget(self.frame_26, 2, 1, 1, 1)  # Frame 26 at row 2, column 1
+        self.gridLayout.addWidget(self.frame_27, 2, 2, 1, 1)  # Frame 27 at row 2, column 2
+
         self.stackedWidget.addWidget(self.Tablaeu_de_bord)
         self.Ges_Commandes_calcul = QtWidgets.QWidget()
         self.Ges_Commandes_calcul.setStyleSheet("#dateEdit, #label_2{\n"
@@ -1520,7 +1869,7 @@ class Ui_MainWindow(object):
 "}\n"
 
 "\n"
-"QPushButton{\n"
+"{\n"
 "border: 2px solid #002a3d;\n"
 "border-radius: 10px 10px 10px 10px;\n"
 "background-color: #002a3d;\n"
@@ -1777,7 +2126,7 @@ class Ui_MainWindow(object):
         self.Titre_6.setGeometry(QtCore.QRect(300, 25, 280, 30))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
-        font.setPointSize(22)
+        font.setPointSize(30)
         font.setUnderline(False)
         self.Titre_6.setFont(font)
         self.Titre_6.setObjectName("Titre_6")
@@ -3335,13 +3684,32 @@ class Ui_MainWindow(object):
         #self.documBtn.setText(_translate("MainWindow", "Documentation"))
         self.archiveBtn.setText(_translate("MainWindow", "Archives"))
         self.logoutBtn.setText(_translate("MainWindow", "Log Out"))
+        
         self.label_86.setText(_translate("MainWindow", "Bienvenue a BG Blast!"))
-        self.label_63.setText(_translate("MainWindow", "Tovex"))
-        self.label_83.setText(_translate("MainWindow", "Ligne de tir"))
-        self.label_58.setText(_translate("MainWindow", "Ammonix"))
-        self.label_80.setText(_translate("MainWindow", "Detos"))
-        self.label_73.setText(_translate("MainWindow", "Raccords"))
-        self.label_68.setText(_translate("MainWindow", "D.E.I"))
+
+        self.titre_1.setText(_translate("MainWindow", "Tableau de Bord"))
+        self.label_72.setText(_translate("MainWindow", "Voici votre stocks d'explosif:"))
+        self.label_721.setText(_translate("MainWindow", "*global"))
+        self.label_722.setText(_translate("MainWindow", "*restant"))
+
+
+        #self.coutBtn.setText(_translate("MainWindow", "cout"))
+        self.tockBtn.setText(_translate("MainWindow", "stock"))
+
+        self.label_68.setText(_translate("MainWindow", "Ammonix"))
+        self.label_58.setText(_translate("MainWindow", "Tovex"))
+        self.label_63.setText(_translate("MainWindow", "A.E.I"))
+        self.label_80.setText(_translate("MainWindow", "Ligne de tir"))
+        self.label_73.setText(_translate("MainWindow", "Raccords17ms"))
+        self.label_83.setText(_translate("MainWindow", "Raccords25ms"))
+       
+        self.label_88.setText(_translate("MainWindow", "Raccords42ms"))
+        self.label_89.setText(_translate("MainWindow", "Raccords65ms"))
+        self.label_92.setText(_translate("MainWindow", "Raccords100ms"))
+        self.label_95.setText(_translate("MainWindow", "Detos450ms"))
+        self.label_98.setText(_translate("MainWindow", "Detos50ms"))
+
+        
         self.Titre.setText(_translate("MainWindow", "Fiche de Saisie"))
         self.L11.setText(_translate("MainWindow", "Dosage prévu"))
         self.comboBox_11.setItemText(0, _translate("MainWindow", "1"))
@@ -3559,7 +3927,7 @@ class Ui_MainWindow(object):
         self.ajouterBtn.setText(_translate("MainWindow", "Ajouter"))
 
 
-        self.Titre_6.setText(_translate("MainWindow", "Formulaire Après Sautage"))
+        self.Titre_6.setText(_translate("MainWindow", "Gestion Après Sautage"))
         self.label_4.setText(_translate("MainWindow", "Heure arrivée camion"))
         self.label_5.setText(_translate("MainWindow", "Heure de tir"))
         self.label_6.setText(_translate("MainWindow", "BLF Ammonix"))
@@ -3579,7 +3947,6 @@ class Ui_MainWindow(object):
         #self.Titre_4.setText(_translate("MainWindow", "Documentation"))
         self.Titre_10.setText(_translate("MainWindow", "Vos Archives"))
         self.Titre_11.setText(_translate("MainWindow", "A propos"))
-        
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID Commande"))
         item = self.tableWidget.horizontalHeaderItem(1)
