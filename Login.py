@@ -34,7 +34,7 @@ class Ui_LoginWindow(object):
 "border: 2px solid #2fc692;\n"
 "padding: 4px 8px;\n"
 "}")
-     
+    #002a3d
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         
@@ -47,8 +47,8 @@ class Ui_LoginWindow(object):
         self.label = QtWidgets.QLabel(self.rightPart)
         self.label.setGeometry(QtCore.QRect(50, -120, 150, 40))
         font = QtGui.QFont()
-        font.setFamily("Gabriola")
-        font.setPointSize(34)
+        font.setFamily("Arial")
+        font.setPointSize(22)
         font.setBold(True)
         self.label.setStyleSheet("color: #2fc692;")
         self.label.setFont(font)
@@ -65,15 +65,15 @@ class Ui_LoginWindow(object):
         
         self.loginButton = QtWidgets.QPushButton(parent=self.rightPart)
         self.loginButton.setObjectName("loginButton")
-        self.loginButton.setGeometry(QtCore.QRect(80, 290, 146, 26))
+        self.loginButton.setGeometry(QtCore.QRect(80, 265, 146, 26))
         font = QtGui.QFont()
-        font.setFamily("Bookman Old Style")
+        font.setFamily("Arial")
         font.setPointSize(8)
         font.setBold(True)
         self.loginButton.setFont(font)
         # Set the cursor to a pointing hand when hovering over the login button
         self.loginButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        
+        """  
         self.guestLabel = QtWidgets.QLabel(self.rightPart)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -83,9 +83,9 @@ class Ui_LoginWindow(object):
         self.guestLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.guestLabel.setObjectName("guestLabel")
         self.guestLabel.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-
+        """
         self.label_1 = QtWidgets.QLabel(parent=self.rightPart)
-        self.label_1.setGeometry(QtCore.QRect(70, 130, 200, 30))
+        self.label_1.setGeometry(QtCore.QRect(70, 125, 200, 30))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_1.setFont(font)
@@ -111,9 +111,10 @@ class Ui_LoginWindow(object):
         self.usernameLineEdit.setPlaceholderText(_translate("MainWindow", "Nom d'utilisateur"))
         self.passwordLineEdit.setPlaceholderText(_translate("MainWindow", "Mot de passe"))
         self.loginButton.setText(_translate("MainWindow", "Se Connecter"))
-        self.guestLabel.setText(_translate("MainWindow", "Continuer autant que visiteur?"))        
-        self.label_1.setText(_translate("MainWindow", "Connectez-vous à votre compte"))
-
+        #self.guestLabel.setText(_translate("MainWindow", "Continuer autant que visiteur?"))        
+        self.label_1.setText(_translate("MainWindow", "Connectez-vous à votre compte:"))
+        
+       
 
 
 if __name__ == "__main__":

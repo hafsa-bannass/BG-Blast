@@ -13,11 +13,6 @@ from reportlab.lib.pagesizes import letter
 import subprocess
 from PyQt6.QtWidgets import QFileDialog
 
-from PyQt6.QtWidgets import QFileDialog  # Import QFileDialog to allow the user to choose the save path
-
-from PyQt6.QtWidgets import QFileDialog  # Import QFileDialog to allow the user to choose the save path
-
-import os
 import shutil
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from reportlab.pdfgen import canvas
@@ -31,11 +26,14 @@ class Login(QtWidgets.QMainWindow):
         super().__init__(parent)
         self.ui = Ui_LoginWindow()
         self.ui.setupUi(self)
+        self.ui.usernameLineEdit.setText("")
+        self.ui.passwordLineEdit.setText("")
         self.login_successful = False
         icon = QIcon("./images/icon.png")  
         self.setWindowIcon(icon)
         self.ui.loginButton.clicked.connect(self.login)
     
+
     def show_warning(self, title, text):
         message_box = QtWidgets.QMessageBox()
         message_box.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -44,22 +42,48 @@ class Login(QtWidgets.QMainWindow):
         icon = QIcon("./images/icon.png")  
         message_box.setWindowIcon(icon)
         message_box.exec()
-
+    
+    def show_Information(self, title, text):
+        message_box = QtWidgets.QMessageBox()
+        message_box.setIcon(QtWidgets.QMessageBox.Icon.Information)
+        message_box.setWindowTitle(title)
+        message_box.setText(text)
+        icon = QIcon("./images/icon.png")  
+        message_box.setWindowIcon(icon)
+        message_box.exec()   
 
     def login(self):
         username = self.ui.usernameLineEdit.text()
         password = self.ui.passwordLineEdit.text()
 
-        if username == "admin" and password == "password":
+        # Connect to the SQLite database
+        connection = sqlite3.connect('bgblast.db')  # Replace with your actual database file
+        cursor = connection.cursor()
+
+        # Query the database for the username and password
+        cursor.execute("SELECT username, password FROM user WHERE username = ? AND password = ?", (username, password))
+        result = cursor.fetchone()  # Fetch the first matching row
+
+        # Close the database connection
+        connection.close()
+
+        if result is not None:
             self.login_successful = True
-            # quit the login wndow when login in if login is successful
-            #login_window.close()
-            if username != "admin":
-                self.show_warning( "Login", " Nom d'utilisateur Incorrect ")
-            elif password != "password":
-                self.show_warning( "Login", "  Mot de passe Incorrect ")
-            else:
-                self.show_warning( "Login", " Nom d'utilisateur et Mot de passe Incorrect ")
+            # Close the login window when login is successful
+            self.close()  # Close the login window
+
+            # Create and show the main window
+            main_window = my_app()
+            main_window.set_username_password(username, password)  # Pass the username and password
+            self.usernameLineEdit.setText("")
+            self.passwordLineEdit.setText("")
+
+            main_window.show()
+        else:
+            self.show_warning("Login", "Nom d'utilisateur ou mot de passe incorrect")
+
+
+
 
 def create_database():
 
@@ -157,21 +181,43 @@ def create_database():
                     avanc_Foration VARCHAR(50),
                     avanc_decap VARCHAR(50),
                     machine_decap VARCHAR(50))''')
-    connection.commit()
-    connection.close()
-    """
-    
+
     # Create the "user" table
     cursor.execute('''CREATE TABLE IF NOT EXISTS user 
                    (id_user INTEGER PRIMARY KEY,
-                    name VARCHAR(50),
-                    role VARCHAR(50),
-                    Profession VARCHAR(50),
                     username VARCHAR(50) ,
-                    password VARCHAR(50))''')
+                    password VARCHAR(50),
+                    name VARCHAR(50),
+                    Profession VARCHAR(50),
+                    role VARCHAR(50),
+                    direction VARCHAR(50),
+                    entite VARCHAR(50),
+                    organusme VARCHAR(50))''')
+    # Insert initial users (if not already inserted)
+    cursor.execute('SELECT id_user FROM user')
+    existing_users = cursor.fetchall()
+
+    if not existing_users:
+        initial_users = [
+            ('username1', 'password1', 'User 1', 'Agent Ocp', 'Admin', 'Mines Gantour', 'Sautage de Ben Guerir', 'Ocp'),
+            ('username2', 'password2', 'User 2', 'Agent Ocp', 'Admin', 'Mines Gantour', 'Sautage de Ben Guerir', 'Ocp'),
+            ('username3', 'password3', 'User 3', 'Agent Ocp', 'User', 'Mines Gantour', 'Sautage de Ben Guerir', 'Ocp'),
+            ('username4', 'password4', 'User 4', 'Agent Ocp', 'Admin', 'Mines Gantour', 'Sautage de Ben Guerir', 'Ocp'),
+            ('username5', 'password5', 'User 5', 'Agent Ocp', 'Admin', 'Mines Gantour', 'Sautage de Ben Guerir', 'Ocp'),
+            ('username6', 'password6', 'User 6', 'Agent Ocp', 'Admin', 'Mines Gantour', 'Sautage de Ben Guerir', 'Ocp'),
+            # Add more users as needed
+        ]
+
+        cursor.executemany('''
+            INSERT INTO user (username, password, name, Profession, role, direction, entite, organusme)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ''', initial_users)
+    
+    connection.commit()
+    connection.close()
     
     # Create the "client" table
-   """
+   
 
    
 
@@ -198,11 +244,7 @@ class my_app(QtWidgets.QMainWindow):
         ))
 
 
-        self.ui.tockBtn.clicked.connect(self.tableauBord)
-
-        
-
-
+        self.ui.TbBtn.clicked.connect(self.tableauBord)
 
 
 
@@ -212,7 +254,9 @@ class my_app(QtWidgets.QMainWindow):
         self.ui.resetBtnFs.clicked.connect(self.resetCommande)
 
         self.ui.valResBtn.clicked.connect(self.saveResultats)
-        self.ui.suppResBtn.clicked.connect(self.deleteCommandeResultat)
+        self.ui.valResBtn.clicked.connect(self.showButtons)
+        self.ui.genResBtn.clicked.connect(self.fetch_data)
+        # self.ui.suppResBtn.clicked.connect(self.deleteCommandeResultat)
         self.ui.retourResBtn.clicked.connect(lambda:(
             self.ui.stackedWidget.setCurrentWidget(self.ui.Ges_Commandes_calcul),
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.Options_Commande_Calcul)
@@ -261,11 +305,11 @@ class my_app(QtWidgets.QMainWindow):
         
 
         self.ui.saveApresSautageBtn.clicked.connect(self.saveApresSautage)
+        self.ui.saveApresSautageBtn.clicked.connect(self.showBtns)
+
         self.ui.resetApresSautageBtn.clicked.connect(self.resetApresSautage)
         self.ui.deleteApresSautageBtn.clicked.connect(self.deleteApresSautage)
         self.ui.pushButton_13.clicked.connect(self.createPdfAS)
-
-
 
 
         self.ui.GesADBtn.clicked.connect(lambda:(
@@ -294,8 +338,6 @@ class my_app(QtWidgets.QMainWindow):
         ))
         
         
-        #b
-       
             
 
         self.ui.historiqueCommandeBtn.clicked.connect(self.show_Options) 
@@ -342,8 +384,40 @@ class my_app(QtWidgets.QMainWindow):
             self.ui.Historiques.setCurrentWidget(self.ui.Historique_AS),
             self.ui.Title.setText("Historique Après Sautage")
         ))
-       # self.ui.pushButton_10.clicked.connect(self.exit)
+        self.ui.logoutBtn.clicked.connect(self.logout)
 
+
+    def set_username_password(self, username, password):
+        
+        # Connect to the SQLite database
+        connection = sqlite3.connect('bgblast.db')  # Replace with your actual database file
+        cursor = connection.cursor()
+
+        # Query the database for user information based on the provided username and password
+        cursor.execute("SELECT name, Profession, role, direction, entite, organusme FROM user WHERE username = ? AND password = ?", (username, password))
+        user_info = cursor.fetchone()  # Fetch the first matching row
+
+        # Close the database connection
+        connection.close()
+
+        # Display user information in your UI (replace with actual UI elements)
+        name, profession, role, direction, entite, organisme = user_info
+        self.ui.o22.setText(name)
+        self.ui.o23.setText(profession)
+        self.ui.o24.setText(role)
+        self.ui.o25.setText(direction)
+        self.ui.o26.setText(entite)
+        self.ui.o27.setText(organisme)
+       
+
+
+    def showButtons(self):
+        self.ui.genResBtn.show()
+
+        self.ui.retourResBtn.show()     
+    def showBtns(self):
+        self.ui.deleteApresSautageBtn.show()
+        self.ui.pushButton_13.show()
 
     def tableauBord(self):
         #types=["Ammonix","Tovex","A.E.I","Detos450ms","Detos500ms","Raccords17ms","Raccords25ms","Raccords42ms","Raccords65ms","Raccords100ms","Ligne de tir"]
@@ -385,7 +459,7 @@ class my_app(QtWidgets.QMainWindow):
 
 
             query = 'SELECT stock_global, stock_actuel FROM stock WHERE type = ? ORDER BY id_ST DESC LIMIT 1'
-            cursor.execute(query, ("A.E.I",))
+            cursor.execute(query, ("aei",))
     
             # Fetch the results for the current type
             rows = cursor.fetchone()
@@ -886,7 +960,7 @@ class my_app(QtWidgets.QMainWindow):
                 # Set the item in the appropriate cell of the table
                 self.ui.tableWidget.setItem(row_num, col_num, item)
 
-    def deleteCommandeResultat(self):
+    """ def deleteCommandeResultat(self):
         try:
             # Connect to the SQLite database
             connection = sqlite3.connect('bgblast.db')
@@ -918,8 +992,137 @@ class my_app(QtWidgets.QMainWindow):
         finally:
             if connection:
                 connection.close()
-            
+    """
+    
+    def fetch_data(self):
+        # Replace with your database connection code
+        connection = sqlite3.connect('bgblast.db')
+        cursor = connection.cursor()
 
+        
+        filename = "commande.pdf"  # Provide the desired filename
+        title = "Gestion des commandes: Fiche de saisie"  # Specify the title
+        title2 = "Gestion des commandes: Fiche des résultats"  # Specify the title
+        conteur= 0
+        
+        cursor.execute('''SELECT date, type_tir, mode_tir, schema_tir, mode_chargement, machine_foration,
+                                machine_decappage, panneau, tranche, niveau, profondeur, nombre_trous, nombre_rangs, nombre_trousrang,
+                                maille, dosage_prevu FROM commande ORDER BY id_C DESC LIMIT 1''')
+        result=cursor.fetchone()
+        
+        
+        data = {
+            "Date:": result[0],
+            "Type de tir:": result[1],
+            "Mode de tir:": result[2],
+            "Schéma de tir:": result[3],
+            "Mode de chargement:": result[4],
+            "Machine de foration:": result[5],
+            "Machine de décapage:": result[6],
+            "Panneau:": result[7],
+            "Tranche:": result[8],
+            "Niveau:": result[9],
+            "Profondeur": result[10],
+            "Nombre de trous:": result[11],
+            "Nombre de rangs:": result[12],
+            "Nombre de trous par rang:": result[13],
+            "Maille:": result[14],
+            "Dosage prévu:": result[15],
+            "Longueur/m:": self.ui.o1.text(),
+            "Largeur:": self.ui.o2.text(),
+            "Surface:": self.ui.o3.text(),
+            "Volume:": self.ui.o4.text(),
+            "Ammonix/kg:": self.ui.o5.text(),
+            "Tovex/kg:": self.ui.o6.text(),
+            "Cordeau:": self.ui.o7.text(),
+            "Ligne de tir:": self.ui.o8.text(),
+            "Aei/U:": self.ui.o9.text(),
+            "Métrage Fore:": self.ui.o10.text(),
+            "Detos 450ms/U:": self.ui.o17.text(),
+            "Detos 500ms/U:": self.ui.o18.text(),
+            "Raccords 17ms/U:": self.ui.o14.text(),
+            "Raccords 25ms/U:": self.ui.o11.text(),
+            "Raccords 42ms/U:": self.ui.o12.text(),
+            "Raccords 65ms/U:": self.ui.o13.text(),
+            "Raccords 100ms/U:": self.ui.o21.text(),
+            "Répartition:": self.ui.o15.text(),
+            "Rendu Prévu:": self.ui.o16.text(),
+            "Bourrage Final:": self.ui.o19.text(),
+            "Ci:": self.ui.o20.text() 
+        }
+
+        c = canvas.Canvas(filename, pagesize=letter)
+
+        def start_new_page():
+            c.showPage()  # Start a new page
+            # Add page-specific content (e.g., header or footer) here
+
+        # Draw the first picture (replace 'path_to_picture1' with the actual file path)
+        c.drawImage('./images/logosautage.png', 500, 680, width=72, height=80)
+
+        # Draw the second picture (replace 'path_to_picture2' with the actual file path)
+        c.drawImage('./images/ocp.jpg', 100, 680, width=63, height=80)
+
+        # Set the font to bold (Helvetica-Bold) and specify the font size for the title
+        c.setFont("Helvetica-Bold", 14)
+        c.drawString(190, 650, title)
+        # Add the specified text
+        c.setFont("Helvetica-Bold", 10)
+        c.drawString(180, 750, "DIRECTION INDUSTRIELLES MINES GANTOUR")
+        c.drawString(180, 735, "SAUTAGE DE BENGUERIR")
+        c.drawString(180, 720, "GROUP OCP")
+
+
+        # Initialize y-coordinate for data
+        y = 600
+
+        # Iterate over the data and labels to display them in the PDF
+        label_x = 100  # x-coordinate for labels
+        data_x = 300  # x-coordinate for data
+
+        for label, value in data.items():
+            c.setFont("Helvetica-Bold", 12)
+            c.drawString(label_x, y, label)
+            c.setFont("Helvetica", 12)
+            value_str = str(value) 
+            c.drawString(data_x, y, value_str) # Convert value to string
+            y -= 25
+            conteur = conteur +1
+            # Check if there is enough space for the text, start a new page if not
+            if conteur == 16:
+                start_new_page()
+                # Draw the first picture (replace 'path_to_picture1' with the actual file path)
+                c.drawImage('./images/logosautage.png', 500, 680, width=72, height=80)
+
+                # Draw the second picture (replace 'path_to_picture2' with the actual file path)
+                c.drawImage('./images/ocp.jpg', 100, 680, width=63, height=80)
+
+                # Set the font to bold (Helvetica-Bold) and specify the font size for the title
+                c.setFont("Helvetica-Bold", 14)
+                c.drawString(190, 650, title2)
+                # Add the specified text
+                c.setFont("Helvetica-Bold", 10)
+                c.drawString(180, 750, "DIRECTION INDUSTRIELLES MINES GANTOUR")
+                c.drawString(180, 735, "SAUTAGE DE BENGUERIR")
+                c.drawString(180, 720, "GROUP OCP")
+                
+
+                y = 600  # Reset y-coordinate for the new page
+                label_x = 100  # x-coordinate for labels
+                data_x = 300  # x-coordinate for data
+
+        
+        # Save the PDF file
+        c.save()
+
+        # Prompt the user to choose the save path for the PDF file
+        save_path, _ = QFileDialog.getSaveFileName(self, "Save PDF File", "", "PDF Files (*.pdf)")
+
+        if save_path:
+            shutil.move(filename, save_path)  # Move the generated PDF to the chosen location
+            self.show_Information("PDF Generated","Votre PDF a été généré et enregistré à l'emplacement choisi avec succès!")
+
+        
 
 # fonction de ajout de stock
     def stockStorage(self):
@@ -964,7 +1167,8 @@ class my_app(QtWidgets.QMainWindow):
             print("Unexpected Error:", str(e))
     #fonction qui affiche tout les statistiques du stock
     def stockAffichage(self):
-        # Assuming you have a database connection established as 'connection'
+        connection = sqlite3.connect('bgblast.db')
+# Assuming you have a database connection established as 'connection'
         cursor = connection.cursor()
         
         # Execute a query to fetch data from the 'commande' and 'resultat' tables
@@ -1729,6 +1933,27 @@ class my_app(QtWidgets.QMainWindow):
 
 
 
+    def logout(self):
+        confirm_logout = self.show_question("Confirmation", "Êtes-vous sûr de vouloir vous déconnecter ?")
+
+        if confirm_logout == QMessageBox.StandardButton.Yes:
+            # Clear user data and perform logout actions
+            # For example:
+            self.close()  # Close the main window
+            login_window.show()  # Show the login window
+
+
+
+    def show_question(self, title, text):
+        message_box = QMessageBox()
+        message_box.setIcon(QMessageBox.Icon.Question)
+        message_box.setWindowTitle(title)
+        message_box.setText(text)
+        icon = QIcon("./images/icon.png")
+        message_box.setWindowIcon(icon)
+        message_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        return message_box.exec()
+
     def show_warning(self, title, text):
         message_box = QtWidgets.QMessageBox()
         message_box.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -1768,6 +1993,89 @@ class my_app(QtWidgets.QMainWindow):
         if self.ui.stackedWidget_2.isHidden():
             self.ui.stackedWidget_2.show() 
 
+
+
+if __name__ == "__main__":
+    # Call the function to create the database and table
+    create_database()
+
+    # Create the Qt application
+    app = QApplication(sys.argv)
+
+    # Create the login window
+    login_window = Login()
+
+    # Show the login window
+    login_window.show()
+    
+    # Start the application event loop
+    app.exec()
+
+    # After the event loop ends (user logs in or closes the window), check if login was successful
+    if login_window.login_successful== True:
+        # quit the login wndow when login in if login is successful    
+
+        # Create the main window
+        main_window = my_app()
+
+        # Show the main window
+        main_window.show()
+
+        sys.exit(app.exec())
+
+
+
+
+
+
+"""
+if __name__ == "__main__":
+    connection = sqlite3.connect('bgblast.db')
+    create_database()
+    # Create the Qt application
+    app = QApplication(sys.argv)
+    # Create the main window
+    main_window = my_app()
+
+    # Show the main window
+    main_window.show()
+
+    sys.exit(app.exec())
+
+
+
+if __name__ == "__main__":
+    # Call the function to create the database and table
+    create_database()
+
+    # Create the Qt application
+    app = QApplication(sys.argv)
+
+    # Create the login window
+    login_window = Login()
+
+    # Show the login window
+    login_window.show()
+    
+    # Start the application event loop
+    app.exec()
+
+    # After the event loop ends (user logs in or closes the window), check if login was successful
+    if login_window.login_successful== True:
+        # quit the login wndow when login in if login is successful    
+
+        # Create the main window
+        main_window = my_app()
+
+        # Show the main window
+        main_window.show()
+
+        sys.exit(app.exec())
+    
+        
+
+
+
 if __name__ == "__main__":
     connection = sqlite3.connect('bgblast.db')
     create_database()
@@ -1782,68 +2090,7 @@ if __name__ == "__main__":
     sys.exit(app.exec())
     
 
-       
-   
 
-"""
-
-   
-           
-# updates cout after a commmande  
-    def updateCout(self):
-        try:
-            connection = sqlite3.connect('bgblast.db')  # Replace 'bgblast.db' with your desired database name
-            cursor = connection.cursor()
-
-            # Execute the SELECT query to get the last Commande done from the 'resultat' table
-            cursor.execute(
-                '''SELECT id_R, ammonix, tovex, A_E_I, detos_450, detos_500, raccords_17, raccords_25, raccords_42,
-                raccords_65, raccords_100, ligne_tir FROM resultat ORDER BY id_R DESC LIMIT 1''')
-            
-            # Fetch the result of the query
-            result = cursor.fetchone()
-            
-            # Extract the id_Commande from the result
-            id_Commande = result[0]
-            
-            # Extract the date from the commande of those result
-            cursor.execute(
-                '''SELECT date FROM commande WHERE id_C = ?''', (id_Commande))
-            
-            date = cursor.fetchone()[0]
-            
-            # Define the types
-            types = ["Ammonix", "Tovex", "A.E.I", "Detos450ms", "Detos500ms", "raccords17ms", "raccords25ms", "raccords42ms", "raccords65ms", "raccords100ms", "Ligne de tir"]
-            
-            for type_name in types:
-                # Calculate the value to update cout_actuel based on the corresponding result column
-                consomme = result[types.index(type_name) + 1]  # Skip the id_R column
-                
-                # Update the cout_actuel in the cout table for the specific type and id_Commande
-                cursor.execute('''
-                    INSERT INTO cout (id_Commande, date, type, cout_global, cout_actuel)
-                    SELECT ?, ?, ?, cout_global, cout_actuel - ?
-                    FROM cout
-                    WHERE type = ? AND id_Commande = ?
-                ''', (id_Commande, date, type_name, consomme, type_name, id_Commande))
-
-            # Commit the changes to the database
-            connection.commit()
-
-        except sqlite3.Error as e:
-            print("SQLite Error:", str(e))
-        except Exception as e:
-            print("Unexpected Error:", str(e))
-        finally:
-            connection.close()
-
-                # Update the cout_actuel in the cout table for the specific type
-
-    #fonction qui affiche tout les statistiques du cout"""
-
-
-
-"""
 
 
 if __name__ == "__main__":
@@ -1901,7 +2148,7 @@ if __name__ == "__main__":
 
 def register_user(username, password, name):
     # Connect to the SQLite database
-    connection = sqlite3.connect("your_database.db")
+    connection = sqlite3.connect("bgblast.db")
     cursor = connection.cursor()
 
     # Define the data for the new user
